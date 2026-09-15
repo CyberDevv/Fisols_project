@@ -1,0 +1,6 @@
+{
+  "name": "KBF Precision Genomedix Ltd",
+  "description": "Clinical precision telehealth and pharmacogenomics platform by KBF Precision Genomedix Ltd in partnership with LAUTECH Teaching Hospital and University of Geneva Precision Medicine.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
