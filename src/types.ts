@@ -182,7 +182,7 @@ export interface PostConsultFollowUp {
   appointmentId: string;
   patientName: string;
   checkInDueHours: number;
-  status: 'PENDING_SCHEDULED' | 'COMPLETED_OPTIMAL' | 'ADR_ESCALATION_REQUIRED';
+  status: 'PENDING_SCHEDULED' | 'COMPLETED_OPTIMAL' | 'ADR_ESCALATION_REQUIRED' | 'ADVERSE_EVENT_FLAGGED';
   symptomScore: number; // 1 to 10
   adverseReactionsReported: string[];
   patientNotes: string;

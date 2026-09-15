@@ -574,6 +574,9 @@ export const DEMO_PATIENT_SURGERY_UROLOGY: PatientProfile = {
   ]
 };
 
+export const DEMO_PATIENT_ZAINAB: PatientProfile = DEMO_PATIENT_OBGYN;
+export const DEMO_PATIENT_ALHAJI: PatientProfile = DEMO_PATIENT_SURGERY_UROLOGY;
+
 export const LAUTECH_SURGERY_UROLOGY_PROTOCOL = {
   name: 'LAUTECH Elective Surgical & Urological Routine Protocol',
   routing: 'Elective Outpatient Schedule',
