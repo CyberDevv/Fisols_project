@@ -193,11 +193,11 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 text-xs font-semibold border border-teal-200">
-                <Activity className="w-3.5 h-3.5 text-teal-700 shrink-0" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200">
+                <Activity className="w-3.5 h-3.5 text-slate-700 shrink-0" />
                 LAUTECH Dept. of Surgery &amp; Urology
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200">
                 Elective Outpatient Schedule
               </span>
             </div>
@@ -216,7 +216,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
               className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl flex items-center justify-center gap-1.5 border border-slate-200 transition-colors shadow-2xs min-h-[40px]"
               title="Load Alhaji Rasheed Adeleke (Post-TURP 6W Follow-up)"
             >
-              <UserCheck className="w-3.5 h-3.5 text-teal-700" />
+              <UserCheck className="w-3.5 h-3.5 text-slate-700" />
               <span>Load Demo Patient (Alhaji Rasheed)</span>
             </button>
           </div>
@@ -224,11 +224,11 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
       </div>
 
       {/* 1. EMERGENCY SAFETY CHECK (THE RED FLAG STOP) */}
-      <div className="bg-white rounded-2xl border-2 border-rose-300 p-4 sm:p-6 shadow-sm relative overflow-hidden">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-4 border-b border-rose-100">
+      <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs relative overflow-hidden">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-rose-600 text-white shadow-xs">
-              <AlertTriangle className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-slate-900 text-white shadow-xs">
+              <AlertTriangle className="w-5 h-5 text-red-500" />
             </div>
             <div>
               <h3 className="text-base sm:text-lg font-bold text-slate-950">
@@ -240,20 +240,20 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
             </div>
           </div>
           {hasEmergencyRedFlags ? (
-            <span className="self-start sm:self-auto px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-bold uppercase tracking-wider animate-pulse">
+            <span className="self-start sm:self-auto px-3 py-1 rounded-full bg-red-600 text-white text-xs font-bold uppercase tracking-wider">
               Red Flag Triggered
             </span>
           ) : (
-            <span className="self-start sm:self-auto px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200 flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="self-start sm:self-auto px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200 flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-slate-700" />
               Screen Clear
             </span>
           )}
         </div>
 
         {/* Mandated Emergency Notice */}
-        <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl mb-4 text-xs sm:text-sm text-rose-950 leading-relaxed font-medium">
-          <strong className="text-rose-900 font-bold block sm:inline">Emergency Notice: </strong>
+        <div className="p-4 bg-red-50/80 border border-red-200 rounded-xl mb-4 text-xs sm:text-sm text-red-950 leading-relaxed font-medium">
+          <strong className="text-red-900 font-bold block sm:inline">Emergency Notice: </strong>
           If you are experiencing acute severe abdominal pain, sudden urinary retention with severe distress, active gross hematuria with clots, or acute trauma, do not use this app. Go immediately to LAUTECH Hospital Emergency.
         </div>
 
@@ -270,7 +270,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                   key={flag.id}
                   className={`flex items-start gap-3 p-3 rounded-xl border text-xs cursor-pointer select-none transition min-h-[48px] ${
                     checked
-                      ? 'border-rose-500 bg-rose-100/80 text-rose-950 font-bold ring-2 ring-rose-400'
+                      ? 'border-red-400 bg-red-50 text-red-950 font-bold'
                       : 'border-slate-200 bg-slate-50/70 text-slate-700 hover:border-slate-300 hover:bg-slate-100'
                   }`}
                 >
@@ -278,7 +278,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                     type="checkbox"
                     checked={checked}
                     onChange={() => toggleRedFlag(flag.id)}
-                    className="w-4 h-4 mt-0.5 rounded border-slate-300 text-rose-600 focus:ring-rose-500 shrink-0"
+                    className="w-4 h-4 mt-0.5 rounded border-slate-300 text-red-600 focus:ring-red-500 shrink-0"
                   />
                   <span className="leading-snug">{flag.label}</span>
                 </label>
@@ -289,25 +289,25 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
 
         {/* Emergency Stop Guidance if Red Flag is Selected */}
         {hasEmergencyRedFlags && (
-          <div className="p-4 bg-rose-600 text-white rounded-xl space-y-3">
+          <div className="p-4 bg-red-700 text-white rounded-xl space-y-3">
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-white shrink-0" />
               <h4 className="font-bold text-sm sm:text-base">
                 EMERGENCY STOP ACTIVATED
               </h4>
             </div>
-            <p className="text-xs sm:text-sm text-rose-100 leading-relaxed">
+            <p className="text-xs sm:text-sm text-red-100 leading-relaxed">
               Virtual teleconsultation is not safe for acute surgical emergencies, acute urinary blockage, severe bleeding, or trauma. Present immediately to the Emergency Casualty at LAUTECH Teaching Hospital, Ogbomoso.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="tel:08005288324"
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-rose-700 hover:bg-rose-50 font-bold text-xs rounded-xl shadow-xs transition"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-red-700 hover:bg-red-50 font-bold text-xs rounded-xl shadow-xs transition"
               >
                 <PhoneCall className="w-4 h-4" />
                 <span>Call LAUTECH ER (0800-LAUTECH)</span>
               </a>
-              <span className="text-xs text-rose-200 font-medium">
+              <span className="text-xs text-red-200 font-medium">
                 Casualty Unit: LAUTECH Teaching Hospital, General Hospital Road, Ogbomoso
               </span>
             </div>
@@ -318,7 +318,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
       {/* 2. CORE ELECTIVE FOCUS (WHAT TELEMEDICINE SOLVES HERE) */}
       <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-4">
         <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-          <div className="p-2 rounded-xl bg-teal-700 text-white shadow-xs">
+          <div className="p-2 rounded-xl bg-slate-900 text-white shadow-xs">
             <Activity className="w-5 h-5" />
           </div>
           <div>
@@ -332,8 +332,8 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
         </div>
 
         {/* Mandated Core Elective Focus Statement */}
-        <div className="p-4 bg-teal-50/80 border border-teal-200 rounded-xl text-xs sm:text-sm text-teal-950 leading-relaxed font-medium">
-          <strong className="text-teal-900 font-bold block sm:inline">Elective Outpatient Care: </strong>
+        <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 leading-relaxed font-medium">
+          <strong className="text-slate-950 font-bold block sm:inline">Elective Outpatient Care: </strong>
           This telehealth channel is designed for elective urological and surgical pre-operative evaluations, post-operative follow-up care, chronic symptom tracking, and routine specialist referrals.
         </div>
 
@@ -351,13 +351,13 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`p-3.5 rounded-xl border text-left cursor-pointer transition flex flex-col justify-between ${
                     isSelected
-                      ? 'border-teal-600 bg-teal-50/60 ring-2 ring-teal-500/30'
+                      ? 'border-slate-900 bg-slate-100 text-slate-950 shadow-2xs'
                       : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/60'
                   }`}
                 >
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-100 text-teal-800">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 text-slate-800">
                         {cat.badge}
                       </span>
                       <span className="text-[10px] text-slate-500 font-medium">
@@ -374,8 +374,8 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                   <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
                     <span className="italic text-slate-500">{cat.clinicalScope}</span>
                     {isSelected && (
-                      <span className="text-teal-700 font-bold flex items-center gap-1 shrink-0 ml-1">
-                        <Check className="w-3.5 h-3.5" /> Selected
+                      <span className="text-slate-900 font-bold flex items-center gap-1 shrink-0 ml-1">
+                        <Check className="w-3.5 h-3.5 text-slate-900" /> Selected
                       </span>
                     )}
                   </div>
@@ -403,7 +403,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
       {/* 3. PATIENT SAFETY ACKNOWLEDGMENT */}
       <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs space-y-3">
         <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-          <div className="p-2 rounded-xl bg-teal-800 text-white shadow-xs">
+          <div className="p-2 rounded-xl bg-slate-900 text-white shadow-xs">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
@@ -431,7 +431,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                     if (e.target.checked) setAttemptedWithoutAck(false);
                   }
                 }}
-                className="w-5 h-5 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 focus:ring-offset-0 cursor-pointer disabled:opacity-50"
+                className="w-5 h-5 text-slate-900 rounded border-slate-300 focus:ring-slate-900 focus:ring-offset-0 cursor-pointer disabled:opacity-50"
               />
             </div>
             <div className="space-y-1 flex-1">
@@ -443,8 +443,8 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
         </div>
 
         {attemptedWithoutAck && !safetyAcknowledged && !hasEmergencyRedFlags && (
-          <div className="p-2.5 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-900 flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+          <div className="p-2.5 bg-red-50 border border-red-200 rounded-lg text-xs text-red-900 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
             <span>
               <strong>Required:</strong> Please check the Patient Safety Acknowledgment above to confirm non-emergency status before booking.
             </span>
@@ -452,8 +452,8 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
         )}
 
         {hasEmergencyRedFlags && (
-          <div className="p-2.5 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-900 flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+          <div className="p-2.5 bg-red-50 border border-red-200 rounded-lg text-xs text-red-900 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
             <span>Cannot acknowledge safety while acute emergency red flags are checked.</span>
           </div>
         )}
@@ -463,7 +463,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
       <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-5 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-teal-800 text-white shadow-xs">
+            <div className="p-2 rounded-xl bg-slate-900 text-white shadow-xs">
               <UserCheck className="w-5 h-5" />
             </div>
             <div>
@@ -476,17 +476,17 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
             </div>
           </div>
           <div className="flex items-center gap-1.5 self-start sm:self-auto">
-            <span className="px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full">
+            <span className="px-2.5 py-1 bg-slate-100 text-slate-800 text-xs font-semibold rounded-full border border-slate-200">
               Specialist Allocated
             </span>
           </div>
         </div>
 
         {/* Specialist Profile Card */}
-        <div className="p-4 sm:p-5 bg-gradient-to-r from-slate-50 via-teal-50/20 to-blue-50/30 rounded-2xl border border-slate-200/90 shadow-2xs mb-5">
+        <div className="p-4 sm:p-5 bg-slate-50 rounded-2xl border border-slate-200 shadow-2xs mb-5">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-teal-800 text-white flex items-center justify-center font-bold text-lg sm:text-xl shadow-xs shrink-0 ring-4 ring-teal-50">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg sm:text-xl shadow-xs shrink-0 ring-4 ring-slate-100">
                 IN
               </div>
               <div className="space-y-1">
@@ -494,10 +494,10 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                   <h4 className="text-base sm:text-lg font-bold text-slate-950 tracking-tight">
                     {urologistSpecialist.name}
                   </h4>
-                  <span className="px-2 py-0.5 text-[10px] font-bold bg-teal-700 text-white rounded">
+                  <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-800 text-white rounded">
                     Matched Specialist
                   </span>
-                  <span className="px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 rounded border border-emerald-200">
+                  <span className="px-2 py-0.5 text-[10px] font-semibold bg-slate-200 text-slate-800 rounded border border-slate-300">
                     Verified Consultant
                   </span>
                 </div>
@@ -511,10 +511,10 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
             </div>
 
             {/* Protocol & Routing Badge Group */}
-            <div className="flex flex-col gap-1.5 p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs w-full md:w-auto text-xs">
+            <div className="flex flex-col gap-1.5 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs w-full md:w-auto text-xs">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-slate-500 font-medium text-[11px]">Routing:</span>
-                <span className="font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded text-[11px]">
+                <span className="font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded text-[11px]">
                   {LAUTECH_SURGERY_UROLOGY_PROTOCOL.routing}
                 </span>
               </div>
@@ -533,7 +533,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-200/80 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600">
+          <div className="mt-4 pt-3 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600">
             <div>
               <span className="font-bold text-slate-800 block mb-1">
                 Clinical Expertise &amp; Scope:
@@ -541,7 +541,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
               <ul className="space-y-0.5 text-[11px]">
                 {urologistSpecialist.precisionExpertise.map((exp, i) => (
                   <li key={i} className="flex items-center gap-1.5 text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-600" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
                     <span>{exp}</span>
                   </li>
                 ))}
@@ -562,7 +562,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-teal-700" />
+              <Calendar className="w-3.5 h-3.5 text-slate-600" />
               <span>Select Appointment Date</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -573,7 +573,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                   onClick={() => setSelectedDate(d)}
                   className={`py-2 px-3 rounded-xl border text-xs font-semibold transition min-h-[40px] ${
                     selectedDate === d
-                      ? 'border-teal-700 bg-teal-50 text-teal-800 ring-1 ring-teal-600'
+                      ? 'border-slate-900 bg-slate-900 text-white'
                       : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                   }`}
                 >
@@ -585,7 +585,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
 
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-teal-700" />
+              <Clock className="w-3.5 h-3.5 text-slate-600" />
               <span>Elective Consultation Slot (WAT)</span>
             </label>
             <div className="grid grid-cols-3 gap-1.5">
@@ -596,7 +596,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                   onClick={() => setSelectedTime(slot.time)}
                   className={`py-2 px-2 rounded-xl border text-xs font-semibold text-center transition min-h-[40px] ${
                     selectedTime === slot.time
-                      ? 'border-teal-700 bg-teal-50 text-teal-800 ring-1 ring-teal-600'
+                      ? 'border-slate-900 bg-slate-900 text-white'
                       : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                   }`}
                 >
@@ -619,7 +619,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                 onClick={() => setSelectedPaymentMode('HMO')}
                 className={`px-3 py-1 text-xs rounded-lg font-semibold transition ${
                   selectedPaymentMode === 'HMO'
-                    ? 'bg-teal-700 text-white'
+                    ? 'bg-slate-900 text-white'
                     : 'bg-white text-slate-700 border border-slate-200'
                 }`}
               >
@@ -630,7 +630,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
                 onClick={() => setSelectedPaymentMode('OUT_OF_POCKET')}
                 className={`px-3 py-1 text-xs rounded-lg font-semibold transition ${
                   selectedPaymentMode === 'OUT_OF_POCKET'
-                    ? 'bg-teal-700 text-white'
+                    ? 'bg-slate-900 text-white'
                     : 'bg-white text-slate-700 border border-slate-200'
                 }`}
               >
@@ -672,28 +672,28 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
           ) : (
             <div className="p-3 bg-white rounded-lg border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
               <span>Standard LAUTECH Virtual Outpatient Fee: <strong>₦7,500</strong></span>
-              <span className="text-[11px] text-teal-700 font-semibold">Hospital Tariff</span>
+              <span className="text-[11px] text-slate-700 font-semibold">Hospital Tariff</span>
             </div>
           )}
         </div>
 
         {/* Confirmation State Banner if Booked */}
         {isBooked && confirmedBookingId ? (
-          <div className="p-4 sm:p-5 bg-emerald-50 border-2 border-emerald-300 rounded-2xl space-y-3">
+          <div className="p-4 sm:p-5 bg-slate-50 border border-slate-300 rounded-2xl space-y-3">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+              <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <h4 className="text-sm sm:text-base font-bold text-emerald-950">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-950">
                     Elective Surgery &amp; Urology Appointment Confirmed!
                   </h4>
-                  <span className="font-mono text-xs px-2 py-0.5 bg-emerald-200 text-emerald-900 font-bold rounded">
+                  <span className="font-mono text-xs px-2 py-0.5 bg-slate-200 text-slate-900 font-bold rounded">
                     {confirmedBookingId}
                   </span>
                 </div>
-                <p className="text-xs text-emerald-900 leading-relaxed">
+                <p className="text-xs text-slate-700 leading-relaxed">
                   Scheduled with <strong>{urologistSpecialist.name}</strong> for <strong>{selectedDate} at {selectedTime}</strong> under the <em>{LAUTECH_SURGERY_UROLOGY_PROTOCOL.name}</em>.
                 </p>
               </div>
@@ -702,7 +702,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={onNavigateToConsultation}
-                className="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition min-h-[42px]"
+                className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition min-h-[42px]"
               >
                 <span>Enter Doctor Consultation Room</span>
                 <ArrowRight className="w-4 h-4" />
@@ -719,7 +719,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
           /* Final Action Button */
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
             <div className="text-xs text-slate-500 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck className="w-4 h-4 text-slate-600" />
               <span>Elective non-emergency telehealth with attending consultant</span>
             </div>
 
@@ -731,9 +731,7 @@ export const SurgeryUrologyModule: React.FC<SurgeryUrologyModuleProps> = ({
               className={`px-6 py-3 font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition min-h-[44px] ${
                 hasEmergencyRedFlags
                   ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                  : !safetyAcknowledged
-                  ? 'bg-teal-700/80 hover:bg-teal-700 text-white'
-                  : 'bg-teal-700 hover:bg-teal-800 text-white shadow-teal-900/10'
+                  : 'bg-slate-900 hover:bg-slate-800 text-white'
               }`}
             >
               <span>Book Elective Consultation with Dr. Najimudeen</span>

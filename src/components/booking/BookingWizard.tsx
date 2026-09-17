@@ -487,19 +487,19 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
       {/* Booking Header Card - Modern Clinical Telehealth */}
-      <div className="bg-white text-slate-900 rounded-2xl p-4 sm:p-6 lg:p-7 mb-5 sm:mb-6 shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] border border-slate-200/80">
+      <div className="bg-white text-slate-900 rounded-2xl p-4 sm:p-6 lg:p-7 mb-5 sm:mb-6 shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] border border-slate-200">
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[11px] sm:text-xs font-semibold border border-blue-200/70">
-              <Building2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[11px] sm:text-xs font-medium border border-slate-200">
+              <Building2 className="w-3.5 h-3.5 text-slate-600 shrink-0" />
               KBF Precision Genomedix Ltd
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] sm:text-xs font-semibold border border-emerald-200/70">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[11px] sm:text-xs font-medium border border-slate-200">
               LAUTECH Consultant Physicians
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 text-[11px] sm:text-xs font-semibold border border-amber-200/80">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-              Pilot Research Prototype – Pending LAUTECH Ethics Approval
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] sm:text-xs font-medium border border-slate-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+              Pilot Research Prototype – Pending Ethics Approval
             </span>
           </div>
 
@@ -515,7 +515,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
           {/* Quick Clinical Test Cases Toolbar */}
           <div className="pt-3.5 mt-3 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-2.5">
             <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 shrink-0">
-              <UserCheck className="w-3.5 h-3.5 text-blue-600" />
+              <UserCheck className="w-3.5 h-3.5 text-slate-600" />
               <span>Quick Clinical Test Cases:</span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
@@ -531,10 +531,10 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     chestPainOrDyspnea: true
                   }));
                 }}
-                className="px-2.5 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-800 text-[11px] font-semibold border border-blue-200 transition-all flex items-center gap-1.5"
+                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
                 title="Load Adewale Adeleke (Cardiology CYP2C19/SLCO1B1)"
               >
-                <User className="w-3 h-3 text-blue-600 shrink-0" />
+                <User className="w-3 h-3 text-slate-500 shrink-0" />
                 <span>Mr. Adeleke (Cardio)</span>
               </button>
               <button
@@ -549,10 +549,10 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     chestPainOrDyspnea: false
                   }));
                 }}
-                className="px-2.5 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 text-purple-800 text-[11px] font-semibold border border-purple-200 transition-all flex items-center gap-1.5"
+                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
                 title="Load Dr. Amina Bello (Neurology CYP2D6 Migraine)"
               >
-                <User className="w-3 h-3 text-purple-600 shrink-0" />
+                <User className="w-3 h-3 text-slate-500 shrink-0" />
                 <span>Dr. Amina (Neuro)</span>
               </button>
               <button
@@ -567,10 +567,10 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     chestPainOrDyspnea: false
                   }));
                 }}
-                className="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-semibold border border-emerald-200 transition-all flex items-center gap-1.5"
+                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
                 title="Load Chukwuemeka Eze (Oncology DPYD Screen)"
               >
-                <User className="w-3 h-3 text-emerald-600 shrink-0" />
+                <User className="w-3 h-3 text-slate-500 shrink-0" />
                 <span>Chukwuemeka (Onco)</span>
               </button>
               <button
@@ -588,10 +588,10 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     patientNarrative: 'Primigravida 24 weeks gestation. Low-risk elective care under LAUTECH Tele-Gynecology Routine Protocol.'
                   }));
                 }}
-                className="px-2.5 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-800 text-[11px] font-semibold border border-rose-200 transition-all flex items-center gap-1.5"
+                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
                 title="Load Zainab Balogun (24W Antenatal OB/GYN Routine Care)"
               >
-                <Heart className="w-3 h-3 text-rose-600 shrink-0" />
+                <Heart className="w-3 h-3 text-slate-500 shrink-0" />
                 <span>Zainab (OB/GYN)</span>
               </button>
               <button
@@ -611,16 +611,16 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                   setSurgeryEmergencyAcknowledged(true);
                   setSurgeryRedFlags([]);
                 }}
-                className="px-2.5 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-800 text-[11px] font-semibold border border-teal-200 transition-all flex items-center gap-1.5"
+                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
                 title="Load Alhaji Rasheed Adeleke (Surgery & Urology Post-Op Review)"
               >
-                <Activity className="w-3 h-3 text-teal-600 shrink-0" />
+                <Activity className="w-3 h-3 text-slate-500 shrink-0" />
                 <span>Alhaji Rasheed (Surgery/Uro)</span>
               </button>
               <button
                 type="button"
                 onClick={handleResetToNewBooking}
-                className="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-medium border border-slate-300 transition-all"
+                className="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-medium border border-slate-200 transition-all"
                 title="Reset to a blank intake form for any new patient"
               >
                 <span>Clear Form</span>
@@ -633,20 +633,20 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
         <div className="sm:hidden mt-4 pt-3 border-t border-slate-100">
           <div className="flex items-center justify-between text-xs mb-1.5">
             <span className="font-semibold text-slate-900">
-              Step {currentStep} of 5: <span className="text-blue-700 font-bold">{stepsList[currentStep - 1]?.title}</span>
+              Step {currentStep} of 5: <span className="text-slate-900 font-bold">{stepsList[currentStep - 1]?.title}</span>
             </span>
-            <span className="font-mono text-[11px] font-bold text-blue-600">{currentStep * 20}%</span>
+            <span className="font-mono text-[11px] font-bold text-slate-700">{currentStep * 20}%</span>
           </div>
-          <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+          <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
             <div 
-              className="bg-blue-600 h-full rounded-full transition-all duration-300"
+              className="bg-slate-900 h-full rounded-full transition-all duration-300"
               style={{ width: `${currentStep * 20}%` }}
             />
           </div>
         </div>
 
         {/* 5-Step Progress Stepper - Adaptive Horizontal Track on Mobile, Full Cards on Desktop */}
-        <div className="mt-3 sm:mt-6 pt-3 sm:pt-5 border-t sm:border-t-0 border-slate-100 flex sm:grid sm:grid-cols-5 gap-2 bg-slate-50/50 p-1.5 sm:p-2 rounded-xl border border-slate-200/60 overflow-x-auto no-scrollbar scroll-smooth">
+        <div className="mt-3 sm:mt-6 pt-3 sm:pt-5 border-t sm:border-t-0 border-slate-100 flex sm:grid sm:grid-cols-5 gap-2 bg-slate-50/70 p-1.5 sm:p-2 rounded-xl border border-slate-200 overflow-x-auto no-scrollbar scroll-smooth">
           {stepsList.map((st) => {
             const isDone = currentStep > st.num;
             const isCurrent = currentStep === st.num;
@@ -660,18 +660,18 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 }}
                 className={`min-w-[130px] sm:min-w-0 flex-1 shrink-0 text-left p-2.5 sm:p-3 rounded-lg transition-all border min-h-[44px] flex flex-col justify-center ${
                   isCurrent 
-                    ? 'bg-white border-blue-500/80 text-blue-950 shadow-xs ring-2 ring-blue-500/10' 
+                    ? 'bg-white border-slate-900 text-slate-950 shadow-xs' 
                     : isDone 
-                      ? 'bg-white/80 hover:bg-white border-slate-200 text-slate-700' 
+                      ? 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50' 
                       : 'border-transparent opacity-50 cursor-not-allowed text-slate-400'
                 }`}
               >
                 <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
                   <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold transition-transform shrink-0 ${
                     isDone 
-                      ? 'bg-emerald-600 text-white ring-2 ring-emerald-100' 
+                      ? 'bg-slate-700 text-white' 
                       : isCurrent 
-                        ? 'bg-blue-600 text-white ring-2 ring-blue-100 scale-105' 
+                        ? 'bg-slate-900 text-white scale-105' 
                         : 'bg-slate-200 text-slate-600'
                   }`}>
                     {isDone ? <Check className="w-3 h-3 stroke-[2.5]" /> : st.num}
@@ -781,7 +781,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 <button
                   type="button"
                   onClick={handleVerifyOtp}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shrink-0 min-h-[40px]"
+                  className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shrink-0 min-h-[40px]"
                 >
                   {otpVerified ? 'Verified ✓' : 'Verify'}
                 </button>
@@ -844,13 +844,13 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                   patient.chronicConditions.map((cond, idx) => (
                     <span 
                       key={idx} 
-                      className="inline-flex items-center gap-1.5 pl-2.5 pr-1.5 py-1 bg-amber-50 hover:bg-amber-100/80 text-amber-950 border border-amber-200/80 rounded-md text-xs font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 pl-2.5 pr-1.5 py-1 bg-slate-100 text-slate-800 border border-slate-200 rounded-md text-xs font-medium transition-colors"
                     >
                       <span>{cond}</span>
                       <button
                         type="button"
                         onClick={() => handleRemoveCondition(idx)}
-                        className="p-0.5 rounded-full text-amber-700 hover:text-rose-700 hover:bg-amber-200/60 transition-colors focus:outline-none focus:ring-1 focus:ring-rose-400"
+                        className="p-0.5 rounded-full text-slate-500 hover:text-slate-800 hover:bg-slate-200 transition-colors focus:outline-none"
                         title={`Remove ${cond}`}
                         aria-label={`Remove condition ${cond}`}
                       >
@@ -872,13 +872,13 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                       handleAddCondition();
                     }
                   }}
-                  className="flex-1 px-3 py-1.5 text-xs border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+                  className="flex-1 px-3 py-1.5 text-xs border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-400"
                 />
                 <button
                   type="button"
                   onClick={handleAddCondition}
                   disabled={!newConditionInput.trim()}
-                  className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-lg text-xs font-semibold flex items-center gap-1 transition shrink-0 shadow-xs"
+                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-lg text-xs font-semibold flex items-center gap-1 transition shrink-0 shadow-xs"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add</span>
@@ -888,27 +888,27 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
 
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-semibold text-rose-700">
+                <label className="block text-xs font-semibold text-slate-800">
                   Known Drug Allergies
                 </label>
                 <span className="text-[10px] text-slate-400">
                   {patient.drugAllergies.length} documented
                 </span>
               </div>
-              <div className="flex flex-wrap gap-1.5 mb-2 min-h-[30px] p-2 bg-slate-50/70 rounded-lg border border-slate-200/60">
+              <div className="flex flex-wrap gap-1.5 mb-2 min-h-[30px] p-2 bg-slate-50/70 rounded-lg border border-slate-200">
                 {patient.drugAllergies.length === 0 ? (
                   <span className="text-slate-400 text-xs italic py-0.5">No known drug allergies reported</span>
                 ) : (
                   patient.drugAllergies.map((allergy, idx) => (
                     <span 
                       key={idx} 
-                      className="inline-flex items-center gap-1.5 pl-2.5 pr-1.5 py-1 bg-rose-50 hover:bg-rose-100/80 text-rose-900 border border-rose-200/80 rounded-md text-xs font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 pl-2.5 pr-1.5 py-1 bg-rose-50 text-rose-900 border border-rose-200 rounded-md text-xs font-medium transition-colors"
                     >
                       <span>⚠️ {allergy}</span>
                       <button
                         type="button"
                         onClick={() => handleRemoveAllergy(idx)}
-                        className="p-0.5 rounded-full text-rose-600 hover:text-rose-900 hover:bg-rose-200/60 transition-colors focus:outline-none focus:ring-1 focus:ring-rose-400"
+                        className="p-0.5 rounded-full text-rose-600 hover:text-rose-900 hover:bg-rose-100 transition-colors focus:outline-none"
                         title={`Remove ${allergy}`}
                         aria-label={`Remove drug allergy ${allergy}`}
                       >
@@ -930,13 +930,13 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                       handleAddAllergy();
                     }
                   }}
-                  className="flex-1 px-3 py-1.5 text-xs border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+                  className="flex-1 px-3 py-1.5 text-xs border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-400"
                 />
                 <button
                   type="button"
                   onClick={handleAddAllergy}
                   disabled={!newAllergyInput.trim()}
-                  className="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-lg text-xs font-semibold flex items-center gap-1 transition shrink-0 shadow-xs"
+                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-lg text-xs font-semibold flex items-center gap-1 transition shrink-0 shadow-xs"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add</span>
@@ -983,17 +983,17 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
           </div>
 
           {/* EXPLICIT DATA PRIVACY / CONSENT CHECKPOINT UI (UN-SKIPPABLE) */}
-          <div className={`mt-6 p-4 sm:p-5 rounded-2xl border-2 transition-all ${
+          <div className={`mt-6 p-4 sm:p-5 rounded-2xl border transition-all ${
             patient.ndprConsentGiven
-              ? 'bg-emerald-50/40 border-emerald-300 shadow-xs'
+              ? 'bg-slate-50/80 border-slate-300'
               : consentErrorPrompt 
-                ? 'bg-rose-50/60 border-rose-400 ring-2 ring-rose-200' 
-                : 'bg-slate-50/80 border-slate-300'
+                ? 'bg-rose-50/60 border-rose-300 ring-1 ring-rose-200' 
+                : 'bg-slate-50/50 border-slate-200'
           }`}>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-200/70">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-200">
               <div className="flex items-center gap-2">
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                  patient.ndprConsentGiven ? 'bg-emerald-600 text-white' : 'bg-slate-700 text-white'
+                  patient.ndprConsentGiven ? 'bg-slate-900 text-white' : 'bg-slate-600 text-white'
                 }`}>
                   <ShieldCheck className="w-4 h-4" />
                 </div>
@@ -1008,18 +1008,18 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
               </div>
 
               <div className="flex items-center gap-2 self-start sm:self-auto">
-                <span className={`px-2.5 py-1 text-[11px] font-bold rounded-full border ${
+                <span className={`px-2.5 py-1 text-[11px] font-medium rounded-full border ${
                   patient.ndprConsentGiven
-                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
-                    : 'bg-amber-100 text-amber-900 border-amber-300 animate-pulse'
+                    ? 'bg-slate-200 text-slate-800 border-slate-300'
+                    : 'bg-amber-50 text-amber-900 border-amber-200'
                 }`}>
-                  {patient.ndprConsentGiven ? '✓ Consent Verified' : '⚠️ Consent Required to Proceed'}
+                  {patient.ndprConsentGiven ? '✓ Consent Verified' : '⚠️ Consent Required'}
                 </span>
                 {onOpenNdprModal && (
                   <button
                     type="button"
                     onClick={onOpenNdprModal}
-                    className="text-[11px] text-blue-700 hover:text-blue-900 font-semibold underline underline-offset-2 ml-1"
+                    className="text-[11px] text-slate-700 hover:text-slate-950 font-medium underline underline-offset-2 ml-1"
                   >
                     View NDPR Policy
                   </button>
@@ -1039,8 +1039,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     setPatient({ ...patient, ndprConsentGiven: next });
                     if (next) setConsentErrorPrompt(false);
                   }}
-                  className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
-                    patient.ndprConsentGiven ? 'bg-emerald-600' : 'bg-slate-300'
+                  className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 ${
+                    patient.ndprConsentGiven ? 'bg-slate-900' : 'bg-slate-300'
                   }`}
                 >
                   <span
@@ -1057,7 +1057,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                   <span className="font-bold text-slate-900 text-xs">
                     Explicit Patient Authorization for Genomic &amp; Clinical Data Processing
                   </span>
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                  <span className="text-[10px] uppercase font-semibold tracking-wider text-slate-400">
                     Un-skippable
                   </span>
                 </div>
@@ -1066,7 +1066,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </p>
                 <div className="flex flex-wrap items-center gap-3 pt-1 text-[10px] sm:text-[11px] text-slate-500 font-mono">
                   <span className="flex items-center gap-1">
-                    <Lock className="w-3 h-3 text-emerald-600" />
+                    <Lock className="w-3 h-3 text-slate-600" />
                     AES-256 Storage
                   </span>
                   <span>•</span>
@@ -1079,8 +1079,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
 
             {/* Warning Prompt when untoggled */}
             {!patient.ndprConsentGiven && (
-              <div className="mt-3 p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-900 flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
+              <div className="mt-3 p-2.5 bg-slate-100 border border-slate-200 rounded-lg text-[11px] text-slate-800 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-slate-600 shrink-0" />
                 <span>
                   <strong>NDPR Statutory Requirement:</strong> You must toggle and confirm consent above to authorize pharmacogenomic review and proceed to symptom triage.
                 </span>
@@ -1090,14 +1090,14 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
 
           <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
             <div className="text-xs text-slate-500 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck className="w-4 h-4 text-slate-700" />
               <span>Step 1 of 5: Profile &amp; NDPR Consent Verified</span>
             </div>
 
             {patient.ndprConsentGiven && patient.fullName ? (
               <button
                 onClick={() => setCurrentStep(2)}
-                className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-xs min-h-[44px]"
+                className="w-full sm:w-auto px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-xs min-h-[44px]"
               >
                 <span>Continue to Symptom Triage</span>
                 <ArrowRight className="w-4 h-4" />
@@ -1214,17 +1214,17 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
 
             {/* OB/GYN MODULE: ELECTIVE TELEHEALTH & SAFETY SCREEN (USER MANDATE) */}
             {triageInput.symptomCategory === 'Obstetrics & Gynaecology' && (
-              <div className="p-4 sm:p-5 bg-gradient-to-b from-rose-50/70 to-pink-50/30 border-2 border-rose-300 rounded-2xl space-y-4 shadow-xs">
-                <div className="flex items-center justify-between gap-2 pb-2 border-b border-rose-200">
+              <div className="p-4 sm:p-5 bg-white border border-slate-200 rounded-2xl space-y-4 shadow-xs">
+                <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
                   <div className="flex items-center gap-2">
-                    <span className="p-1.5 rounded-lg bg-rose-600 text-white">
+                    <span className="p-1.5 rounded-lg bg-slate-900 text-white">
                       <Heart className="w-4 h-4" />
                     </span>
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-rose-950">
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-950">
                         OB/GYN Module: Elective Telehealth &amp; Safety Screen
                       </h4>
-                      <p className="text-[11px] text-rose-800">
+                      <p className="text-[11px] text-slate-500">
                         LAUTECH Teaching Hospital, Ogbomoso &bull; Women's Health &amp; Antenatal Service
                       </p>
                     </div>
@@ -1233,7 +1233,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     <button
                       type="button"
                       onClick={onNavigateToObGyn}
-                      className="px-2.5 py-1 text-[11px] font-bold text-rose-700 hover:text-rose-900 bg-white hover:bg-rose-100 rounded-lg border border-rose-300 transition shrink-0 shadow-2xs"
+                      className="px-2.5 py-1 text-[11px] font-semibold text-slate-700 hover:text-slate-950 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition shrink-0 shadow-2xs"
                     >
                       Open Full OB/GYN Clinic Screen &rarr;
                     </button>
@@ -1241,12 +1241,12 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </div>
 
                 {/* 1. Emergency Safety Check (The Red Flag Stop) */}
-                <div className="p-3.5 bg-white rounded-xl border border-rose-200 shadow-2xs space-y-2">
-                  <div className="flex items-center gap-2 text-rose-900 font-bold text-xs">
-                    <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
+                    <AlertTriangle className="w-4 h-4 text-red-600 shrink-0" />
                     <span>1. Emergency Safety Check (The Red Flag Stop)</span>
                   </div>
-                  <div className="p-3 bg-rose-100/80 border border-rose-300 rounded-lg text-rose-950 text-xs font-semibold leading-relaxed">
+                  <div className="p-3 bg-red-50/80 border border-red-200 rounded-lg text-red-950 text-xs font-semibold leading-relaxed">
                     <strong>Emergency Notice:</strong> If you are experiencing active heavy vaginal bleeding in pregnancy, severe abdominal pain, or decreased fetal movement, do not use this app. Go immediately to LAUTECH Hospital Emergency.
                   </div>
                   <div className="space-y-1.5 pt-1">
@@ -1265,8 +1265,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                             key={flag.id}
                             className={`flex items-start gap-2 p-2.5 rounded-lg border text-xs cursor-pointer transition min-h-[44px] ${
                               checked
-                                ? 'bg-rose-100 border-rose-400 text-rose-950 font-bold ring-1 ring-rose-400'
-                                : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                                ? 'bg-red-50 border-red-300 text-red-950 font-semibold ring-1 ring-red-300'
+                                : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                             }`}
                           >
                             <input
@@ -1279,7 +1279,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                                   setObGynRedFlags(prev => prev.filter(x => x !== flag.id));
                                 }
                               }}
-                              className="mt-0.5 w-4 h-4 text-rose-600 rounded shrink-0"
+                              className="mt-0.5 w-4 h-4 text-red-600 rounded shrink-0"
                             />
                             <span className="leading-snug">{flag.label}</span>
                           </label>
@@ -1289,7 +1289,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                   </div>
 
                   {obGynRedFlags.length > 0 && (
-                    <div className="p-3 bg-rose-600 text-white rounded-lg text-xs space-y-2 animate-pulse">
+                    <div className="p-3 bg-red-700 text-white rounded-lg text-xs space-y-2">
                       <div className="font-bold flex items-center gap-1.5">
                         <AlertTriangle className="w-4 h-4" />
                         <span>EMERGENCY STOP TRIGGERED: Virtual Consultation Blocked</span>
@@ -1299,7 +1299,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                       </p>
                       <a
                         href="tel:08005288324"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-rose-700 font-bold rounded-lg text-xs hover:bg-rose-50"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-red-700 font-bold rounded-lg text-xs hover:bg-red-50"
                       >
                         <PhoneCall className="w-3.5 h-3.5" /> Call LAUTECH Emergency Casualty (0800-LAUTECH)
                       </a>
@@ -1308,13 +1308,13 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </div>
 
                 {/* 2. Core Elective Focus (What Telemedicine Solves Here) */}
-                <div className="p-3.5 bg-white rounded-xl border border-rose-200 shadow-2xs space-y-2">
-                  <div className="flex items-center gap-2 text-rose-900 font-bold text-xs">
-                    <Baby className="w-4 h-4 text-rose-600 shrink-0" />
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
+                    <Baby className="w-4 h-4 text-slate-700 shrink-0" />
                     <span>2. Core Elective Focus (What Telemedicine Solves Here)</span>
                   </div>
                   <p className="text-xs text-slate-700 leading-relaxed">
-                    <strong className="text-rose-950">Elective Outpatient Care:</strong> This telehealth channel is designed for routine antenatal reviews, postpartum check-ins, menstrual tracking, contraceptive counseling, and stable gynecological care that does not require an immediate physical examination.
+                    <strong className="text-slate-900">Elective Outpatient Care:</strong> This telehealth channel is designed for routine antenatal reviews, postpartum check-ins, menstrual tracking, contraceptive counseling, and stable gynecological care that does not require an immediate physical examination.
                   </p>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 pt-1">
                     {[
@@ -1330,8 +1330,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                         onClick={() => setObGynElectiveCategory(track.id)}
                         className={`p-2 rounded-lg text-[11px] font-medium border text-center transition ${
                           obGynElectiveCategory === track.id
-                            ? 'bg-rose-100 border-rose-400 text-rose-950 font-bold'
-                            : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                            ? 'bg-slate-900 border-slate-900 text-white font-semibold'
+                            : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                         }`}
                       >
                         {track.label}
@@ -1341,9 +1341,9 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </div>
 
                 {/* 3. Patient Safety Acknowledgment */}
-                <div className="p-3.5 bg-white rounded-xl border border-rose-200 shadow-2xs">
-                  <div className="flex items-center gap-2 text-rose-900 font-bold text-xs mb-2">
-                    <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs mb-2">
+                    <CheckCircle2 className="w-4 h-4 text-slate-700 shrink-0" />
                     <span>3. Patient Safety Acknowledgment</span>
                   </div>
                   <label className="flex items-start gap-2.5 text-xs text-slate-800 font-medium cursor-pointer">
@@ -1351,7 +1351,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                       type="checkbox"
                       checked={obGynEmergencyAcknowledged}
                       onChange={(e) => setObGynEmergencyAcknowledged(e.target.checked)}
-                      className="mt-0.5 w-4 h-4 text-rose-600 rounded shrink-0"
+                      className="mt-0.5 w-4 h-4 text-slate-900 rounded shrink-0"
                     />
                     <span className="leading-snug font-semibold text-slate-900">
                       I confirm my current OB/GYN symptoms are non-emergency and suitable for an elective virtual consultation.
@@ -1360,14 +1360,14 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </div>
 
                 {/* 4. Matched Specialist View */}
-                <div className="p-3.5 bg-white rounded-xl border border-rose-200 shadow-2xs space-y-2">
-                  <div className="flex items-center gap-2 text-rose-900 font-bold text-xs">
-                    <Stethoscope className="w-4 h-4 text-rose-600 shrink-0" />
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
+                    <Stethoscope className="w-4 h-4 text-slate-700 shrink-0" />
                     <span>4. Matched Specialist View</span>
                   </div>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-rose-50/60 rounded-xl border border-rose-200">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-xl border border-slate-200">
                     <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full bg-rose-600 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-2xs">
+                      <div className="w-11 h-11 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-2xs">
                         AA
                       </div>
                       <div>
@@ -1378,7 +1378,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                           Consultant Obstetrician &amp; Gynaecologist, LAUTECH Teaching Hospital, Ogbomoso
                         </div>
                         <div className="flex flex-wrap items-center gap-2 mt-1">
-                          <span className="px-2 py-0.5 bg-white text-rose-800 text-[10px] font-bold rounded border border-rose-200">
+                          <span className="px-2 py-0.5 bg-slate-100 text-slate-800 text-[10px] font-semibold rounded border border-slate-200">
                             Routing: Elective Outpatient Schedule
                           </span>
                           <span className="px-2 py-0.5 bg-white text-slate-700 text-[10px] font-medium rounded border border-slate-200 font-mono">
@@ -1394,17 +1394,17 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
 
             {/* SURGERY & UROLOGY MODULE: ELECTIVE TELEHEALTH & SAFETY SCREEN */}
             {triageInput.symptomCategory === 'Surgery & Urology' && (
-              <div className="p-4 sm:p-5 bg-gradient-to-br from-teal-50/50 via-emerald-50/30 to-slate-50 rounded-2xl border-2 border-teal-200/90 shadow-2xs space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-teal-200/60">
+              <div className="p-4 sm:p-5 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
                   <div className="flex items-center gap-2">
-                    <span className="p-1.5 rounded-lg bg-teal-700 text-white shadow-2xs">
+                    <span className="p-1.5 rounded-lg bg-slate-900 text-white shadow-2xs">
                       <Activity className="w-4 h-4" />
                     </span>
                     <div>
-                      <h4 className="font-bold text-sm sm:text-base text-teal-950">
+                      <h4 className="font-bold text-sm sm:text-base text-slate-950">
                         Surgery &amp; Urology Module: Elective Telehealth &amp; Safety Screen
                       </h4>
-                      <p className="text-[11px] text-teal-800/80">
+                      <p className="text-[11px] text-slate-500">
                         Standardized surgical triage &amp; non-emergency verification protocol
                       </p>
                     </div>
@@ -1414,7 +1414,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                       <button
                         type="button"
                         onClick={onNavigateToSurgeryUrology}
-                        className="px-2.5 py-1 bg-teal-700 hover:bg-teal-800 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-2xs"
+                        className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-xs font-semibold transition flex items-center gap-1 border border-slate-200 shadow-2xs"
                       >
                         <span>Open Full Module</span>
                         <ArrowRight className="w-3 h-3" />
@@ -1426,11 +1426,11 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 {/* 1. Emergency Safety Check (The Red Flag Stop) */}
                 <div className={`p-4 rounded-xl border transition-all ${
                   surgeryRedFlags.length > 0
-                    ? 'bg-rose-100/80 border-rose-400 text-rose-950'
-                    : 'bg-white border-rose-200/80'
+                    ? 'bg-red-50 border-red-300 text-red-950'
+                    : 'bg-slate-50/60 border-slate-200'
                 }`}>
                   <div className="flex items-start gap-2.5 mb-2.5">
-                    <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                    <AlertTriangle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                     <div>
                       <h5 className="font-bold text-xs sm:text-sm text-slate-900">
                         1. Emergency Safety Check (The Red Flag Stop)
@@ -1442,8 +1442,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                   </div>
 
                   {/* Mandated Emergency Notice Box */}
-                  <div className="p-3 bg-rose-50 border border-rose-300 rounded-lg text-xs text-rose-950 font-medium leading-relaxed mb-3">
-                    <strong className="text-rose-900">Emergency Notice:</strong> If you are experiencing <strong>acute severe abdominal pain</strong>, <strong>sudden urinary retention with severe distress</strong>, <strong>active gross hematuria with clots</strong>, or <strong>acute trauma</strong>, do not use this app. Go immediately to LAUTECH Hospital Emergency.
+                  <div className="p-3 bg-red-50/80 border border-red-200 rounded-lg text-xs text-red-950 font-medium leading-relaxed mb-3">
+                    <strong className="text-red-900">Emergency Notice:</strong> If you are experiencing <strong>acute severe abdominal pain</strong>, <strong>sudden urinary retention with severe distress</strong>, <strong>active gross hematuria with clots</strong>, or <strong>acute trauma</strong>, do not use this app. Go immediately to LAUTECH Hospital Emergency.
                   </div>
 
                   {/* Red flag checklist */}
@@ -1464,8 +1464,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                             key={flag.id}
                             className={`flex items-center gap-2 p-2 rounded-lg border text-xs cursor-pointer transition ${
                               isChecked
-                                ? 'bg-rose-200/90 border-rose-400 font-bold text-rose-950'
-                                : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                                ? 'bg-red-100 border-red-300 font-semibold text-red-950'
+                                : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                             }`}
                           >
                             <input
@@ -1480,7 +1480,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                                   setSurgeryEmergencyAcknowledged(false);
                                 }
                               }}
-                              className="w-3.5 h-3.5 text-rose-600 rounded border-slate-300"
+                              className="w-3.5 h-3.5 text-red-600 rounded border-slate-300"
                             />
                             <span>{flag.label}</span>
                           </label>
@@ -1490,17 +1490,17 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                   </div>
 
                   {surgeryRedFlags.length > 0 && (
-                    <div className="mt-3 p-3 bg-rose-600 text-white rounded-lg text-xs space-y-2">
+                    <div className="mt-3 p-3 bg-red-700 text-white rounded-lg text-xs space-y-2">
                       <div className="font-bold flex items-center gap-1.5">
                         <AlertTriangle className="w-4 h-4 text-white shrink-0" />
                         <span>EMERGENCY STOP TRIGGERED</span>
                       </div>
-                      <p className="text-[11px] text-rose-100">
+                      <p className="text-[11px] text-red-100">
                         Virtual consultation is blocked. Please present to LAUTECH Teaching Hospital Casualty Emergency Department immediately.
                       </p>
                       <a
                         href="tel:08005288324"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-rose-700 font-bold rounded text-xs shadow-2xs hover:bg-rose-50"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-red-700 font-bold rounded text-xs shadow-2xs hover:bg-red-50"
                       >
                         <PhoneCall className="w-3.5 h-3.5" />
                         <span>Call LAUTECH ER (0800-LAUTECH)</span>
@@ -1510,15 +1510,15 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </div>
 
                 {/* 2. Core Elective Focus (What Telemedicine Solves Here) */}
-                <div className="p-4 bg-white rounded-xl border border-teal-200/80 space-y-3">
+                <div className="p-4 bg-slate-50/60 rounded-xl border border-slate-200 space-y-3">
                   <div className="flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-teal-700" />
+                    <Activity className="w-4 h-4 text-slate-700" />
                     <h5 className="font-bold text-xs sm:text-sm text-slate-900">
                       2. Core Elective Focus (What Telemedicine Solves Here)
                     </h5>
                   </div>
-                  <div className="p-3 bg-teal-50/70 border border-teal-200 rounded-lg text-xs text-teal-950 leading-relaxed font-medium">
-                    <strong className="text-teal-900">Elective Outpatient Care:</strong> This telehealth channel is designed for elective urological and surgical pre-operative evaluations, post-operative follow-up care, chronic symptom tracking, and routine specialist referrals.
+                  <div className="p-3 bg-white border border-slate-200 rounded-lg text-xs text-slate-800 leading-relaxed font-medium">
+                    <strong className="text-slate-900">Elective Outpatient Care:</strong> This telehealth channel is designed for elective urological and surgical pre-operative evaluations, post-operative follow-up care, chronic symptom tracking, and routine specialist referrals.
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
@@ -1533,32 +1533,32 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                         onClick={() => setSurgeryElectiveCategory(item.id)}
                         className={`p-2.5 rounded-lg border text-xs cursor-pointer transition ${
                           surgeryElectiveCategory === item.id
-                            ? 'bg-teal-50 border-teal-500 font-medium ring-1 ring-teal-500/30'
-                            : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+                            ? 'bg-slate-900 border-slate-900 text-white font-medium'
+                            : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
                         }`}
                       >
-                        <div className="font-bold text-slate-900 flex items-center justify-between">
+                        <div className={`font-bold flex items-center justify-between ${surgeryElectiveCategory === item.id ? 'text-white' : 'text-slate-900'}`}>
                           <span>{item.title}</span>
-                          {surgeryElectiveCategory === item.id && <Check className="w-3 h-3 text-teal-700" />}
+                          {surgeryElectiveCategory === item.id && <Check className="w-3 h-3 text-white" />}
                         </div>
-                        <p className="text-[11px] text-slate-600 mt-0.5">{item.desc}</p>
+                        <p className={`text-[11px] mt-0.5 ${surgeryElectiveCategory === item.id ? 'text-slate-300' : 'text-slate-500'}`}>{item.desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* 3. Patient Safety Acknowledgment */}
-                <div className="p-4 bg-white rounded-xl border border-teal-200/80">
+                <div className="p-4 bg-slate-50/60 rounded-xl border border-slate-200">
                   <div className="flex items-center gap-2 mb-2">
-                    <ShieldCheck className="w-4 h-4 text-teal-700" />
+                    <ShieldCheck className="w-4 h-4 text-slate-700" />
                     <h5 className="font-bold text-xs sm:text-sm text-slate-900">
                       3. Patient Safety Acknowledgment
                     </h5>
                   </div>
                   <label className={`flex items-start gap-2.5 p-3 rounded-lg border cursor-pointer transition ${
                     surgeryEmergencyAcknowledged 
-                      ? 'bg-emerald-50/70 border-emerald-300' 
-                      : 'bg-slate-50 border-slate-200'
+                      ? 'bg-white border-slate-400' 
+                      : 'bg-white border-slate-200'
                   } ${surgeryRedFlags.length > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}>
                     <input
                       type="checkbox"
@@ -1569,7 +1569,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                           setSurgeryEmergencyAcknowledged(e.target.checked);
                         }
                       }}
-                      className="mt-0.5 w-4 h-4 text-emerald-600 rounded border-slate-300"
+                      className="mt-0.5 w-4 h-4 text-slate-900 rounded border-slate-300"
                     />
                     <span className="text-xs font-semibold text-slate-900 leading-snug">
                       I confirm my current surgical/urological symptoms are non-emergency and suitable for an elective virtual consultation.
@@ -1578,32 +1578,32 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </div>
 
                 {/* 4. Matched Specialist View */}
-                <div className="p-4 bg-white rounded-xl border border-teal-200/80 space-y-2">
+                <div className="p-4 bg-slate-50/60 rounded-xl border border-slate-200 space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <UserCheck className="w-4 h-4 text-blue-600" />
+                      <UserCheck className="w-4 h-4 text-slate-700" />
                       <h5 className="font-bold text-xs sm:text-sm text-slate-900">
                         4. Matched Specialist View
                       </h5>
                     </div>
-                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">
+                    <span className="px-2 py-0.5 bg-slate-200 text-slate-800 text-[10px] font-semibold rounded">
                       Allocated
                     </span>
                   </div>
 
-                  <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-start gap-3">
-                    <div className="w-11 h-11 rounded-full bg-teal-800 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-2xs">
+                  <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-start gap-3">
+                    <div className="w-11 h-11 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-2xs">
                       IN
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-bold text-xs sm:text-sm text-slate-950">
                         Dr. Idowu Najimudeen
                       </div>
-                      <div className="text-[11px] text-teal-900 font-medium">
+                      <div className="text-[11px] text-slate-600 font-medium">
                         Consultant Urologist, LAUTECH Teaching Hospital, Ogbomoso
                       </div>
                       <div className="flex flex-wrap items-center gap-2 mt-1.5">
-                        <span className="px-2 py-0.5 bg-white text-teal-800 text-[10px] font-bold rounded border border-teal-200">
+                        <span className="px-2 py-0.5 bg-slate-100 text-slate-800 text-[10px] font-semibold rounded border border-slate-200">
                           Routing: Elective Outpatient Schedule
                         </span>
                         <span className="px-2 py-0.5 bg-white text-slate-700 text-[10px] font-medium rounded border border-slate-200 font-mono">
@@ -1752,7 +1752,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 (triageInput.symptomCategory === 'Obstetrics & Gynaecology' && (!obGynEmergencyAcknowledged || obGynRedFlags.length > 0)) ||
                 (triageInput.symptomCategory === 'Surgery & Urology' && (!surgeryEmergencyAcknowledged || surgeryRedFlags.length > 0))
               }
-              className="w-full sm:w-auto px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition min-h-[44px]"
+              className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-300 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition min-h-[44px]"
             >
               <span>Compute Clinical Match</span>
               <ArrowRight className="w-4 h-4" />
@@ -1773,16 +1773,16 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 Preserve patient data under 3G/4G constraints via client-side adaptive compression.
               </p>
             </div>
-            <span className="self-start sm:self-auto px-2.5 py-1 text-xs bg-emerald-100 text-emerald-800 rounded-full font-semibold border border-emerald-300">
+            <span className="self-start sm:self-auto px-2.5 py-1 text-xs bg-slate-100 text-slate-800 rounded-full font-semibold border border-slate-200">
               Current Mode: {networkQuality.replace('_', ' ')}
             </span>
           </div>
 
           {/* Matched Specialist Preview Card */}
-          <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl mb-5">
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl mb-5">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-700 text-white flex items-center justify-center font-bold text-base sm:text-lg shadow-sm shrink-0">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-base sm:text-lg shadow-sm shrink-0">
                   PA
                 </div>
                 <div>
@@ -1790,20 +1790,20 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     <h4 className="font-bold text-slate-900 text-sm">
                       {triageResult.matchedSpecialist.name}
                     </h4>
-                    <span className="px-2 py-0.5 text-[10px] bg-blue-600 text-white font-semibold rounded">
+                    <span className="px-2 py-0.5 text-[10px] bg-slate-800 text-white font-semibold rounded">
                       Matched Specialist
                     </span>
                   </div>
-                  <p className="text-xs text-blue-900 font-medium">
+                  <p className="text-xs text-slate-700 font-medium">
                     {triageResult.matchedSpecialist.title} — {triageResult.matchedSpecialist.institution}
                   </p>
                   <p className="text-[11px] text-slate-600 mt-0.5">
-                    Priority: <span className="font-semibold text-rose-700">{triageResult.clinicalPriority}</span>
+                    Priority: <span className="font-semibold text-slate-900">{triageResult.clinicalPriority}</span>
                   </p>
                 </div>
               </div>
 
-              <div className="text-xs bg-white/80 p-2.5 rounded-lg border border-blue-200 max-w-full sm:max-w-xs">
+              <div className="text-xs bg-white p-2.5 rounded-lg border border-slate-200 max-w-full sm:max-w-xs">
                 <span className="font-semibold text-slate-800 block text-[11px] mb-1">
                   University of Geneva Protocol Triggered:
                 </span>
@@ -1815,8 +1815,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
           </div>
 
           {/* Uploader Box */}
-          <div className="border-2 border-dashed border-slate-300 hover:border-blue-500 rounded-2xl p-4 sm:p-6 text-center bg-slate-50/70 transition">
-            <UploadCloud className="w-10 h-10 text-blue-600 mx-auto mb-2" />
+          <div className="border-2 border-dashed border-slate-300 hover:border-slate-400 rounded-2xl p-4 sm:p-6 text-center bg-slate-50/70 transition">
+            <UploadCloud className="w-10 h-10 text-slate-600 mx-auto mb-2" />
             <h4 className="text-sm font-bold text-slate-800">
               Upload Diagnostic Results, Genomic Reports or Prescriptions
             </h4>
@@ -1825,7 +1825,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap justify-center items-stretch sm:items-center gap-2">
-              <label className="px-3.5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 shadow-xs cursor-pointer transition min-h-[42px]">
+              <label className="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 shadow-xs cursor-pointer transition min-h-[42px]">
                 <UploadCloud className="w-3.5 h-3.5" />
                 <span>{isUploading ? 'Compressing...' : 'Browse Local File (PDF/IMG)'}</span>
                 <input
@@ -1841,9 +1841,9 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 type="button"
                 disabled={isUploading}
                 onClick={() => handleFileUploadSim('genetic_panel')}
-                className="px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 shadow-xs transition min-h-[42px]"
+                className="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 shadow-xs transition min-h-[42px]"
               >
-                <Dna className="w-3.5 h-3.5" />
+                <Dna className="w-3.5 h-3.5 text-slate-600" />
                 <span>{isUploading ? 'Compressing...' : 'Sample Genetic Panel'}</span>
               </button>
               <button
@@ -1852,7 +1852,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 onClick={() => handleFileUploadSim('lab_report')}
                 className="px-3.5 py-2.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition min-h-[42px]"
               >
-                <FileText className="w-3.5 h-3.5" />
+                <FileText className="w-3.5 h-3.5 text-slate-600" />
                 <span>Sample Lab PDF</span>
               </button>
             </div>
@@ -1866,13 +1866,13 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             {documents.map((doc) => (
               <div key={doc.id} className="p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                  <div className="p-2 bg-slate-100 text-slate-700 rounded-lg">
                     {doc.type === 'genetic_panel' ? <Dna className="w-5 h-5" /> : <FileText className="w-5 h-5" />}
                   </div>
                   <div>
                     <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
                       {doc.name}
-                      <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-800 text-[10px] rounded font-semibold">
+                      <span className="px-1.5 py-0.2 bg-slate-100 text-slate-700 text-[10px] rounded font-semibold">
                         {doc.compressionRatio}
                       </span>
                     </div>
@@ -1891,7 +1891,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 {doc.extractedMarkers && (
                   <div className="flex flex-wrap gap-1">
                     {doc.extractedMarkers.map((m, i) => (
-                      <span key={i} className="px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded text-[10px] font-mono font-semibold border border-indigo-200">
+                      <span key={i} className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded text-[10px] font-mono font-semibold border border-slate-200">
                         {m}
                       </span>
                     ))}
@@ -1910,7 +1910,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             </button>
             <button
               onClick={() => setCurrentStep(4)}
-              className="w-full sm:w-auto px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition min-h-[44px]"
+              className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition min-h-[44px]"
             >
               <span>Continue to Calendar &amp; HMO</span>
               <ArrowRight className="w-4 h-4" />
@@ -1931,7 +1931,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 Choose an available slot with {triageResult.matchedSpecialist.name} and verify HMO coverage or private checkout.
               </p>
             </div>
-            <span className="self-start sm:self-auto px-2.5 py-1 text-xs bg-blue-50 text-blue-700 rounded-full font-semibold border border-blue-200 flex items-center gap-1">
+            <span className="self-start sm:self-auto px-2.5 py-1 text-xs bg-slate-100 text-slate-800 rounded-full font-semibold border border-slate-200 flex items-center gap-1">
               <Building2 className="w-3.5 h-3.5" /> LAUTECH Ogbomoso / Osogbo
             </span>
           </div>
@@ -1940,7 +1940,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             {/* Slot Picker */}
             <div>
               <label className="block text-xs font-semibold text-slate-800 mb-2 flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-blue-600" /> Available Consultation Date
+                <Calendar className="w-4 h-4 text-slate-600" /> Available Consultation Date
               </label>
               <div className="grid grid-cols-2 gap-2 mb-4">
                 {['Tomorrow', 'In 2 Days'].map((date) => (
@@ -1950,7 +1950,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     onClick={() => setSelectedDate(date)}
                     className={`p-3 rounded-xl border text-left transition min-h-[44px] ${
                       selectedDate === date
-                        ? 'border-blue-600 bg-blue-50 text-blue-900 font-bold'
+                        ? 'border-slate-900 bg-slate-100 text-slate-950 font-bold'
                         : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
@@ -1961,7 +1961,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
               </div>
 
               <label className="block text-xs font-semibold text-slate-800 mb-2 flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-blue-600" /> Time Slot (West Africa Time - WAT)
+                <Clock className="w-4 h-4 text-slate-600" /> Time Slot (West Africa Time - WAT)
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {triageResult.matchedSpecialist.availableSlots.map((slot, idx) => (
@@ -1971,7 +1971,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     onClick={() => setSelectedTime(slot.time)}
                     className={`p-2.5 rounded-lg border text-xs text-center transition min-h-[42px] ${
                       selectedTime === slot.time
-                        ? 'border-blue-600 bg-blue-600 text-white font-bold shadow-xs'
+                        ? 'border-slate-900 bg-slate-900 text-white font-semibold shadow-xs'
                         : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
                     }`}
                   >
@@ -1985,14 +1985,14 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                  <CreditCard className="w-4 h-4 text-blue-600" /> Payment or HMO Coverage
+                  <CreditCard className="w-4 h-4 text-slate-600" /> Payment or HMO Coverage
                 </span>
                 <div className="inline-flex rounded-lg bg-slate-200 p-0.5 text-xs">
                   <button
                     type="button"
                     onClick={() => setPaymentType('HMO')}
                     className={`px-3 py-1 rounded-md transition ${
-                      paymentType === 'HMO' ? 'bg-white font-bold text-blue-700 shadow-xs' : 'text-slate-600'
+                      paymentType === 'HMO' ? 'bg-white font-bold text-slate-950 shadow-xs' : 'text-slate-600'
                     }`}
                   >
                     HMO Insurance
@@ -2001,7 +2001,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     type="button"
                     onClick={() => setPaymentType('PAYMENT')}
                     className={`px-3 py-1 rounded-md transition ${
-                      paymentType === 'PAYMENT' ? 'bg-white font-bold text-blue-700 shadow-xs' : 'text-slate-600'
+                      paymentType === 'PAYMENT' ? 'bg-white font-bold text-slate-950 shadow-xs' : 'text-slate-600'
                     }`}
                   >
                     Direct Pay
@@ -2042,7 +2042,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                         type="button"
                         onClick={handleVerifyHmo}
                         disabled={hmoVerifying}
-                        className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg shrink-0 min-h-[40px]"
+                        className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shrink-0 min-h-[40px]"
                       >
                         {hmoVerifying ? 'Verifying...' : 'Verify HMO'}
                       </button>
@@ -2050,11 +2050,11 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                   </div>
 
                   {hmoVerified && (
-                    <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <div className="p-3 bg-white border border-slate-300 rounded-xl text-xs text-slate-800 flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-slate-700 shrink-0 mt-0.5" />
                       <div>
                         <span className="font-bold block">HMO Pre-Authorization Approved (100% Covered)</span>
-                        <span className="text-[11px] text-emerald-700 block">
+                        <span className="text-[11px] text-slate-600 block">
                           Policy valid for Consultant Tele-Cardiology &amp; Geneva Pharmacogenomic Decision Support at LAUTECH Teaching Hospital.
                         </span>
                       </div>
@@ -2070,7 +2070,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     </div>
                     <div className="flex justify-between py-1 border-b border-slate-100">
                       <span className="text-slate-500">Geneva Pharmacogenomic CDS Module</span>
-                      <span className="font-semibold text-emerald-700">₦0.00 (Included in Consultation)</span>
+                      <span className="font-semibold text-slate-700">₦0.00 (Included in Consultation)</span>
                     </div>
                     <div className="flex justify-between py-1 text-sm font-bold text-slate-900 pt-2">
                       <span>Total Due</span>
@@ -2094,7 +2094,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             </button>
             <button
               onClick={handleFinalBooking}
-              className="w-full sm:w-auto px-6 py-3 sm:py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 shadow-sm transition min-h-[44px]"
+              className="w-full sm:w-auto px-6 py-3 sm:py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 shadow-sm transition min-h-[44px]"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Confirm Booking &amp; Generate Invites</span>
@@ -2107,7 +2107,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
       {currentStep === 5 && confirmedBooking && (
         <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm animate-fadeIn">
           <div className="text-center max-w-lg mx-auto mb-6">
-            <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner">
+            <div className="w-14 h-14 bg-slate-100 text-slate-900 rounded-full flex items-center justify-center mx-auto mb-3 border border-slate-200">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="text-lg sm:text-xl font-bold text-slate-900">
@@ -2123,7 +2123,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5 text-xs">
               <div className="flex justify-between items-center border-b border-slate-200 pb-2">
                 <span className="text-slate-500 font-medium">Appointment Reference</span>
-                <span className="font-mono font-bold text-blue-700">{confirmedBooking.id}</span>
+                <span className="font-mono font-bold text-slate-900">{confirmedBooking.id}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-slate-500 font-medium">Patient</span>
@@ -2139,32 +2139,32 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-slate-500 font-medium">Scheduled Time</span>
-                <span className="font-semibold text-emerald-700 font-mono">
+                <span className="font-semibold text-slate-900 font-mono">
                   {confirmedBooking.selectedDate} at {confirmedBooking.selectedTime} (WAT)
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 border-t border-slate-200">
                 <span className="text-slate-500 font-medium">Payment Authorization</span>
-                <span className="font-bold text-emerald-700">
+                <span className="font-bold text-slate-900">
                   {confirmedBooking.paymentMode === 'HMO_VERIFICATION' ? 'HMO Pre-Approved (100%)' : 'Payment Confirmed'}
                 </span>
               </div>
             </div>
 
             {/* Low-Bandwidth Video Link & Dispatched Reminders */}
-            <div className="p-4 bg-indigo-50/70 border border-indigo-200 rounded-xl space-y-3 text-xs">
+            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3 text-xs">
               <div>
-                <span className="font-bold text-indigo-950 block mb-1">
+                <span className="font-bold text-slate-900 block mb-1">
                   Secure Low-Bandwidth WebRTC Room Link:
                 </span>
-                <div className="p-2.5 bg-white rounded-lg border border-indigo-200 font-mono text-[11px] text-indigo-800 break-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <div className="p-2.5 bg-white rounded-lg border border-slate-200 font-mono text-[11px] text-slate-800 break-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                   <span className="truncate max-w-full">{confirmedBooking.teleconsultLink}</span>
                   <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
                     <button
                       onClick={handleCopyLink}
-                      className="px-2.5 py-1 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded text-[10px] font-sans font-semibold flex items-center gap-1 transition min-h-[30px]"
+                      className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-[10px] font-sans font-semibold flex items-center gap-1 transition min-h-[30px]"
                     >
-                      {copiedLink ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                      {copiedLink ? <Check className="w-3 h-3 text-slate-900" /> : <Copy className="w-3 h-3" />}
                       {copiedLink ? 'Copied!' : 'Copy Link'}
                     </button>
                     <span className="px-1.5 py-1 bg-slate-100 text-slate-700 rounded text-[10px] font-sans font-semibold">
@@ -2176,9 +2176,9 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 <div className="mt-2 flex items-center gap-2">
                   <button
                     onClick={handleDownloadIcs}
-                    className="w-full py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-indigo-200 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 shadow-2xs transition min-h-[38px]"
+                    className="w-full py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 shadow-2xs transition min-h-[38px]"
                   >
-                    <Download className="w-3.5 h-3.5 text-indigo-600" />
+                    <Download className="w-3.5 h-3.5 text-slate-700" />
                     <span>Download Calendar Event (.ics)</span>
                   </button>
                 </div>
@@ -2186,15 +2186,15 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
 
               {/* Automated Reminder Simulation */}
               <div className="space-y-1.5 pt-1">
-                <span className="text-[11px] font-bold text-indigo-900 block">
+                <span className="text-[11px] font-bold text-slate-900 block">
                   Automated Multi-Channel Dispatch:
                 </span>
-                <div className="p-2 bg-white/90 rounded-lg border border-indigo-100 flex items-center gap-2 text-[11px] text-slate-700">
-                  <Phone className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <div className="p-2 bg-white rounded-lg border border-slate-200 flex items-center gap-2 text-[11px] text-slate-700">
+                  <Phone className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                   <span>SMS alert sent to <strong>{confirmedBooking.patient.phone}</strong></span>
                 </div>
-                <div className="p-2 bg-white/90 rounded-lg border border-indigo-100 flex items-center gap-2 text-[11px] text-slate-700">
-                  <Mail className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                <div className="p-2 bg-white rounded-lg border border-slate-200 flex items-center gap-2 text-[11px] text-slate-700">
+                  <Mail className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                   <span>Calendar .ICS invite sent to <strong>{confirmedBooking.patient.email}</strong> &amp; hospital doctor console</span>
                 </div>
               </div>
@@ -2203,37 +2203,37 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
 
           {/* Compliance & Emergency Safety Strip */}
           <div className="mb-5 p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2 text-emerald-800 font-semibold">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+            <div className="flex items-center gap-2 text-slate-800 font-semibold">
+              <ShieldCheck className="w-4 h-4 text-slate-600 shrink-0" />
               <span>NDPR &amp; Genomic Consent Cryptographically Bound &amp; Logged (AES-256)</span>
             </div>
-            <div className="flex items-center gap-2 text-rose-800 text-[11px] font-medium">
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-600 shrink-0" />
+            <div className="flex items-center gap-2 text-red-800 text-[11px] font-medium">
+              <AlertTriangle className="w-3.5 h-3.5 text-red-600 shrink-0" />
               <span>In acute emergency, proceed to nearest LAUTECH Emergency Dept (0800-LAUTECH)</span>
             </div>
           </div>
 
           {/* Transition CTA to Consultation Room - Hospital Style */}
-          <div className="p-4 sm:p-6 bg-gradient-to-r from-[#003087] to-[#005eb8] text-white rounded-xl text-center shadow-md">
+          <div className="p-4 sm:p-6 bg-slate-900 text-white rounded-xl text-center shadow-md">
             <h4 className="text-base sm:text-lg font-bold tracking-tight text-white mb-2">
               Appointment Confirmed — Ready to Join Your Consultant?
             </h4>
-            <p className="text-xs sm:text-sm text-blue-100 max-w-xl mx-auto mb-4 sm:mb-5 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-4 sm:mb-5 leading-relaxed">
               Your appointment is logged with the LAUTECH virtual outpatient clinic. You can now enter the consultation room to meet with your consultant physician, review clinical history, and receive your verified prescription.
             </p>
 
             <div className="flex flex-wrap justify-center gap-3">
               <button
                 onClick={onOpenConsultation}
-                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-slate-100 text-[#005eb8] font-bold rounded-lg text-sm flex items-center justify-center gap-2 shadow-md transition-colors min-h-[44px]"
+                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-slate-100 text-slate-900 font-bold rounded-lg text-sm flex items-center justify-center gap-2 shadow-md transition-colors min-h-[44px]"
               >
-                <Stethoscope className="w-4 h-4 text-[#005eb8]" />
+                <Stethoscope className="w-4 h-4 text-slate-900" />
                 <span>Proceed to Doctor Consultation Room</span>
-                <ArrowRight className="w-4 h-4 text-[#005eb8]" />
+                <ArrowRight className="w-4 h-4 text-slate-900" />
               </button>
               <button
                 onClick={handleResetToNewBooking}
-                className="w-full sm:w-auto px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-white/30 transition-colors min-h-[44px]"
+                className="w-full sm:w-auto px-5 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg text-sm flex items-center justify-center gap-2 border border-slate-700 transition-colors min-h-[44px]"
               >
                 <span>+ Book Another Patient Appointment</span>
               </button>

@@ -231,15 +231,15 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-6 animate-fadeIn">
       {/* Module Title & Institutional Governance Card */}
-      <div className="bg-white text-slate-900 rounded-2xl p-4 sm:p-6 shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] border border-slate-200/80">
+      <div className="bg-white text-slate-900 rounded-2xl p-4 sm:p-6 shadow-xs border border-slate-200">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 text-xs font-semibold border border-rose-200">
-                <Heart className="w-3.5 h-3.5 text-rose-600 shrink-0" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200">
+                <Heart className="w-3.5 h-3.5 text-slate-700 shrink-0" />
                 LAUTECH Dept. of Obstetrics &amp; Gynaecology
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200">
                 Elective Outpatient Schedule
               </span>
             </div>
@@ -258,7 +258,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl flex items-center justify-center gap-1.5 border border-slate-200 transition-colors shadow-2xs min-h-[40px]"
               title="Load Zainab Balogun (24W Routine Antenatal)"
             >
-              <UserCheck className="w-3.5 h-3.5 text-blue-600" />
+              <UserCheck className="w-3.5 h-3.5 text-slate-700" />
               <span>Load Demo Patient (Zainab 24W)</span>
             </button>
           </div>
@@ -268,39 +268,37 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
       {/* ========================================================================= */}
       {/* 1. EMERGENCY SAFETY CHECK (THE RED FLAG STOP) */}
       {/* ========================================================================= */}
-      <div className="bg-white rounded-2xl border-2 border-rose-300 p-4 sm:p-6 shadow-sm relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 rounded-bl-full pointer-events-none" />
-        
-        <div className="flex items-start gap-3 pb-3 mb-4 border-b border-rose-100">
-          <div className="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-            <AlertTriangle className="w-5 h-5 animate-pulse" />
+      <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs relative overflow-hidden">
+        <div className="flex items-start gap-3 pb-3 mb-4 border-b border-slate-100">
+          <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+            <AlertTriangle className="w-5 h-5 text-red-500" />
           </div>
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-rose-100 text-rose-900 text-[10px] font-bold uppercase tracking-wider">
+              <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-800 text-[10px] font-bold uppercase tracking-wider border border-slate-200">
                 Step 1 • Mandatory Clinical Gate
               </span>
-              <h3 className="text-base sm:text-lg font-bold text-rose-950 tracking-tight">
+              <h3 className="text-base sm:text-lg font-bold text-slate-950 tracking-tight">
                 1. Emergency Safety Check (The Red Flag Stop)
               </h3>
             </div>
-            <p className="text-xs text-rose-800 mt-0.5">
+            <p className="text-xs text-slate-500 mt-0.5">
               Strict statutory clinical triage to identify time-critical maternal and fetal complications before any video booking.
             </p>
           </div>
         </div>
 
         {/* The Exact User Specification Emergency Notice Callout */}
-        <div className="p-4 bg-rose-50/90 rounded-xl border border-rose-200 shadow-2xs mb-4">
+        <div className="p-4 bg-red-50/80 rounded-xl border border-red-200 shadow-2xs mb-4">
           <div className="flex items-start gap-3">
-            <div className="p-2 bg-rose-600 text-white rounded-lg shrink-0 mt-0.5">
+            <div className="p-2 bg-red-600 text-white rounded-lg shrink-0 mt-0.5">
               <AlertCircle className="w-4 h-4" />
             </div>
             <div className="space-y-1">
-              <h4 className="text-xs sm:text-sm font-bold text-rose-950 tracking-tight">
+              <h4 className="text-xs sm:text-sm font-bold text-red-950 tracking-tight">
                 Emergency Notice:
               </h4>
-              <blockquote className="text-xs sm:text-sm text-rose-900 font-semibold leading-relaxed border-l-2 border-rose-400 pl-3 italic">
+              <blockquote className="text-xs sm:text-sm text-red-900 font-semibold leading-relaxed border-l-2 border-red-400 pl-3 italic">
                 &ldquo;If you are experiencing active heavy vaginal bleeding in pregnancy, severe abdominal pain, or decreased fetal movement, do not use this app. Go immediately to LAUTECH Hospital Emergency.&rdquo;
               </blockquote>
             </div>
@@ -327,12 +325,12 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                   onClick={() => toggleRedFlag(flag.id)}
                   className={`flex items-start gap-3 p-3 rounded-xl border text-xs cursor-pointer transition-all min-h-[44px] select-none ${
                     isChecked
-                      ? 'bg-rose-50 border-rose-400 text-rose-950 font-bold shadow-xs'
-                      : 'bg-slate-50/60 hover:bg-slate-100 border-slate-200 text-slate-700'
+                      ? 'bg-red-50/80 border-red-300 text-red-950 font-bold shadow-xs'
+                      : 'bg-slate-50/70 hover:bg-slate-100 border-slate-200 text-slate-700'
                   }`}
                 >
                   <div className={`w-4 h-4 rounded mt-0.5 flex items-center justify-center shrink-0 border ${
-                    isChecked ? 'bg-rose-600 border-rose-600 text-white' : 'border-slate-300 bg-white'
+                    isChecked ? 'bg-red-600 border-red-600 text-white' : 'border-slate-300 bg-white'
                   }`}>
                     {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                   </div>
@@ -345,17 +343,17 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
 
         {/* Dynamic Red Flag Stop Activation Notice */}
         {hasEmergencyRedFlags ? (
-          <div className="mt-4 p-4 rounded-xl bg-rose-600 text-white shadow-md animate-shake">
+          <div className="mt-4 p-4 rounded-xl bg-red-700 text-white shadow-md">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-white/20 rounded-lg shrink-0 mt-1 md:mt-0">
-                  <AlertTriangle className="w-6 h-6 text-white animate-pulse" />
+                  <AlertTriangle className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold tracking-tight">
                     RED FLAG STOP ACTIVATED: Virtual Consultation Prohibited
                   </h4>
-                  <p className="text-xs text-rose-100 mt-1 max-w-2xl leading-relaxed">
+                  <p className="text-xs text-red-100 mt-1 max-w-2xl leading-relaxed">
                     You have flagged one or more acute emergency signs ({selectedRedFlags.length} detected). 
                     Under LAUTECH clinical governance rules, virtual appointments cannot treat active obstetric emergencies. 
                     Please report immediately to the nearest maternity casualty.
@@ -366,22 +364,22 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-auto shrink-0">
                 <a
                   href="tel:08005288324"
-                  className="w-full sm:w-auto px-4 py-2.5 bg-white hover:bg-rose-50 text-rose-700 font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition min-h-[42px] whitespace-nowrap"
+                  className="w-full sm:w-auto px-4 py-2.5 bg-white hover:bg-red-50 text-red-700 font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition min-h-[42px] whitespace-nowrap"
                 >
-                  <PhoneCall className="w-4 h-4 text-rose-600" />
+                  <PhoneCall className="w-4 h-4 text-red-600" />
                   <span>Call 0800-LAUTECH (24/7 ER)</span>
                 </a>
                 <button
                   type="button"
                   onClick={() => setSelectedRedFlags([])}
-                  className="w-full sm:w-auto px-3 py-2.5 bg-rose-700/80 hover:bg-rose-800 text-white text-xs font-semibold rounded-xl border border-white/20 transition min-h-[42px]"
+                  className="w-full sm:w-auto px-3 py-2.5 bg-red-800 hover:bg-red-900 text-white text-xs font-semibold rounded-xl border border-white/20 transition min-h-[42px]"
                 >
                   Clear Selection
                 </button>
               </div>
             </div>
 
-            <div className="mt-3 pt-3 border-t border-rose-500/50 flex flex-wrap items-center gap-3 text-[11px] text-rose-100">
+            <div className="mt-3 pt-3 border-t border-red-600 flex flex-wrap items-center gap-3 text-[11px] text-red-100">
               <span className="font-bold flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5" /> Emergency Centers:
               </span>
@@ -391,14 +389,14 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
             </div>
           </div>
         ) : (
-          <div className="mt-4 p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between gap-3">
+          <div className="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-800 flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-slate-700 shrink-0" />
               <span>
                 <strong>Red Flag Screener Passed:</strong> Zero emergency obstetric red flags indicated. Eligible for elective virtual triage.
               </span>
             </div>
-            <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-100 px-2 py-0.5 rounded">
+            <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider bg-slate-200 px-2 py-0.5 rounded">
               Cleared
             </span>
           </div>
@@ -410,12 +408,12 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
       {/* ========================================================================= */}
       <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs">
         <div className="flex items-start gap-3 pb-3 mb-4 border-b border-slate-100">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
-            <Baby className="w-5 h-5 text-blue-600" />
+          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
+            <Baby className="w-5 h-5 text-slate-700" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-blue-100 text-blue-800 text-[10px] font-bold uppercase tracking-wider">
+              <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-800 text-[10px] font-bold uppercase tracking-wider border border-slate-200">
                 Step 2 • Scope of Virtual Practice
               </span>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
@@ -429,16 +427,16 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
         </div>
 
         {/* The Exact User Specification Core Elective Focus Banner */}
-        <div className="p-4 bg-gradient-to-r from-blue-50/90 via-indigo-50/70 to-slate-50 rounded-xl border border-blue-200/80 shadow-2xs mb-5">
+        <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-2xs mb-5">
           <div className="flex items-start gap-3">
-            <div className="p-2 bg-blue-600 text-white rounded-lg shrink-0 mt-0.5">
+            <div className="p-2 bg-slate-900 text-white rounded-lg shrink-0 mt-0.5">
               <Building2 className="w-4 h-4" />
             </div>
             <div className="space-y-1">
-              <h4 className="text-xs sm:text-sm font-bold text-blue-950 tracking-tight">
+              <h4 className="text-xs sm:text-sm font-bold text-slate-950 tracking-tight">
                 Elective Outpatient Care:
               </h4>
-              <blockquote className="text-xs sm:text-sm text-blue-900 font-semibold leading-relaxed border-l-2 border-blue-400 pl-3">
+              <blockquote className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed border-l-2 border-slate-400 pl-3">
                 &ldquo;This telehealth channel is designed for routine antenatal reviews, postpartum check-ins, menstrual tracking, contraceptive counseling, and stable gynecological care that does not require an immediate physical examination.&rdquo;
               </blockquote>
             </div>
@@ -460,14 +458,14 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                   onClick={() => handleSelectElectiveCategory(cat.id)}
                   className={`p-3.5 rounded-xl border text-left cursor-pointer transition-all flex flex-col justify-between min-h-[120px] ${
                     isSelected
-                      ? 'border-blue-600 bg-blue-50/70 ring-2 ring-blue-500/20 shadow-xs'
+                      ? 'border-slate-900 bg-slate-100 text-slate-950 font-bold ring-1 ring-slate-900 shadow-xs'
                       : 'border-slate-200 bg-white hover:bg-slate-50/80'
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                        isSelected ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'
+                        isSelected ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600'
                       }`}>
                         {cat.badge}
                       </span>
@@ -478,14 +476,14 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                     <h5 className="font-bold text-slate-900 text-xs sm:text-sm leading-snug">
                       {cat.title}
                     </h5>
-                    <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                    <p className="text-[11px] text-slate-600 mt-1 leading-relaxed font-normal">
                       {cat.description}
                     </p>
                   </div>
 
-                  <div className="mt-2 pt-2 border-t border-slate-100 text-[10px] text-blue-700 font-semibold flex items-center justify-between">
+                  <div className="mt-2 pt-2 border-t border-slate-200 text-[10px] text-slate-700 font-semibold flex items-center justify-between">
                     <span>Non-emergency virtual scope</span>
-                    {isSelected && <Check className="w-3.5 h-3.5 text-blue-600" />}
+                    {isSelected && <Check className="w-3.5 h-3.5 text-slate-900" />}
                   </div>
                 </div>
               );
@@ -504,7 +502,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               value={gestationalAgeOrCycle}
               onChange={(e) => setGestationalAgeOrCycle(e.target.value)}
               placeholder="e.g. 24 Weeks Gestation"
-              className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-slate-900 focus:outline-none"
             />
           </div>
 
@@ -517,7 +515,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               value={patientNotes}
               onChange={(e) => setPatientNotes(e.target.value)}
               placeholder="Describe what you would like to review during your virtual appointment..."
-              className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-slate-900 focus:outline-none"
             />
           </div>
         </div>
@@ -526,22 +524,18 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
       {/* ========================================================================= */}
       {/* 3. PATIENT SAFETY ACKNOWLEDGMENT */}
       {/* ========================================================================= */}
-      <div className={`bg-white rounded-2xl border-2 p-4 sm:p-6 shadow-xs transition-all ${
-        safetyAcknowledged 
-          ? 'border-emerald-300 bg-emerald-50/20' 
-          : attemptedWithoutAck 
-            ? 'border-rose-400 bg-rose-50/30 ring-2 ring-rose-200' 
-            : 'border-slate-300'
+      <div className={`bg-white rounded-2xl border p-4 sm:p-6 shadow-xs transition-all ${
+        attemptedWithoutAck && !safetyAcknowledged 
+          ? 'border-red-400 bg-red-50/30 ring-2 ring-red-200' 
+          : 'border-slate-200'
       }`}>
-        <div className="flex items-start gap-3 pb-3 mb-3 border-b border-slate-200/80">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-2xs mt-0.5 ${
-            safetyAcknowledged ? 'bg-emerald-600 text-white' : 'bg-slate-700 text-white'
-          }`}>
-            <ShieldCheck className="w-5 h-5" />
+        <div className="flex items-start gap-3 pb-3 mb-3 border-b border-slate-100">
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-2xs mt-0.5 bg-slate-900 text-white">
+            <ShieldCheck className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 text-[10px] font-bold uppercase tracking-wider">
+              <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-800 text-[10px] font-bold uppercase tracking-wider border border-slate-200">
                 Step 3 • Mandatory Legal &amp; Clinical Checkpoint
               </span>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
@@ -555,7 +549,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
         </div>
 
         {/* Interactive Safety Checkbox - Exact User Requirement */}
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs">
+        <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-2xs">
           <label className="flex items-start gap-3.5 cursor-pointer select-none">
             <div className="pt-0.5">
               <input
@@ -566,7 +560,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                   setSafetyAcknowledged(e.target.checked);
                   if (e.target.checked) setAttemptedWithoutAck(false);
                 }}
-                className="w-5 h-5 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 focus:ring-offset-0 cursor-pointer"
+                className="w-5 h-5 text-slate-900 rounded border-slate-300 focus:ring-slate-900 focus:ring-offset-0 cursor-pointer"
               />
             </div>
             <div className="space-y-1 flex-1">
@@ -578,8 +572,8 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
         </div>
 
         {attemptedWithoutAck && !safetyAcknowledged && (
-          <div className="mt-3 p-2.5 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-900 flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+          <div className="mt-3 p-2.5 bg-red-50 border border-red-200 rounded-lg text-xs text-red-900 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
             <span>
               <strong>Un-skippable Requirement:</strong> You must check the Patient Safety Acknowledgment above to confirm non-emergency status before booking.
             </span>
@@ -592,12 +586,12 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
       {/* ========================================================================= */}
       <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs">
         <div className="flex items-start gap-3 pb-3 mb-4 border-b border-slate-100">
-          <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 border border-purple-200 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
-            <UserCheck className="w-5 h-5 text-purple-600" />
+          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
+            <UserCheck className="w-5 h-5 text-slate-700" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-purple-100 text-purple-800 text-[10px] font-bold uppercase tracking-wider">
+              <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-800 text-[10px] font-bold uppercase tracking-wider border border-slate-200">
                 Step 4 • Verified Clinical Assignment
               </span>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
@@ -611,10 +605,10 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
         </div>
 
         {/* Specialist Profile Card - Dr. Adekunle Adebayo */}
-        <div className="p-4 sm:p-5 bg-gradient-to-r from-slate-50 via-purple-50/20 to-blue-50/30 rounded-2xl border border-slate-200/90 shadow-2xs mb-5">
+        <div className="p-4 sm:p-5 bg-slate-50 rounded-2xl border border-slate-200 shadow-2xs mb-5">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#003087] text-white flex items-center justify-center font-bold text-lg sm:text-xl shadow-xs shrink-0 ring-4 ring-purple-50">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg sm:text-xl shadow-xs shrink-0">
                 AA
               </div>
               <div className="space-y-1">
@@ -622,10 +616,10 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                   <h4 className="text-base sm:text-lg font-bold text-slate-950 tracking-tight">
                     {obgynSpecialist.name}
                   </h4>
-                  <span className="px-2 py-0.5 text-[10px] font-bold bg-blue-600 text-white rounded">
+                  <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-900 text-white rounded">
                     Matched Specialist
                   </span>
-                  <span className="px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 rounded border border-emerald-200">
+                  <span className="px-2 py-0.5 text-[10px] font-semibold bg-slate-200 text-slate-800 rounded border border-slate-300">
                     Verified Consultant
                   </span>
                 </div>
@@ -639,16 +633,16 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
             </div>
 
             {/* Protocol & Routing Badge Group */}
-            <div className="flex flex-col gap-1.5 p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs w-full md:w-auto text-xs">
+            <div className="flex flex-col gap-1.5 p-3 bg-white rounded-xl border border-slate-200 shadow-2xs w-full md:w-auto text-xs">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-slate-500 font-medium text-[11px]">Routing:</span>
-                <span className="font-bold text-blue-800 bg-blue-50 px-2 py-0.5 rounded text-[11px]">
+                <span className="font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded text-[11px]">
                   {LAUTECH_OBGYN_PROTOCOL.routing}
                 </span>
               </div>
               <div className="flex items-center justify-between gap-3">
                 <span className="text-slate-500 font-medium text-[11px]">Protocol:</span>
-                <span className="font-bold text-purple-900 bg-purple-50 px-2 py-0.5 rounded text-[11px]">
+                <span className="font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded text-[11px]">
                   {LAUTECH_OBGYN_PROTOCOL.name}
                 </span>
               </div>
@@ -661,7 +655,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-200/80 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600">
+          <div className="mt-4 pt-3 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600">
             <div>
               <span className="font-bold text-slate-800 block mb-1">
                 Clinical Expertise &amp; Maternal Triage:
@@ -669,7 +663,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               <ul className="space-y-0.5 text-[11px]">
                 {obgynSpecialist.precisionExpertise.map((exp, i) => (
                   <li key={i} className="flex items-center gap-1.5 text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
                     <span>{exp}</span>
                   </li>
                 ))}
@@ -690,7 +684,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-blue-600" />
+              <Calendar className="w-3.5 h-3.5 text-slate-700" />
               <span>Select Appointment Date</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -701,7 +695,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                   onClick={() => setSelectedDate(d)}
                   className={`py-2 px-3 rounded-xl border text-xs font-semibold transition min-h-[40px] ${
                     selectedDate === d
-                      ? 'border-blue-600 bg-blue-50 text-blue-800 ring-1 ring-blue-500'
+                      ? 'border-slate-900 bg-slate-900 text-white'
                       : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                   }`}
                 >
@@ -713,7 +707,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
 
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-blue-600" />
+              <Clock className="w-3.5 h-3.5 text-slate-700" />
               <span>Elective Consultation Slot (WAT)</span>
             </label>
             <div className="grid grid-cols-3 gap-1.5">
@@ -724,7 +718,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                   onClick={() => setSelectedTime(slot.time)}
                   className={`py-2 px-2 rounded-xl border text-xs font-semibold text-center transition min-h-[40px] ${
                     selectedTime === slot.time
-                      ? 'border-blue-600 bg-blue-50 text-blue-800 ring-1 ring-blue-500'
+                      ? 'border-slate-900 bg-slate-900 text-white'
                       : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                   }`}
                 >
@@ -747,7 +741,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                 onClick={() => setSelectedPaymentMode('HMO')}
                 className={`px-3 py-1 text-xs rounded-lg font-semibold transition ${
                   selectedPaymentMode === 'HMO'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-slate-900 text-white'
                     : 'bg-white text-slate-700 border border-slate-200'
                 }`}
               >
@@ -758,7 +752,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                 onClick={() => setSelectedPaymentMode('OUT_OF_POCKET')}
                 className={`px-3 py-1 text-xs rounded-lg font-semibold transition ${
                   selectedPaymentMode === 'OUT_OF_POCKET'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-slate-900 text-white'
                     : 'bg-white text-slate-700 border border-slate-200'
                 }`}
               >
@@ -799,28 +793,28 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
           ) : (
             <div className="p-3 bg-white rounded-lg border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
               <span>Standard LAUTECH Virtual Outpatient Fee: <strong>₦5,000</strong></span>
-              <span className="text-[11px] text-emerald-700 font-semibold">Subsidized Pilot Rate</span>
+              <span className="text-[11px] text-slate-700 font-semibold">Subsidized Pilot Rate</span>
             </div>
           )}
         </div>
 
         {/* Confirmation State Banner if Booked */}
         {isBooked && confirmedBookingId ? (
-          <div className="p-4 sm:p-5 bg-emerald-50 border-2 border-emerald-300 rounded-2xl space-y-3 animate-fadeIn">
+          <div className="p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 animate-fadeIn">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+              <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <h4 className="text-sm sm:text-base font-bold text-emerald-950">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-950">
                     Elective OB/GYN Appointment Confirmed!
                   </h4>
-                  <span className="font-mono text-xs px-2 py-0.5 bg-emerald-200 text-emerald-900 font-bold rounded">
+                  <span className="font-mono text-xs px-2 py-0.5 bg-slate-200 text-slate-900 font-bold rounded">
                     {confirmedBookingId}
                   </span>
                 </div>
-                <p className="text-xs text-emerald-900 leading-relaxed">
+                <p className="text-xs text-slate-700 leading-relaxed">
                   Scheduled with <strong>{obgynSpecialist.name}</strong> for <strong>{selectedDate} at {selectedTime}</strong> under the <em>{LAUTECH_OBGYN_PROTOCOL.name}</em>.
                   Encrypted video room created and synced to patient and clinician dashboards.
                 </p>
@@ -830,7 +824,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={onNavigateToConsultation}
-                className="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition min-h-[42px]"
+                className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition min-h-[42px]"
               >
                 <span>Enter Doctor Consultation Room</span>
                 <ArrowRight className="w-4 h-4" />
@@ -847,7 +841,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
           /* Final Action Button */
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
             <div className="text-xs text-slate-500 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck className="w-4 h-4 text-slate-700" />
               <span>Safety screening passed • Routed to Dr. Adekunle Adebayo</span>
             </div>
 
@@ -856,8 +850,8 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               disabled={hasEmergencyRedFlags}
               className={`w-full sm:w-auto px-6 py-3 font-bold rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition min-h-[44px] ${
                 hasEmergencyRedFlags
-                  ? 'bg-rose-200 text-rose-700 cursor-not-allowed'
-                  : 'bg-[#003087] hover:bg-[#002060] text-white'
+                  ? 'bg-red-200 text-red-800 cursor-not-allowed'
+                  : 'bg-slate-900 hover:bg-slate-800 text-white'
               }`}
             >
               {hasEmergencyRedFlags ? (
@@ -867,7 +861,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
                 </>
               ) : (
                 <>
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="w-4 h-4 text-slate-300" />
                   <span>Book Elective Consultation with Dr. Adebayo</span>
                   <ArrowRight className="w-4 h-4" />
                 </>

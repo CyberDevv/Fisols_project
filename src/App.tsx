@@ -31,23 +31,23 @@ function MainTelehealthApp() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/70 text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-slate-50/70 text-slate-900 flex flex-col font-sans selection:bg-slate-800 selection:text-white">
       {/* Institutional Ethical Clearance & Research Prototype Disclaimer Banner */}
-      <div className="bg-amber-500/10 border-b border-amber-300/70 text-amber-950 text-xs px-3 sm:px-6 py-2">
+      <div className="bg-slate-100/90 border-b border-slate-200 text-slate-700 text-xs px-3 sm:px-6 py-1.5">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-600 text-white font-bold text-[10px] tracking-wide uppercase shrink-0 shadow-2xs">
-              Governance Notice
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-800 text-white font-semibold text-[10px] tracking-wide uppercase shrink-0">
+              Governance
             </span>
-            <p className="font-medium text-slate-800 text-[11px] sm:text-xs">
-              <strong className="text-amber-950 font-bold">Pilot Research Prototype</strong> – Pending LAUTECH Teaching Hospital Ethics &amp; Research Committee Approval.
+            <p className="font-normal text-slate-700 text-[11px] sm:text-xs">
+              <strong className="text-slate-900 font-semibold">Pilot Research Prototype</strong> — Pending LAUTECH Teaching Hospital Ethics &amp; Research Committee Approval.
             </p>
           </div>
-          <div className="flex items-center gap-3 text-[11px] text-slate-600">
-            <span className="hidden md:inline text-slate-500 font-mono">Protocol Ref: LTH/ERC/2026/PILOT-091</span>
+          <div className="flex items-center gap-3 text-[11px] text-slate-500">
+            <span className="hidden md:inline font-mono">Ref: LTH/ERC/2026/PILOT-091</span>
             <button
               onClick={() => setCurrentTab('architecture')}
-              className="inline-flex items-center gap-1 font-semibold text-blue-700 hover:text-blue-900 transition-colors"
+              className="inline-flex items-center gap-1 font-medium text-slate-900 hover:text-slate-700 underline underline-offset-2 transition-colors"
             >
               <span>Governance &amp; Team</span>
               <span>&rarr;</span>
@@ -143,13 +143,13 @@ function MainTelehealthApp() {
           }`}
         >
           <div className="bg-slate-950/95 text-slate-100 text-xs px-3.5 py-2 rounded-xl border border-slate-800 shadow-2xl flex items-center gap-2.5 backdrop-blur-md">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></div>
-            <Database className="w-3.5 h-3.5 text-blue-400" />
+            <div className="w-2 h-2 rounded-full bg-slate-400 animate-ping"></div>
+            <Database className="w-3.5 h-3.5 text-slate-400" />
             <div className="flex flex-col">
               <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">JSON DB Sync</span>
-              <span className="font-semibold text-[11px] text-emerald-300">{lastApiAction}</span>
+              <span className="font-semibold text-[11px] text-slate-200">{lastApiAction}</span>
             </div>
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 ml-1" />
+            <CheckCircle2 className="w-4 h-4 text-slate-300 ml-1" />
           </div>
         </aside>
       )}
@@ -168,18 +168,18 @@ function MainTelehealthApp() {
                 LAUTECH Teaching Hospital Clinical Pilot
               </span>
               <span className="text-slate-300">•</span>
-              <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200 text-[11px] font-semibold">
-                Pending LAUTECH Ethics &amp; Research Committee Approval
+              <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px] font-medium">
+                Pending Ethics Approval
               </span>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-2 text-[11px]">
-              <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+              <span className="inline-flex items-center gap-1.5 text-slate-700 font-medium bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
                 NDPR 2019 / NDPA 2023 Compliant
               </span>
-              <span className="inline-flex items-center gap-1.5 text-blue-700 font-semibold bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200/80">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+              <span className="inline-flex items-center gap-1.5 text-slate-700 font-medium bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
                 UniGeneva CPIC Level 1A CDS
               </span>
             </div>
@@ -189,8 +189,8 @@ function MainTelehealthApp() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-600">
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
               <span className="font-semibold text-slate-900">Lead Founder:</span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100 hover:bg-slate-200/70 text-slate-900 font-bold rounded-md border border-slate-200 transition-colors">
-                <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100 text-slate-900 font-medium rounded-md border border-slate-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
                 Kamil-Bello Faisol, 500L Med Student, LAUTECH
               </span>
             </div>

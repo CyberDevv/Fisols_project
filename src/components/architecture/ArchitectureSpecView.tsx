@@ -52,19 +52,19 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
   return (
     <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-5 sm:space-y-6">
       {/* Top Standards & Hospital Governance Header - Modern Clinical Standards */}
-      <div className="bg-white text-slate-900 rounded-2xl p-4 sm:p-7 shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] border border-slate-200/80">
+      <div className="bg-white text-slate-900 rounded-2xl p-4 sm:p-7 shadow-xs border border-slate-200">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200/70">
-                <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200">
+                <ShieldCheck className="w-3.5 h-3.5 text-slate-700 shrink-0" />
                 Hospital Governance &amp; Patient Safety Standards
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200/70">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200">
                 LAUTECH Teaching Hospital Network
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 text-xs font-semibold border border-amber-200">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                 Pilot Research Prototype – Pending LAUTECH Ethics Approval
               </span>
             </div>
@@ -79,9 +79,9 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
           <div className="w-full lg:w-auto shrink-0">
             <button
               onClick={handleCopyOverviewText}
-              className="w-full sm:w-auto px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-2 shadow-xs hover:shadow-sm transition-all min-h-[42px]"
+              className="w-full sm:w-auto px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-2 shadow-xs transition-all min-h-[42px]"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-blue-300" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-slate-300" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
               <span>{copied ? 'Copied Standards Summary!' : 'Copy Clinical Standards'}</span>
             </button>
           </div>
@@ -92,7 +92,7 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
       <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 sm:pb-4 mb-4 border-b border-slate-100 gap-2">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#005eb8]">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
               CLINICAL &amp; BIOMEDICAL GOVERNANCE
             </span>
             <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
@@ -110,17 +110,17 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
         {/* Leadership Cards - 5 Member Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 mb-6">
           {/* Lead Founder */}
-          <div className="p-3.5 bg-blue-50/70 border-2 border-blue-300 rounded-xl relative">
-            <span className="absolute -top-2.5 left-3 px-2 py-0.5 bg-blue-700 text-white text-[9px] font-bold rounded uppercase tracking-wider">
+          <div className="p-3.5 bg-slate-50 border border-slate-300 rounded-xl relative">
+            <span className="absolute -top-2.5 left-3 px-2 py-0.5 bg-slate-900 text-white text-[9px] font-bold rounded uppercase tracking-wider">
               Lead Founder
             </span>
             <div className="flex items-center gap-2 mb-2 mt-1">
-              <div className="w-8 h-8 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
                 KF
               </div>
               <div>
                 <h4 className="font-bold text-slate-900 text-xs">Kamil-Bello Faisol</h4>
-                <p className="text-[10px] text-blue-700 font-semibold">500L Med Student, LAUTECH</p>
+                <p className="text-[10px] text-slate-600 font-semibold">500L Med Student, LAUTECH</p>
               </div>
             </div>
             <p className="text-[11px] text-slate-600 leading-relaxed">
@@ -131,7 +131,7 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
           {/* Clinical Mentor */}
           <div className="p-3.5 bg-slate-50/80 border border-slate-200 rounded-xl">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-full bg-[#005eb8] text-white flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-xs">
                 AA
               </div>
               <div>
@@ -198,21 +198,21 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
           {/* Encryption */}
           <div className="p-4 bg-white border border-slate-200 rounded-lg space-y-2 shadow-2xs">
             <div className="flex items-center gap-2 text-slate-900 font-semibold text-xs">
-              <Lock className="w-3.5 h-3.5 text-[#005eb8]" />
+              <Lock className="w-3.5 h-3.5 text-slate-700" />
               <span>Clinical Data Encryption</span>
             </div>
             <p className="text-[11px] text-slate-600 leading-relaxed">
               AES-256 encryption protects all patient electronic health records, consultation notes, and genomic biomarker panels. TLS 1.3 secures real-time video feeds.
             </p>
             <div className="pt-1 text-[11px] text-slate-500">
-              Security Status: <span className="text-emerald-700 font-bold">Active &amp; Audited</span>
+              Security Status: <span className="text-slate-900 font-bold">Active &amp; Audited</span>
             </div>
           </div>
 
           {/* NDPR Compliance */}
           <div className="p-4 bg-white border border-slate-200 rounded-lg space-y-2 shadow-2xs">
             <div className="flex items-center gap-2 text-slate-900 font-semibold text-xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
+              <ShieldCheck className="w-3.5 h-3.5 text-slate-700" />
               <span>NDPR / NDPA Consent Checkpoint</span>
             </div>
             <p className="text-[11px] text-slate-600 leading-relaxed">
@@ -223,7 +223,7 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
                 type="checkbox"
                 checked={anonymizeResearch}
                 onChange={(e) => setAnonymizeResearch(e.target.checked)}
-                className="rounded border-slate-300 text-[#005eb8] focus:ring-[#005eb8]"
+                className="rounded border-slate-300 text-slate-900 focus:ring-slate-900"
               />
               <span>Anonymize Research Data</span>
             </label>
@@ -232,7 +232,7 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
           {/* Offline-First Sync */}
           <div className="p-4 bg-white border border-slate-200 rounded-lg space-y-2 shadow-2xs">
             <div className="flex items-center gap-2 text-slate-900 font-semibold text-xs">
-              <Database className="w-3.5 h-3.5 text-[#005eb8]" />
+              <Database className="w-3.5 h-3.5 text-slate-700" />
               <span>Low-Bandwidth Resilience</span>
             </div>
             <p className="text-[11px] text-slate-600 leading-relaxed">
@@ -244,15 +244,15 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
           </div>
 
           {/* Emergency Redirection Protocol */}
-          <div className="p-4 bg-rose-50/50 border border-rose-200 rounded-lg space-y-2 shadow-2xs">
-            <div className="flex items-center gap-2 text-rose-950 font-semibold text-xs">
-              <AlertCircle className="w-3.5 h-3.5 text-rose-600" />
+          <div className="p-4 bg-red-50/60 border border-red-200 rounded-lg space-y-2 shadow-2xs">
+            <div className="flex items-center gap-2 text-red-950 font-semibold text-xs">
+              <AlertCircle className="w-3.5 h-3.5 text-red-600" />
               <span>Emergency Casualty Trigger</span>
             </div>
-            <p className="text-[11px] text-rose-900 leading-relaxed">
+            <p className="text-[11px] text-red-900 leading-relaxed">
               Automated safety triggers detect life-threatening chest distress or acute dyspnea, immediately redirecting patients to the nearest LAUTECH Emergency Department.
             </p>
-            <div className="text-[11px] text-rose-800 font-bold pt-1">
+            <div className="text-[11px] text-red-800 font-bold pt-1">
               Emergency Dispatch: 0800-LAUTECH (24/7)
             </div>
           </div>
@@ -265,11 +265,11 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="p-2 bg-blue-50 text-[#005eb8] rounded-lg border border-blue-200">
+              <div className="p-2 bg-slate-100 text-slate-800 rounded-lg border border-slate-200">
                 <CalendarCheck className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#005eb8]">PATIENT PORTAL</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">PATIENT PORTAL</span>
                 <h3 className="text-sm font-bold text-slate-900 tracking-tight">Outpatient Specialist Booking</h3>
               </div>
             </div>
@@ -296,7 +296,7 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
           </div>
           <button
             onClick={onNavigateToBooking}
-            className="mt-5 w-full py-3 bg-[#005eb8] hover:bg-[#004b94] text-white font-bold rounded-xl text-xs transition-colors flex items-center justify-center gap-2 shadow-sm min-h-[44px]"
+            className="mt-5 w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition-colors flex items-center justify-center gap-2 shadow-xs min-h-[44px]"
           >
             <span>Book Outpatient Appointment</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -307,11 +307,11 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
         <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="p-2 bg-blue-50 text-[#005eb8] rounded-lg border border-blue-200">
+              <div className="p-2 bg-slate-100 text-slate-800 rounded-lg border border-slate-200">
                 <Stethoscope className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#005eb8]">CLINICAL SUITE</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">CLINICAL SUITE</span>
                 <h3 className="text-sm font-bold text-slate-900 tracking-tight">Physician Consultation &amp; CDS Console</h3>
               </div>
             </div>
@@ -338,7 +338,7 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
           </div>
           <button
             onClick={onNavigateToConsultation}
-            className="mt-5 w-full py-3 bg-[#003087] hover:bg-[#002266] text-white font-bold rounded-xl text-xs transition-colors flex items-center justify-center gap-2 shadow-sm min-h-[44px]"
+            className="mt-5 w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition-colors flex items-center justify-center gap-2 shadow-xs min-h-[44px]"
           >
             <span>Enter Doctor Consultation Room</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -351,7 +351,7 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 mb-4 border-b border-slate-100 gap-2">
           <div>
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 tracking-tight">
-              <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-slate-700 shrink-0" />
               Hospital Compliance &amp; Patient Record Audit Log
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -381,12 +381,12 @@ Encryption: AES-256 (Data at rest), TLS 1.3 (In transit & WebRTC)`;
                   <td className="py-2.5 font-semibold text-slate-800">{entry.actor}</td>
                   <td className="py-2.5 text-slate-600">{entry.action}</td>
                   <td className="py-2.5">
-                    <span className="px-2 py-0.5 bg-blue-50 text-[#005eb8] rounded text-[10px] font-semibold border border-blue-100">
+                    <span className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded text-[10px] font-semibold border border-slate-200">
                       {entry.dataCategory}
                     </span>
                   </td>
                   <td className="py-2.5">
-                    <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded text-[10px] font-semibold border border-emerald-200">
+                    <span className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded text-[10px] font-semibold border border-slate-200">
                       {entry.encryptionStandard}
                     </span>
                   </td>
