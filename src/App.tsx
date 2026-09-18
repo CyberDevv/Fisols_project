@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { BookingWizard } from './components/booking/BookingWizard';
+import { FamilyMedicineModule } from './components/family-medicine/FamilyMedicineModule';
 import { ObGynTelehealthModule } from './components/obgyn/ObGynTelehealthModule';
 import { SurgeryUrologyModule } from './components/surgery-urology/SurgeryUrologyModule';
 import { PrecisionConsultationRoom } from './components/consultation/PrecisionConsultationRoom';
 import { ArchitectureSpecView } from './components/architecture/ArchitectureSpecView';
 import { NDPRModal } from './components/compliance/NDPRModal';
 import { JsonDatabaseModal } from './components/database/JsonDatabaseModal';
-import { NetworkQuality, AppointmentBooking } from './types';
+import { NemlBrowserModal } from './components/neml/NemlBrowserModal';
+import { NetworkQuality, AppointmentBooking, NemlDrug } from './types';
 import { ClinicalStateProvider, useClinicalState } from './context/ClinicalStateContext';
-import { Database, CheckCircle2 } from 'lucide-react';
+import { Database, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 function MainTelehealthApp() {
-  const [currentTab, setCurrentTab] = useState<'booking' | 'obgyn' | 'surgery-urology' | 'consultation' | 'architecture'>('booking');
+  const [currentTab, setCurrentTab] = useState<'booking' | 'family-medicine' | 'obgyn' | 'surgery-urology' | 'consultation' | 'architecture'>('booking');
   const [networkQuality, setNetworkQuality] = useState<NetworkQuality>('4G_HIGH');
   const [isNdprOpen, setIsNdprOpen] = useState<boolean>(false);
   const [isDatabaseOpen, setIsDatabaseOpen] = useState<boolean>(false);
+  const [isNemlOpen, setIsNemlOpen] = useState<boolean>(false);
+  const [nemlCategory, setNemlCategory] = useState<string>('All Categories');
 
   const { 
     appointments, 
@@ -63,6 +67,10 @@ function MainTelehealthApp() {
         networkQuality={networkQuality}
         setNetworkQuality={setNetworkQuality}
         onOpenNdprModal={() => setIsNdprOpen(true)}
+        onOpenNemlModal={() => {
+          setNemlCategory('All Categories');
+          setIsNemlOpen(true);
+        }}
         onOpenDatabaseModal={() => setIsDatabaseOpen(true)}
         isSyncing={isSyncing}
         activeAppointmentCount={appointments.length}
@@ -76,8 +84,22 @@ function MainTelehealthApp() {
             onAppointmentConfirmed={handleAppointmentConfirmed}
             onOpenConsultation={() => setCurrentTab('consultation')}
             onOpenNdprModal={() => setIsNdprOpen(true)}
+            onNavigateToFamilyMedicine={() => setCurrentTab('family-medicine')}
             onNavigateToObGyn={() => setCurrentTab('obgyn')}
             onNavigateToSurgeryUrology={() => setCurrentTab('surgery-urology')}
+          />
+        )}
+
+        {currentTab === 'family-medicine' && (
+          <FamilyMedicineModule
+            networkQuality={networkQuality}
+            onAppointmentBooked={handleAppointmentConfirmed}
+            onNavigateToConsultation={() => setCurrentTab('consultation')}
+            onOpenNdprModal={() => setIsNdprOpen(true)}
+            onOpenNemlModal={(cat) => {
+              if (cat) setNemlCategory(cat);
+              setIsNemlOpen(true);
+            }}
           />
         )}
 
@@ -134,6 +156,18 @@ function MainTelehealthApp() {
         }}
       />
 
+      {/* Nigeria National Essential Medicines List (NEML 8th Ed.) Modal & API Console */}
+      <NemlBrowserModal
+        isOpen={isNemlOpen}
+        onClose={() => setIsNemlOpen(false)}
+        activePatient={activeAppointment?.patient || null}
+        initialCategory={nemlCategory}
+        onSelectDrugForPrescription={() => {
+          setIsNemlOpen(false);
+          setCurrentTab('consultation');
+        }}
+      />
+
       {/* Real-Time Database Sync / REST Activity Notification */}
       {lastApiAction && (
         <aside 
@@ -173,12 +207,21 @@ function MainTelehealthApp() {
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 text-[11px]">
-              <span className="inline-flex items-center gap-1.5 text-slate-700 font-medium bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                <span className="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
-                NDPR 2019 / NDPA 2023 Compliant
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-slate-700 font-medium bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+            <div className="flex flex-wrap items-center justify-center gap-2.5 text-[11px]">
+              <button
+                type="button"
+                onClick={() => setIsNdprOpen(true)}
+                className="inline-flex items-center gap-1.5 text-slate-800 hover:text-slate-950 font-semibold bg-white hover:bg-slate-50 px-3 py-1 rounded-lg border border-slate-300 hover:border-slate-400 transition shadow-2xs group cursor-pointer"
+                title="View Nigeria Data Protection Regulation (NDPR) Patient Privacy Rights & Data Sovereignty"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-slate-700 group-hover:text-slate-950" />
+                <span>NDPR Rights</span>
+                <span className="text-[10px] text-slate-500 font-normal group-hover:text-slate-700">
+                  (NDPA 2023)
+                </span>
+              </button>
+
+              <span className="inline-flex items-center gap-1.5 text-slate-700 font-medium bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
                 <span className="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
                 UniGeneva CPIC Level 1A CDS
               </span>

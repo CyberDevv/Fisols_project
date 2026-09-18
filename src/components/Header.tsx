@@ -5,16 +5,18 @@ import {
   ShieldCheck, 
   Building2, 
   Activity,
-  Heart
+  Heart,
+  HeartPulse
 } from 'lucide-react';
 import { NetworkQuality } from '../types';
 
 interface HeaderProps {
-  currentTab: 'booking' | 'obgyn' | 'surgery-urology' | 'consultation' | 'architecture';
-  setCurrentTab: (tab: 'booking' | 'obgyn' | 'surgery-urology' | 'consultation' | 'architecture') => void;
+  currentTab: 'booking' | 'family-medicine' | 'obgyn' | 'surgery-urology' | 'consultation' | 'architecture';
+  setCurrentTab: (tab: 'booking' | 'family-medicine' | 'obgyn' | 'surgery-urology' | 'consultation' | 'architecture') => void;
   networkQuality?: NetworkQuality;
   setNetworkQuality?: (net: NetworkQuality) => void;
-  onOpenNdprModal: () => void;
+  onOpenNemlModal: () => void;
+  onOpenNdprModal?: () => void;
   onOpenDatabaseModal?: () => void;
   isSyncing?: boolean;
   activeAppointmentCount: number;
@@ -23,7 +25,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   currentTab,
   setCurrentTab,
-  onOpenNdprModal,
+  onOpenNemlModal,
   activeAppointmentCount = 0
 }) => {
   return (
@@ -52,14 +54,15 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* Mobile Actions: NDPR */}
-            <div className="flex items-center gap-1.5 md:hidden">
+            {/* Mobile Action: NEML Drugs */}
+            <div className="flex items-center md:hidden">
               <button
-                onClick={onOpenNdprModal}
-                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition min-h-[38px] min-w-[38px] flex items-center justify-center border border-slate-200"
-                title="NDPR Patient Privacy Rights"
+                type="button"
+                onClick={onOpenNemlModal}
+                className="px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-2xs transition"
+                title="National Essential Medicines List (NEML)"
               >
-                <ShieldCheck className="w-4 h-4 text-slate-700" />
+                NEML Drugs
               </button>
             </div>
           </div>
@@ -80,6 +83,18 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <CalendarCheck className={`w-3.5 h-3.5 shrink-0 ${currentTab === 'booking' ? 'text-slate-900' : 'text-slate-400'}`} />
                 <span className="inline">Book Appointment</span>
+              </button>
+
+              <button
+                onClick={() => setCurrentTab('family-medicine')}
+                className={`shrink-0 sm:flex-initial flex items-center justify-center gap-1.5 py-2 px-3 sm:px-3.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap min-h-[40px] sm:min-h-[38px] ${
+                  currentTab === 'family-medicine'
+                    ? 'bg-white text-slate-950 shadow-xs border border-slate-200'
+                    : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
+                }`}
+              >
+                <HeartPulse className={`w-3.5 h-3.5 shrink-0 ${currentTab === 'family-medicine' ? 'text-slate-900' : 'text-slate-400'}`} />
+                <span className="inline">Family Medicine</span>
               </button>
 
               <button
@@ -139,14 +154,15 @@ export const Header: React.FC<HeaderProps> = ({
             </nav>
           </div>
 
-          {/* Right Utilities: NDPR Privacy (Desktop / Tablet) */}
-          <div className="hidden md:flex items-center gap-2">
+          {/* Right Utility: NEML Drugs (Desktop / Tablet) */}
+          <div className="hidden md:flex items-center">
             <button
-              onClick={onOpenNdprModal}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 text-xs font-medium transition-all shadow-2xs"
+              type="button"
+              onClick={onOpenNemlModal}
+              className="px-3.5 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 hover:text-slate-950 text-xs font-semibold transition-all shadow-2xs"
+              title="National Essential Medicines List (NEML)"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-slate-600" />
-              <span>NDPR Rights</span>
+              NEML Drugs
             </button>
           </div>
         </div>

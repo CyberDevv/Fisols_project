@@ -44,7 +44,8 @@ import {
   DigitalPrescription, 
   PostConsultFollowUp,
   PharmacogenomicRule,
-  PatientVitals
+  PatientVitals,
+  NemlDrug
 } from '../../types';
 import { 
   SPECIALISTS, 
@@ -57,6 +58,8 @@ import {
   generateSha256 
 } from '../../utils/cryptoAndCompression';
 import { useClinicalState } from '../../context/ClinicalStateContext';
+import { NemlBrowserModal } from '../neml/NemlBrowserModal';
+import { NemlApiService } from '../../services/nemlApi';
 
 interface PrecisionConsultationRoomProps {
   networkQuality: NetworkQuality;
@@ -294,6 +297,8 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
     setChatInput('');
   };
 
+  const [isNemlBrowserOpen, setIsNemlBrowserOpen] = useState<boolean>(false);
+
   // Add Genetically Tailored Alternative Drug to Prescription
   const handleApplyAlternative = (altName: string, notes: string) => {
     const newItem: PrescriptionItem = {
@@ -306,6 +311,38 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
       pharmacogenomicNote: notes
     };
     addConsultationPrescriptionItem(currentBooking.id, newItem);
+  };
+
+  // Add drug from National Essential Medicines List (NEML 8th Edition)
+  const handlePrescribeNemlDrug = (drug: NemlDrug) => {
+    const defaultDosage = drug.dosageForms[0] || '1 tablet';
+    const isTwiceDaily = drug.genericName.toLowerCase().includes('ticagrelor') || 
+                         drug.genericName.toLowerCase().includes('co-amoxiclav') || 
+                         drug.genericName.toLowerCase().includes('naproxen') || 
+                         drug.genericName.toLowerCase().includes('artemether');
+    const isTds = drug.genericName.toLowerCase().includes('paracetamol');
+    const frequency = isTwiceDaily ? 'Twice Daily (BID)' : isTds ? 'Three Times Daily (TDS)' : 'Once Daily (OD)';
+
+    const validation = NemlApiService.validatePrescription(drug, patient, currentBooking.triage.recommendedDepartment);
+
+    const newItem: PrescriptionItem = {
+      id: `rx-neml-${Date.now()}`,
+      medicationName: drug.genericName,
+      dosage: defaultDosage,
+      frequency,
+      duration: drug.therapeuticCategory.includes('Anti-Infective') ? '5-7 Days' : '30-90 Days',
+      genomicStatus: validation.pgxWarning ? 'FLAGGED_ADR_PREVENTED' : 'GENETICALLY_SAFE',
+      pharmacogenomicNote: validation.pgxWarning 
+        ? `[NEML Code: ${drug.nemlCode} | Level: ${drug.levelOfCare}] PGx Alert (${validation.pgxWarning.gene}): ${validation.pgxWarning.warning}`
+        : `[NEML Code: ${drug.nemlCode} | Level: ${drug.levelOfCare} | NAFDAC: ${drug.nafdacRegNumber || drug.nafdacRegStatus}] Certified Nigeria Essential Formulary. ${drug.prescribingGuidelines.slice(0, 110)}...`,
+      nemlCode: drug.nemlCode,
+      levelOfCare: drug.levelOfCare,
+      whoAWaRe: drug.whoAWaReCategory,
+      nafdacRegNumber: drug.nafdacRegNumber || drug.nafdacRegStatus
+    };
+
+    addConsultationPrescriptionItem(currentBooking.id, newItem);
+    setIsNemlBrowserOpen(false);
   };
 
   const handleRemovePrescriptionItem = (itemId: string) => {
@@ -1103,6 +1140,22 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                   Select or type a proposed medication to cross-reference with patient alleles and detect Adverse Drug Reactions (ADRs).
                 </p>
               </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsNemlBrowserOpen(true)}
+                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow-xs group"
+                  title="Browse National Essential Medicines List (NEML) Database"
+                >
+                  <Database className="w-3.5 h-3.5 text-slate-300 group-hover:text-white" />
+                  <span>Browse NEML Database</span>
+                  <span className="flex items-center gap-1 pl-1 text-[10px] text-emerald-400 font-mono font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    API Live
+                  </span>
+                </button>
+              </div>
             </div>
 
             {/* Interactive Drug Selector */}
@@ -1236,22 +1289,57 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
 
             {/* Prescribed Items Table */}
             <div className="space-y-2 mb-4">
-              <span className="text-xs font-bold text-slate-800 block">
-                Formulated Prescriptions ({prescriptionItems.length}):
-              </span>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-800 block">
+                  Formulated Prescriptions ({prescriptionItems.length}):
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsNemlBrowserOpen(true)}
+                  className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-semibold rounded-lg border border-slate-200 flex items-center gap-1.5 transition"
+                >
+                  <Database className="w-3 h-3 text-slate-700" />
+                  <span>Import from NEML Database</span>
+                </button>
+              </div>
+
               {prescriptionItems.length === 0 ? (
                 <div className="p-4 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-center text-xs text-slate-500">
                   <Pill className="w-5 h-5 text-slate-400 mx-auto mb-1" />
                   <p className="font-semibold text-slate-700">No Prescriptions Formulated Yet</p>
                   <p className="text-[11px] text-slate-400 mt-0.5">
-                    Select a drug in the CDS engine above to evaluate pharmacogenomics and add genetically validated medications.
+                    Select a drug in the CDS engine above or search the National Essential Medicines List (NEML) database.
                   </p>
                 </div>
               ) : (
                 prescriptionItems.map((item) => (
-                  <div key={item.id} className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-1">
+                  <div key={item.id} className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-1.5">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-slate-900 text-sm">{item.medicationName}</span>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-bold text-slate-900 text-sm">{item.medicationName}</span>
+                        {item.nemlCode && (
+                          <span className="px-1.5 py-0.2 rounded bg-slate-900 text-white font-mono text-[9px] font-bold">
+                            {item.nemlCode}
+                          </span>
+                        )}
+                        {item.levelOfCare && (
+                          <span className="px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 font-mono text-[9px] font-bold border border-slate-200">
+                            Care: [{item.levelOfCare}]
+                          </span>
+                        )}
+                        {item.whoAWaRe && item.whoAWaRe !== 'Not Applicable' && (
+                          <span className={`px-1.5 py-0.2 rounded font-medium text-[9px] ${
+                            item.whoAWaRe === 'Access'
+                              ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                              : item.whoAWaRe === 'Watch'
+                              ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                              : 'bg-red-50 text-red-800 border border-red-200'
+                          }`}>
+                            AWaRe: {item.whoAWaRe}
+                          </span>
+                        )}
+                      </div>
+
                       <div className="flex items-center gap-2">
                         <span className="px-2 py-0.5 bg-slate-200 text-slate-800 rounded text-[10px] font-bold">
                           {item.genomicStatus.replace('_', ' ')}
@@ -1266,11 +1354,17 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                         </button>
                       </div>
                     </div>
-                    <div className="text-slate-600 text-[11px]">
+                    <div className="text-slate-600 text-[11px] flex flex-wrap items-center gap-x-2">
                       <span>Dose: <strong>{item.dosage}</strong></span> • <span>Freq: <strong>{item.frequency}</strong></span> • <span>Duration: <strong>{item.duration}</strong></span>
+                      {item.nafdacRegNumber && (
+                        <>
+                          <span>•</span>
+                          <span className="text-slate-500 font-mono text-[10px]">NAFDAC Reg: {item.nafdacRegNumber}</span>
+                        </>
+                      )}
                     </div>
                     <p className="text-[11px] text-slate-800 bg-slate-100 p-1.5 rounded border border-slate-200">
-                      <strong>Geneva Precision Rationale:</strong> {item.pharmacogenomicNote}
+                      <strong>Formulary &amp; CDS Rationale:</strong> {item.pharmacogenomicNote}
                     </p>
                   </div>
                 ))
@@ -1530,6 +1624,14 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
           </div>
         </div>
       )}
+
+      {/* National Essential Medicines List (NEML 8th Edition) & API Browser Modal */}
+      <NemlBrowserModal
+        isOpen={isNemlBrowserOpen}
+        onClose={() => setIsNemlBrowserOpen(false)}
+        onSelectDrugForPrescription={handlePrescribeNemlDrug}
+        activePatient={patient}
+      />
     </div>
   );
 };

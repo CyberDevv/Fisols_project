@@ -32,6 +32,7 @@ import {
   Heart,
   Baby,
   Activity,
+  HeartPulse,
   UserCheck,
   ChevronDown,
   RotateCcw
@@ -53,8 +54,10 @@ import {
   DEMO_PATIENT_CHUKWUEMEKA, 
   DEMO_PATIENT_OBGYN, 
   DEMO_PATIENT_SURGERY_UROLOGY,
+  DEMO_PATIENT_FAMILY_MEDICINE,
   LAUTECH_OBGYN_PROTOCOL, 
   LAUTECH_SURGERY_UROLOGY_PROTOCOL,
+  LAUTECH_FAMILY_MEDICINE_PROTOCOL,
   HMO_LIST 
 } from '../../data/clinicalData';
 import { simulateAdaptiveCompression, formatBytes } from '../../utils/cryptoAndCompression';
@@ -65,6 +68,7 @@ interface BookingWizardProps {
   onAppointmentConfirmed: (appointment: AppointmentBooking) => void;
   onOpenConsultation: () => void;
   onOpenNdprModal?: () => void;
+  onNavigateToFamilyMedicine?: () => void;
   onNavigateToObGyn?: () => void;
   onNavigateToSurgeryUrology?: () => void;
 }
@@ -166,6 +170,22 @@ export const CLINICAL_PRESETS: ClinicalTestCasePreset[] = [
     duration: 'Over 2 weeks',
     severity: 'Moderate',
     patientNarrative: 'Post-TURP 6-week follow-up. Normal stream, no retention or hematuria. Review under LAUTECH Elective Surgical & Urological Protocol.'
+  },
+  {
+    id: 'folake',
+    name: 'Mrs. Folake Abosede Ojo',
+    shortLabel: 'Mrs. Folake Ojo',
+    department: 'Family Medicine',
+    badge: 'Family Med Routine',
+    summary: 'Routine follow-up for essential hypertension & type 2 diabetes. Normal home BP.',
+    genomicNote: 'LAUTECH Primary Health Care Routine Protocol (Zero Red Flags)',
+    patient: DEMO_PATIENT_FAMILY_MEDICINE,
+    concern: 'Routine follow-up for essential hypertension and type 2 diabetes. Review of home BP log and refill counseling.',
+    symptomCategory: 'Family Medicine',
+    chestPainOrDyspnea: false,
+    duration: 'Over 2 weeks',
+    severity: 'Mild',
+    patientNarrative: 'Stable primary care chronic disease check-in. BP 128/82 mmHg, FBS 105 mg/dL. Requesting refill and routine annual wellness lab review.'
   }
 ];
 
@@ -174,6 +194,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
   onAppointmentConfirmed,
   onOpenConsultation,
   onOpenNdprModal,
+  onNavigateToFamilyMedicine,
   onNavigateToObGyn,
   onNavigateToSurgeryUrology
 }) => {
@@ -227,6 +248,12 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
   const [surgeryEmergencyAcknowledged, setSurgeryEmergencyAcknowledged] = useState<boolean>(true);
   const [surgeryRedFlags, setSurgeryRedFlags] = useState<string[]>([]);
   const [surgeryElectiveCategory, setSurgeryElectiveCategory] = useState<string>('post_op');
+
+  // Family Medicine Elective Safety Screen State (for Step 2 triage)
+  const [familyEmergencyAcknowledged, setFamilyEmergencyAcknowledged] = useState<boolean>(true);
+  const [familyRedFlags, setFamilyRedFlags] = useState<string[]>([]);
+  const [familyElectiveCategory, setFamilyElectiveCategory] = useState<string>('chronic_disease');
+  const [familySpecialistId, setFamilySpecialistId] = useState<string>('spec-dr-olayinka');
 
   // Condition and Allergy inputs for registration
   const [newConditionInput, setNewConditionInput] = useState<string>('');
@@ -353,7 +380,10 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
     let matchedDept: ClinicalDepartment = 'Cardiology';
     let matchedSpec = SPECIALISTS[0];
 
-    if (triageInput.symptomCategory === 'Surgery & Urology') {
+    if (triageInput.symptomCategory === 'Family Medicine') {
+      matchedDept = 'Family Medicine';
+      matchedSpec = SPECIALISTS.find(s => s.id === familySpecialistId) || SPECIALISTS.find(s => s.id === 'spec-dr-olayinka') || SPECIALISTS[0];
+    } else if (triageInput.symptomCategory === 'Surgery & Urology') {
       matchedDept = 'Surgery & Urology';
       matchedSpec = SPECIALISTS.find(s => s.id === 'spec-dr-najimudeen') || SPECIALISTS[0];
     } else if (triageInput.symptomCategory === 'Obstetrics & Gynaecology') {
@@ -370,20 +400,29 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
       matchedSpec = SPECIALISTS[2];
     }
 
+    const isFamilyMed = triageInput.symptomCategory === 'Family Medicine';
     const isSurgery = triageInput.symptomCategory === 'Surgery & Urology';
     const isObGyn = triageInput.symptomCategory === 'Obstetrics & Gynaecology';
 
     setTriageResult({
-      severityLevel: isSurgery || isObGyn ? 'Moderate' : triageInput.chestPainOrDyspnea ? 'Severe' : 'Moderate',
+      severityLevel: isFamilyMed || isSurgery || isObGyn ? 'Moderate' : triageInput.chestPainOrDyspnea ? 'Severe' : 'Moderate',
       recommendedDepartment: matchedDept,
       matchedSpecialist: matchedSpec,
-      clinicalPriority: isSurgery || isObGyn ? 'Standard (within 48h)' : triageInput.chestPainOrDyspnea ? 'Expedited (within 12h)' : 'Standard (within 48h)',
-      triageReasoning: isSurgery
+      clinicalPriority: isFamilyMed || isSurgery || isObGyn ? 'Standard (within 48h)' : triageInput.chestPainOrDyspnea ? 'Expedited (within 12h)' : 'Standard (within 48h)',
+      triageReasoning: isFamilyMed
+        ? `Elective outpatient primary care review matched to ${matchedSpec.name} under LAUTECH Primary Health Care Routine Protocol. Red-flag emergency screening verified clear.`
+        : isSurgery
         ? `Elective outpatient surgical & urological review matched to Dr. Idowu Najimudeen under LAUTECH Elective Surgical & Urological Routine Protocol. Red-flag emergency screening verified clear.`
         : isObGyn 
         ? `Elective outpatient OB/GYN triage matched to ${matchedSpec.name} under LAUTECH Tele-Gynecology Routine Protocol. Red flag screening verified clear for routine virtual care.`
         : `Automated triage matched presenting symptom profile to ${matchedDept} under ${matchedSpec.name} at ${matchedSpec.institution}. Priority designated as expedited due to cardiovascular risk indicators.`,
-      flaggedRiskFactors: isSurgery
+      flaggedRiskFactors: isFamilyMed
+        ? [
+            'LAUTECH Primary Health Care Routine Protocol Active',
+            `Elective Outpatient Routing Confirmed (${matchedSpec.name})`,
+            'Safety Screen Passed: Zero acute life-threatening, chest pain, collapse, or severe trauma red flags'
+          ]
+        : isSurgery
         ? [
             'LAUTECH Elective Surgical & Urological Routine Protocol Active',
             'Elective Outpatient Routing Confirmed (Dr. Idowu Najimudeen)',
@@ -522,6 +561,9 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
     } else if (preset.id === 'zainab') {
       setObGynEmergencyAcknowledged(true);
       setObGynRedFlags([]);
+    } else if (preset.id === 'folake') {
+      setFamilyEmergencyAcknowledged(true);
+      setFamilyRedFlags([]);
     }
     setActivePresetId(preset.id);
     setIsPresetDropdownOpen(false);
@@ -1355,9 +1397,10 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
               <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Clinical Concern Category
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-6 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2">
                 {[
                   { id: 'Cardiovascular', label: 'Cardiovascular / Heart' },
+                  { id: 'Family Medicine', label: 'Family Medicine / Primary Care' },
                   { id: 'Obstetrics & Gynaecology', label: 'OB/GYN & Women\'s Health' },
                   { id: 'Surgery & Urology', label: 'Surgery & Urology' },
                   { id: 'Neurology', label: 'Neurology / Brain & Nerves' },
@@ -1369,7 +1412,9 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                     type="button"
                     onClick={() => {
                       setTriageInput({ ...triageInput, symptomCategory: cat.id });
-                      if (cat.id === 'Obstetrics & Gynaecology' && !patient.fullName.includes('Zainab')) {
+                      if (cat.id === 'Family Medicine' && !patient.fullName.includes('Folake')) {
+                        setPatient(DEMO_PATIENT_FAMILY_MEDICINE);
+                      } else if (cat.id === 'Obstetrics & Gynaecology' && !patient.fullName.includes('Zainab')) {
                         setPatient(DEMO_PATIENT_OBGYN);
                       } else if (cat.id === 'Surgery & Urology' && !patient.fullName.includes('Rasheed')) {
                         setPatient(DEMO_PATIENT_SURGERY_UROLOGY);
@@ -1386,6 +1431,200 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 ))}
               </div>
             </div>
+
+            {/* FAMILY MEDICINE MODULE: ELECTIVE TELEHEALTH & SAFETY SCREEN (USER MANDATE) */}
+            {triageInput.symptomCategory === 'Family Medicine' && (
+              <div className="p-4 sm:p-5 bg-white border border-slate-200 rounded-2xl space-y-4 shadow-xs">
+                <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
+                  <div className="flex items-center gap-2">
+                    <span className="p-1.5 rounded-lg bg-slate-900 text-white">
+                      <HeartPulse className="w-4 h-4" />
+                    </span>
+                    <div>
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-950">
+                        Family Medicine Module: Elective Telehealth &amp; Safety Screen
+                      </h4>
+                      <p className="text-[11px] text-slate-500">
+                        LAUTECH Teaching Hospital, Ogbomoso &bull; Department of Family Medicine &amp; Primary Care
+                      </p>
+                    </div>
+                  </div>
+                  {onNavigateToFamilyMedicine && (
+                    <button
+                      type="button"
+                      onClick={onNavigateToFamilyMedicine}
+                      className="px-2.5 py-1 text-[11px] font-semibold text-slate-700 hover:text-slate-950 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition shrink-0 shadow-2xs"
+                    >
+                      Open Full Family Medicine Clinic Screen &rarr;
+                    </button>
+                  )}
+                </div>
+
+                {/* 1. Emergency Safety Check (The Red Flag Stop) */}
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
+                    <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span>1. Emergency Safety Check (The Red Flag Stop)</span>
+                  </div>
+
+                  {/* Mandated Emergency Notice Box */}
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-xs text-red-950 font-medium leading-relaxed">
+                    <strong className="text-red-900">Emergency Notice:</strong> If you are experiencing a life-threatening medical emergency, acute chest pain, sudden collapse, or severe trauma, do not use this app. Go immediately to LAUTECH Hospital Emergency.
+                  </div>
+
+                  {/* Red flag trigger items */}
+                  <div className="space-y-1.5 pt-1">
+                    <span className="text-[11px] font-bold text-slate-700 block">
+                      Check if you have any of these emergency symptoms:
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                      {LAUTECH_FAMILY_MEDICINE_PROTOCOL.redFlagTriggers.map((rf) => {
+                        const isChecked = familyRedFlags.includes(rf.id);
+                        return (
+                          <label
+                            key={rf.id}
+                            className={`flex items-center gap-2 p-2 rounded-lg border text-xs cursor-pointer transition ${
+                              isChecked
+                                ? 'bg-red-50 border-red-300 text-red-900 font-semibold'
+                                : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={isChecked}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFamilyRedFlags([...familyRedFlags, rf.id]);
+                                } else {
+                                  setFamilyRedFlags(familyRedFlags.filter(id => id !== rf.id));
+                                }
+                              }}
+                              className="rounded border-slate-300 text-red-600 focus:ring-red-500 w-3.5 h-3.5"
+                            />
+                            <span>{rf.label}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {familyRedFlags.length > 0 && (
+                    <div className="p-2.5 bg-red-100/80 border border-red-300 rounded-lg text-xs text-red-900 flex items-center justify-between gap-2 mt-2">
+                      <div className="flex items-center gap-1.5">
+                        <AlertTriangle className="w-4 h-4 text-red-700 shrink-0" />
+                        <span><strong>Emergency Warning:</strong> Red flags detected. Virtual booking is restricted.</span>
+                      </div>
+                      <a
+                        href="tel:08005288324"
+                        className="px-2 py-1 bg-red-700 hover:bg-red-800 text-white rounded text-[11px] font-bold shrink-0 transition"
+                      >
+                        Call Emergency
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                {/* 2. Core Elective Focus (What Telemedicine Solves Here) */}
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
+                    <HeartPulse className="w-4 h-4 text-slate-700 shrink-0" />
+                    <span>2. Core Elective Focus (What Telemedicine Solves Here)</span>
+                  </div>
+                  <p className="text-xs text-slate-700 leading-relaxed">
+                    <strong className="text-slate-900">Elective Outpatient Care:</strong> This telehealth channel is designed for routine primary care consultations, chronic disease management (e.g., stable hypertension or diabetes check-ins), general health assessments, and coordinated specialist referrals.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1.5 pt-1">
+                    {LAUTECH_FAMILY_MEDICINE_PROTOCOL.eligibleCategories.map((cat) => (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => setFamilyElectiveCategory(cat.id)}
+                        className={`p-2.5 rounded-lg text-[11px] font-medium border text-left transition ${
+                          familyElectiveCategory === cat.id
+                            ? 'bg-slate-900 border-slate-900 text-white font-semibold'
+                            : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                        }`}
+                      >
+                        <div className="font-semibold">{cat.title}</div>
+                        <div className={`text-[10px] mt-0.5 line-clamp-1 ${familyElectiveCategory === cat.id ? 'text-slate-300' : 'text-slate-500'}`}>
+                          {cat.badge}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 3. Patient Safety Acknowledgment */}
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs mb-2">
+                    <CheckCircle2 className="w-4 h-4 text-slate-700 shrink-0" />
+                    <span>3. Patient Safety Acknowledgment</span>
+                  </div>
+                  <label className="flex items-start gap-2.5 text-xs text-slate-800 font-medium cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={familyEmergencyAcknowledged}
+                      onChange={(e) => setFamilyEmergencyAcknowledged(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 text-slate-900 rounded shrink-0"
+                    />
+                    <span className="leading-snug font-semibold text-slate-900">
+                      I confirm my current primary care symptoms are non-emergency and suitable for an elective virtual consultation.
+                    </span>
+                  </label>
+                </div>
+
+                {/* 4. Matched Specialist View */}
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
+                      <Stethoscope className="w-4 h-4 text-slate-700 shrink-0" />
+                      <span>4. Matched Specialist View</span>
+                    </div>
+                    <span className="text-[10px] text-slate-500 font-medium">LAUTECH Hospital</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {SPECIALISTS.filter(s => s.department === 'Family Medicine').map((spec) => {
+                      const isSelected = (familySpecialistId === spec.id);
+                      const initials = spec.name.replace(/^(Dr\.|Prof\.)\s*/, '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'MD';
+                      return (
+                        <button
+                          key={spec.id}
+                          type="button"
+                          onClick={() => setFamilySpecialistId(spec.id)}
+                          className={`p-3 rounded-xl border text-left transition flex items-center justify-between gap-2.5 ${
+                            isSelected
+                              ? 'border-slate-900 bg-white ring-2 ring-slate-900 shadow-xs'
+                              : 'border-slate-200 bg-white hover:bg-slate-50'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <div className={`w-9 h-9 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${
+                              isSelected ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700'
+                            }`}>
+                              {initials}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-xs font-bold text-slate-900 truncate">
+                                {spec.name}
+                              </div>
+                              <div className="text-[10px] text-slate-600 truncate">
+                                {spec.title}
+                              </div>
+                            </div>
+                          </div>
+                          {isSelected && (
+                            <span className="w-4 h-4 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0">
+                              <Check className="w-2.5 h-2.5" />
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* OB/GYN MODULE: ELECTIVE TELEHEALTH & SAFETY SCREEN (USER MANDATE) */}
             {triageInput.symptomCategory === 'Obstetrics & Gynaecology' && (
@@ -1944,6 +2183,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
               onClick={handleRunTriage}
               disabled={
                 ((triageInput.chestPainOrDyspnea || triageInput.symptomCategory === 'Cardiovascular') && !cardiacEmergencyAcknowledged) ||
+                (triageInput.symptomCategory === 'Family Medicine' && (!familyEmergencyAcknowledged || familyRedFlags.length > 0)) ||
                 (triageInput.symptomCategory === 'Obstetrics & Gynaecology' && (!obGynEmergencyAcknowledged || obGynRedFlags.length > 0)) ||
                 (triageInput.symptomCategory === 'Surgery & Urology' && (!surgeryEmergencyAcknowledged || surgeryRedFlags.length > 0))
               }

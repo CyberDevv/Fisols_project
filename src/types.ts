@@ -8,7 +8,8 @@ export type ClinicalDepartment =
   | 'Infectious Diseases & Immunology'
   | 'Nephrology'
   | 'Obstetrics & Gynaecology'
-  | 'Surgery & Urology';
+  | 'Surgery & Urology'
+  | 'Family Medicine';
 
 export interface GeneticMarker {
   gene: 'CYP2C19' | 'CYP2D6' | 'CYP2C9' | 'VKORC1' | 'SLCO1B1' | 'HLA-B*5701' | 'DPYD' | 'TPMT';
@@ -154,6 +155,10 @@ export interface PrescriptionItem {
   duration: string;
   genomicStatus: 'FLAGGED_ADR_PREVENTED' | 'TAILORED_DOSAGE' | 'GENETICALLY_SAFE';
   pharmacogenomicNote: string;
+  nemlCode?: string;
+  levelOfCare?: 'P' | 'S' | 'T';
+  whoAWaRe?: 'Access' | 'Watch' | 'Reserve' | 'Not Applicable';
+  nafdacRegNumber?: string;
 }
 
 export interface DigitalPrescription {
@@ -247,4 +252,71 @@ export interface DatabaseSnapshot {
     hmoPolicies: HMOPolicyRecord[];
   };
 }
+
+// ==========================================
+// NIGERIA NATIONAL ESSENTIAL MEDICINES LIST (NEML) TYPES
+// Federal Ministry of Health & Social Welfare / NDF
+// ==========================================
+
+export type NemlLevelOfCare = 'P' | 'S' | 'T';
+
+export type WhoAWaReCategory = 'Access' | 'Watch' | 'Reserve' | 'Not Applicable';
+
+export interface NemlPharmacogenomicAlert {
+  targetGene: string;
+  riskPhenotype: string;
+  recommendation: string;
+  severity: 'CONTRAINDICATED' | 'HIGH_ADR_ALERT' | 'DOSE_ADJUSTMENT' | 'SAFE_STANDARD';
+}
+
+export interface NemlDrug {
+  id: string;
+  nemlCode: string;
+  edition: string;
+  genericName: string;
+  brandNames: string[];
+  therapeuticCategory: string;
+  atcCode: string;
+  levelOfCare: NemlLevelOfCare;
+  levelOfCareLabel: string;
+  whoAWaReCategory: WhoAWaReCategory;
+  dosageForms: string[];
+  standardIndications: string[];
+  prescribingGuidelines: string;
+  contraindications: string[];
+  pharmacogenomicAlert?: NemlPharmacogenomicAlert;
+  nafdacRegStatus: string;
+  nafdacRegNumber?: string;
+  emdexMonographId: string;
+  isPediatricEssential?: boolean;
+}
+
+export interface NemlApiStats {
+  source: string;
+  edition: string;
+  totalDrugs: number;
+  categoriesCount: number;
+  apiStatus: 'ONLINE_CONNECTED' | 'LOCAL_MIRROR' | 'DISCONNECTED';
+  gatewayEndpoint: string;
+  emdexApiVersion: string;
+  lastSyncTimestamp: string;
+  cacheTtlSeconds: number;
+  primaryCareCoveragePercentage: number;
+  nafdacVerificationRate: number;
+}
+
+export interface NemlValidationResult {
+  drug: NemlDrug;
+  isAuthorizedForLevel: boolean;
+  levelMessage: string;
+  pgxWarning?: {
+    gene: string;
+    phenotype: string;
+    warning: string;
+    severity: 'CONTRAINDICATED' | 'HIGH_ADR_ALERT' | 'DOSE_ADJUSTMENT' | 'SAFE_STANDARD';
+  };
+  allergyConflict: boolean;
+  allergyConflictMessage?: string;
+}
+
 

@@ -159,6 +159,29 @@ export const SPECIALISTS: Specialist[] = [
       { date: 'In 2 Days', time: '11:00 AM', available: true },
       { date: 'In 2 Days', time: '02:30 PM', available: true },
     ]
+  },
+  {
+    id: 'spec-dr-olayinka',
+    name: 'Dr. Oluwajoba A. Olayinka',
+    title: 'Consultant Family Physician & CMAC',
+    department: 'Family Medicine',
+    institution: 'LAUTECH Teaching Hospital, Ogbomoso',
+    qualifications: 'MBBS, FMCFM, FWACP (Family Med)',
+    precisionExpertise: [
+      'Primary Health Care & Ambulatory Medicine',
+      'Chronic Disease Management (Hypertension & Diabetes)',
+      'General Health Assessments & Wellness Screening',
+      'LAUTECH Primary Health Care Routine Protocol'
+    ],
+    lautechFacultyRole: 'Chairman, Medical Advisory Committee (CMAC) & Consultant Family Physician, LAUTECH Teaching Hospital, Ogbomoso',
+    bio: 'Consultant Family Physician and Chairman Medical Advisory Committee (CMAC) at LAUTECH Teaching Hospital, Ogbomoso. Directs the elective primary care telehealth service, providing comprehensive outpatient consultations, chronic disease monitoring, wellness screenings, and coordinated specialist referrals.',
+    availableSlots: [
+      { date: 'Tomorrow', time: '08:30 AM', available: true },
+      { date: 'Tomorrow', time: '11:00 AM', available: true },
+      { date: 'Tomorrow', time: '02:00 PM', available: true },
+      { date: 'In 2 Days', time: '09:30 AM', available: true },
+      { date: 'In 2 Days', time: '01:30 PM', available: true },
+    ]
   }
 ];
 
@@ -647,6 +670,102 @@ export const LAUTECH_SURGERY_UROLOGY_PROTOCOL = {
     { id: 'urinary_retention', label: 'Sudden urinary retention with severe distress' },
     { id: 'hematuria_clots', label: 'Active gross hematuria with clots' },
     { id: 'acute_trauma', label: 'Acute trauma' }
+  ]
+};
+
+export const DEMO_PATIENT_FAMILY_MEDICINE: PatientProfile = {
+  id: 'pat-lautech-fm-702',
+  fullName: 'Mrs. Folake Abosede Ojo',
+  email: 'folake.ojo@telemed.kbf.org',
+  phone: '+234 803 219 7780',
+  age: 48,
+  gender: 'Female',
+  stateOfResidence: 'Oyo State (Ogbomoso / Oyo)',
+  chronicConditions: [
+    'Essential Hypertension (Stage 1, stable on Amlodipine 5mg daily)',
+    'Type 2 Diabetes Mellitus (Well-controlled on Metformin 500mg BID, HbA1c 6.4%)',
+    'Routine Annual Primary Health & Preventive Wellness Check'
+  ],
+  drugAllergies: ['None known'],
+  emergencyContact: {
+    name: 'Mr. Babatunde Ojo',
+    phone: '+234 802 663 1198',
+    relationship: 'Spouse'
+  },
+  hmoProvider: 'Hygeia HMO Nigeria',
+  hmoNumber: 'HYG-FM-88204-LAUT',
+  ndprConsentGiven: true,
+  ndprConsentDate: '2026-09-15 09:10 UTC',
+  geneticProfile: [
+    {
+      gene: 'CYP2C9',
+      variant: '*1/*1',
+      phenotype: 'Normal Metabolizer',
+      testedDate: '2026-08-25',
+      accreditation: 'UniGeneva Primary Care Pharmacogenomics Unit',
+      clinicalImpact: 'Normal metabolic clearance for sulfonylureas, ARBs, and oral antidiabetic agents.'
+    },
+    {
+      gene: 'SLCO1B1',
+      variant: '*1/*1',
+      phenotype: 'Normal Function',
+      testedDate: '2026-08-25',
+      accreditation: 'UniGeneva Primary Care Pharmacogenomics Unit',
+      clinicalImpact: 'Normal statin transporter function; standard lipid-lowering pharmacotherapy tolerance.'
+    }
+  ]
+};
+
+export const DEMO_PATIENT_FOLAKE: PatientProfile = DEMO_PATIENT_FAMILY_MEDICINE;
+
+export const LAUTECH_FAMILY_MEDICINE_PROTOCOL = {
+  name: 'LAUTECH Primary Health Care Routine Protocol',
+  routing: 'Elective Outpatient Schedule',
+  leadSpecialist: 'Dr. Oluwajoba A. Olayinka',
+  specialistTitle: 'Consultant Family Physician & CMAC, LAUTECH Teaching Hospital, Ogbomoso',
+  institution: 'LAUTECH Teaching Hospital, Ogbomoso',
+  emergencyDisclaimer: 'Emergency Notice: If you are experiencing a life-threatening medical emergency, acute chest pain, sudden collapse, or severe trauma, do not use this app. Go immediately to LAUTECH Hospital Emergency.',
+  coreElectiveFocus: 'Elective Outpatient Care: This telehealth channel is designed for routine primary care consultations, chronic disease management (e.g., stable hypertension or diabetes check-ins), general health assessments, and coordinated specialist referrals.',
+  safetyAcknowledgmentText: 'I confirm my current primary care symptoms are non-emergency and suitable for an elective virtual consultation.',
+  eligibleCategories: [
+    {
+      id: 'chronic_disease',
+      title: 'Chronic Disease Management',
+      badge: 'Primary Care',
+      description: 'Routine check-in for stable hypertension, type 2 diabetes mellitus, dyslipidemia, or mild asthma. Regular blood pressure & blood sugar tracking and lifestyle titration.',
+      clinicalScope: 'For stable vitals without hypertensive emergency, severe hypoglycemia, confusion, or acute dyspnea.',
+      typicalReviewTime: '20-25 mins'
+    },
+    {
+      id: 'general_assessment',
+      title: 'General Health Assessments',
+      badge: 'Wellness Screen',
+      description: 'Annual adult wellness reviews, preventive health screening advice, immunization guidance, and general laboratory panel reviews (FBC, urinalysis, lipid profile, LFTs, E/U/Cr).',
+      clinicalScope: 'Non-acute ambulatory wellness assessments and routine preventive health profiles.',
+      typicalReviewTime: '20 mins'
+    },
+    {
+      id: 'routine_primary',
+      title: 'Routine Primary Care Consultations',
+      badge: 'Ambulatory Care',
+      description: 'Subacute non-emergent complaints such as mild tension headaches, uncomplicated allergic rhinitis, gastroesophageal reflux, or mild musculoskeletal aches.',
+      clinicalScope: 'Common ambulatory outpatient presentations without red-flag warning signs.',
+      typicalReviewTime: '15-20 mins'
+    },
+    {
+      id: 'specialist_referral',
+      title: 'Coordinated Specialist Referrals',
+      badge: 'Care Coordination',
+      description: 'Holistic clinical evaluation to determine appropriate tertiary specialist referral (cardiology, neurology, oncology, surgery, or OB/GYN) within LAUTECH.',
+      clinicalScope: 'Pre-referral workup, diagnostic lab scheduling, and secondary care navigation.',
+      typicalReviewTime: '20 mins'
+    }
+  ],
+  redFlagTriggers: [
+    { id: 'life_threatening', label: 'Life-threatening medical emergency' },
+    { id: 'acute_chest_pain', label: 'Acute chest pain' },
+    { id: 'sudden_collapse', label: 'Sudden collapse or syncope' },
+    { id: 'severe_trauma', label: 'Severe trauma or major injury' }
   ]
 };
 
