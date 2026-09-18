@@ -51,7 +51,7 @@ interface ClinicalStateContextType {
   resetToDemoState: () => void;
 }
 
-const ACTIVE_APT_STORAGE_KEY = 'kbf_telehealth_active_apt_id_v2';
+const ACTIVE_APT_STORAGE_KEY = 'kbf_telehealth_active_apt_id_v3';
 
 const ClinicalStateContext = createContext<ClinicalStateContextType | null>(null);
 

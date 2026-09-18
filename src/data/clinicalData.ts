@@ -115,6 +115,29 @@ export const SPECIALISTS: Specialist[] = [
     ]
   },
   {
+    id: 'spec-dr-adeniran',
+    name: 'Dr. Adeniran Muibat',
+    title: 'Consultant Obstetrician & Gynaecologist',
+    department: 'Obstetrics & Gynaecology',
+    institution: 'LAUTECH Teaching Hospital, Ogbomoso',
+    qualifications: 'MBBS, FWACS (OB/GYN), FMCOG',
+    precisionExpertise: [
+      'Maternal-Fetal Triage & Routine Antenatal Surveillance',
+      'High-Resolution Reproductive Health & Contraceptive Guidance',
+      'Adolescent & Adult Menstrual Disorder Management',
+      'LAUTECH Tele-Gynecology Routine Protocol'
+    ],
+    lautechFacultyRole: 'Consultant Obstetrician & Gynaecologist, Department of Obstetrics & Gynaecology, LAUTECH Teaching Hospital, Ogbomoso',
+    bio: 'Consultant Obstetrician & Gynaecologist at LAUTECH Teaching Hospital, Ogbomoso. Specializes in routine antenatal wellness surveillance, post-delivery recovery check-ins, reproductive health counseling, and ambulatory gynecological virtual triage under accredited institutional safety protocols.',
+    availableSlots: [
+      { date: 'Tomorrow', time: '10:15 AM', available: true },
+      { date: 'Tomorrow', time: '01:00 PM', available: true },
+      { date: 'Tomorrow', time: '03:45 PM', available: true },
+      { date: 'In 2 Days', time: '11:15 AM', available: true },
+      { date: 'In 2 Days', time: '02:45 PM', available: true },
+    ]
+  },
+  {
     id: 'spec-dr-najimudeen',
     name: 'Dr. Idowu Najimudeen',
     title: 'Consultant Urologist',
@@ -486,7 +509,7 @@ export const DEMO_PATIENT_OBGYN: PatientProfile = {
 export const LAUTECH_OBGYN_PROTOCOL = {
   name: 'LAUTECH Tele-Gynecology Routine Protocol',
   routing: 'Elective Outpatient Schedule',
-  leadSpecialist: 'Dr. Adekunle Adebayo',
+  leadSpecialist: 'Dr. Adekunle Adebayo & Dr. Adeniran Muibat',
   institution: 'LAUTECH Teaching Hospital, Ogbomoso',
   emergencyDisclaimer: 'Emergency Notice: If you are experiencing active heavy vaginal bleeding in pregnancy, severe abdominal pain, or decreased fetal movement, do not use this app. Go immediately to LAUTECH Hospital Emergency.',
   coreElectiveFocus: 'Elective Outpatient Care: This telehealth channel is designed for routine antenatal reviews, postpartum check-ins, menstrual tracking, contraceptive counseling, and stable gynecological care that does not require an immediate physical examination.',
@@ -904,6 +927,76 @@ export const SEED_APPOINTMENTS: AppointmentBooking[] = [
         patientNotes: 'Scheduled for oncology pre-treatment consultation.',
         timestamp: '2026-09-08 08:00 WAT',
         auditTrailHash: '1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855e3b0c44298fc'
+      }
+    }
+  },
+  {
+    id: 'KBF-APT-51820',
+    patient: DEMO_PATIENT_OBGYN,
+    specialist: SPECIALISTS[5], // Dr. Adeniran Muibat (Obstetrics & Gynaecology)
+    selectedDate: 'Tomorrow',
+    selectedTime: '10:15 AM',
+    triage: {
+      severityLevel: 'Moderate',
+      recommendedDepartment: 'Obstetrics & Gynaecology',
+      matchedSpecialist: SPECIALISTS[5],
+      clinicalPriority: 'Standard (within 48h)',
+      triageReasoning: 'Elective routine antenatal review (24 weeks gestation) matched to Dr. Adeniran Muibat under LAUTECH Tele-Gynecology Routine Protocol. Zero obstetric red flags reported.',
+      flaggedRiskFactors: [
+        'LAUTECH Tele-Gynecology Routine Protocol Active',
+        'Elective Outpatient Routing Confirmed (Dr. Adeniran Muibat)',
+        'Safety Screen Passed: Zero acute obstetric red flags reported'
+      ]
+    },
+    documents: [
+      {
+        id: 'doc-preloaded-obgyn-01',
+        name: 'Second_Trimester_Anomaly_Scan_Summary.pdf',
+        type: 'ecg_imaging',
+        originalSizeBytes: 2840000,
+        compressedSizeBytes: 210000,
+        compressionRatio: '92.6% Saved',
+        uploadDate: '2026-09-15',
+        extractedMarkers: ['Normal fetal biometry (24w 2d)', 'Normohydramnios', 'Placenta anterior grade 1'],
+        status: 'synced_cloud'
+      }
+    ],
+    paymentMode: 'HMO_VERIFICATION',
+    hmoDetails: {
+      provider: 'Reliance HMO Nigeria',
+      policyNumber: 'REL-OBG-33918-LAUT',
+      verified: true
+    },
+    paymentReference: 'TXN-LAUT-518202',
+    teleconsultLink: 'https://kbf-telehealth.ng/v/lautech-obgyn-5182',
+    status: 'SCHEDULED',
+    createdAt: '2026-09-15T08:30:00.000Z',
+    consultationState: {
+      vitals: {
+        bp: '114/72 mmHg',
+        heartRate: 78,
+        spo2: 99,
+        temperature: '36.6°C',
+        weight: '68 kg',
+        bmi: '23.8 kg/m²'
+      },
+      clinicalNotes: 'Routine 24-week antenatal telemedicine check-in under LAUTECH Tele-Gynecology Routine Protocol. Attending: Dr. Adeniran Muibat. Ultrasound confirms satisfactory fetal growth and anatomy. Hemoglobin level stable at 11.2 g/dL. Continued on ferrous gluconate and prenatal multivitamin. Advised on fetal movement counting.',
+      prescriptionItems: [],
+      generatedPrescription: null,
+      chatMessages: [
+        { id: 'msg-muibat-1', sender: 'Dr. Adeniran Muibat', text: 'Good morning Mrs. Balogun. I have your second trimester ultrasound and routine lab report open on my clinical terminal. How have your baby kicks been today?', time: '10:15' }
+      ],
+      followUp: {
+        id: 'fup-muibat-01',
+        appointmentId: 'KBF-APT-51820',
+        patientName: 'Zainab Olawale Balogun',
+        checkInDueHours: 72,
+        status: 'PENDING_SCHEDULED',
+        symptomScore: 9,
+        adverseReactionsReported: [],
+        patientNotes: 'Scheduled routine 24-week virtual antenatal consultation.',
+        timestamp: '2026-09-15 08:30 WAT',
+        auditTrailHash: '2d881afbf4c8996fb92427ae41e4649b934ca495991b7852b855e3b0c44298fc'
       }
     }
   }

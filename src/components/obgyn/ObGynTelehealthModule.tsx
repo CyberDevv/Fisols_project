@@ -45,8 +45,10 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
   onNavigateToConsultation,
   onOpenNdprModal
 }) => {
-  // Matched Specialist from data
-  const obgynSpecialist: Specialist = SPECIALISTS.find(s => s.id === 'spec-dr-adebayo') || {
+  // Matched Specialists from clinical data
+  const obgynSpecialists = SPECIALISTS.filter(s => s.department === 'Obstetrics & Gynaecology');
+  const [selectedSpecialistId, setSelectedSpecialistId] = useState<string>('spec-dr-adebayo');
+  const obgynSpecialist: Specialist = obgynSpecialists.find(s => s.id === selectedSpecialistId) || obgynSpecialists[0] || {
     id: 'spec-dr-adebayo',
     name: 'Dr. Adekunle Adebayo',
     title: 'Consultant Obstetrician & Gynaecologist',
@@ -69,6 +71,9 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
       { date: 'In 2 Days', time: '01:30 PM', available: true },
     ]
   };
+
+  const getSpecialistInitials = (name: string) =>
+    name.replace(/^(Dr\.|Prof\.)\s*/, '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'MD';
 
   // Section 1: Red Flag Screen State
   const [selectedRedFlags, setSelectedRedFlags] = useState<string[]>([]);
@@ -508,7 +513,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
 
           <div className="sm:col-span-2">
             <label className="block text-xs font-semibold text-slate-700 mb-1">
-              Patient Review Narrative &amp; Questions for Dr. Adebayo
+              Patient Review Narrative &amp; Questions for {obgynSpecialist.name}
             </label>
             <input
               type="text"
@@ -604,12 +609,63 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
           </div>
         </div>
 
-        {/* Specialist Profile Card - Dr. Adekunle Adebayo */}
+        {/* Specialist Choice Selector */}
+        <div className="mb-4">
+          <label className="block text-xs font-bold text-slate-800 mb-2">
+            Select Attending OB/GYN Consultant:
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {obgynSpecialists.map((spec) => {
+              const isSelected = spec.id === obgynSpecialist.id;
+              const initials = getSpecialistInitials(spec.name);
+              return (
+                <button
+                  key={spec.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedSpecialistId(spec.id);
+                    if (spec.availableSlots && spec.availableSlots.length > 0) {
+                      setSelectedTime(spec.availableSlots[0].time);
+                    }
+                  }}
+                  className={`p-3.5 rounded-xl border text-left transition flex items-center justify-between gap-3 ${
+                    isSelected
+                      ? 'border-slate-900 bg-white ring-2 ring-slate-900 shadow-xs'
+                      : 'border-slate-200 bg-slate-50/60 hover:bg-slate-100 hover:border-slate-300'
+                  }`}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm shrink-0 ${
+                      isSelected ? 'bg-slate-900 text-white' : 'bg-slate-200 text-slate-700'
+                    }`}>
+                      {initials}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-bold text-xs sm:text-sm text-slate-900 truncate">
+                        {spec.name}
+                      </div>
+                      <div className="text-[11px] text-slate-600 truncate">
+                        {spec.title}
+                      </div>
+                    </div>
+                  </div>
+                  {isSelected && (
+                    <span className="w-5 h-5 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3" />
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Specialist Profile Card */}
         <div className="p-4 sm:p-5 bg-slate-50 rounded-2xl border border-slate-200 shadow-2xs mb-5">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
               <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg sm:text-xl shadow-xs shrink-0">
-                AA
+                {getSpecialistInitials(obgynSpecialist.name)}
               </div>
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -710,8 +766,8 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               <Clock className="w-3.5 h-3.5 text-slate-700" />
               <span>Elective Consultation Slot (WAT)</span>
             </label>
-            <div className="grid grid-cols-3 gap-1.5">
-              {obgynSpecialist.availableSlots.slice(0, 3).map((slot, i) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+              {obgynSpecialist.availableSlots.map((slot, i) => (
                 <button
                   key={i}
                   type="button"
@@ -842,7 +898,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
             <div className="text-xs text-slate-500 flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-slate-700" />
-              <span>Safety screening passed • Routed to Dr. Adekunle Adebayo</span>
+              <span>Safety screening passed • Routed to {obgynSpecialist.name}</span>
             </div>
 
             <button
@@ -862,7 +918,7 @@ export const ObGynTelehealthModule: React.FC<ObGynTelehealthModuleProps> = ({
               ) : (
                 <>
                   <CheckCircle2 className="w-4 h-4 text-slate-300" />
-                  <span>Book Elective Consultation with Dr. Adebayo</span>
+                  <span>Book Elective Consultation with {obgynSpecialist.name}</span>
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}

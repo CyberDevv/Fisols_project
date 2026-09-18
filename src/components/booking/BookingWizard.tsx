@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   User, 
   Phone, 
@@ -32,7 +32,9 @@ import {
   Heart,
   Baby,
   Activity,
-  UserCheck
+  UserCheck,
+  ChevronDown,
+  RotateCcw
 } from 'lucide-react';
 import { 
   PatientProfile, 
@@ -67,6 +69,106 @@ interface BookingWizardProps {
   onNavigateToSurgeryUrology?: () => void;
 }
 
+export interface ClinicalTestCasePreset {
+  id: string;
+  name: string;
+  shortLabel: string;
+  department: string;
+  badge: string;
+  summary: string;
+  genomicNote: string;
+  patient: PatientProfile;
+  concern: string;
+  symptomCategory: string;
+  chestPainOrDyspnea: boolean;
+  duration?: string;
+  severity?: 'Mild' | 'Moderate' | 'Severe';
+  patientNarrative?: string;
+}
+
+export const CLINICAL_PRESETS: ClinicalTestCasePreset[] = [
+  {
+    id: 'adeleke',
+    name: 'Adewale Johnson Adeleke',
+    shortLabel: 'Mr. Adeleke',
+    department: 'Cardiology',
+    badge: 'Cardio PGx',
+    summary: 'Recurrent exertional retrosternal chest tightness 6mo post-LAD DES stent.',
+    genomicNote: 'CYP2C19 *2/*2 (Clopidogrel resistance) & SLCO1B1 (521T>C)',
+    patient: DEMO_PATIENT,
+    concern: 'Recurrent exertional retrosternal chest tightness 6 months post-LAD DES stent placement.',
+    symptomCategory: 'Cardiovascular',
+    chestPainOrDyspnea: true,
+    duration: '4 to 7 days',
+    severity: 'Moderate',
+    patientNarrative: 'Post-PCI angina symptoms on Clopidogrel 75mg daily. Seeking consultant cardiogenomics evaluation.'
+  },
+  {
+    id: 'amina',
+    name: 'Dr. Amina Bello',
+    shortLabel: 'Dr. Amina',
+    department: 'Neurology',
+    badge: 'Neuro PGx',
+    summary: 'Severe unilateral pulsating migraine with zero analgesic relief on codeine.',
+    genomicNote: 'CYP2D6 (*4/*4 Poor Metabolizer - Opioid Prodrug Non-Responder)',
+    patient: DEMO_PATIENT_AMINA,
+    concern: 'Severe unilateral pulsating throbbing headache with photophobia and nausea; poor relief from standard codeine/paracetamol combinations.',
+    symptomCategory: 'Neurology',
+    chestPainOrDyspnea: false,
+    duration: 'Over 2 weeks',
+    severity: 'Moderate',
+    patientNarrative: 'Debilitating refractory migraine. Codeine provides no pain reduction.'
+  },
+  {
+    id: 'chukwuemeka',
+    name: 'Chukwuemeka Anthony Eze',
+    shortLabel: 'Chukwuemeka Eze',
+    department: 'Oncology',
+    badge: 'Oncology Genetics',
+    summary: 'Pre-chemotherapy assessment for planned fluoropyrimidine 5-FU regimen.',
+    genomicNote: 'DPYD (*2A) Loss-of-function allele - Critical 5-FU toxicity hazard',
+    patient: DEMO_PATIENT_CHUKWUEMEKA,
+    concern: 'Pre-chemotherapy assessment for planned fluoropyrimidine 5-FU regimen; routine pharmacogenomic safety screen.',
+    symptomCategory: 'Oncology',
+    chestPainOrDyspnea: false,
+    duration: '1 to 3 days',
+    severity: 'Moderate',
+    patientNarrative: 'Colorectal staging confirmed. Seeking DPYD genotyping protocol review prior to cycle 1.'
+  },
+  {
+    id: 'zainab',
+    name: 'Zainab Olawale Balogun',
+    shortLabel: 'Zainab Balogun',
+    department: 'Obstetrics & Gynaecology',
+    badge: 'OB/GYN Routine',
+    summary: 'Routine second-trimester antenatal check-in (24W). Normal fetal movement.',
+    genomicNote: 'LAUTECH Tele-Gynecology Routine Protocol (Zero Red Flags)',
+    patient: DEMO_PATIENT_OBGYN,
+    concern: 'Routine second-trimester antenatal check-in (24W). Monitoring home BP, fetal movements normal, review of iron supplements.',
+    symptomCategory: 'Obstetrics & Gynaecology',
+    chestPainOrDyspnea: false,
+    duration: '4 to 7 days',
+    severity: 'Mild',
+    patientNarrative: 'Primigravida 24 weeks gestation. Low-risk elective care under LAUTECH Tele-Gynecology Routine Protocol.'
+  },
+  {
+    id: 'alhaji',
+    name: 'Alhaji Rasheed Adeleke',
+    shortLabel: 'Alhaji Rasheed',
+    department: 'Surgery & Urology',
+    badge: 'Urology Post-Op',
+    summary: 'Post-TURP 6-week outpatient surveillance. Good urinary stream, zero hematuria.',
+    genomicNote: 'LAUTECH Elective Surgical & Urological Routine Protocol',
+    patient: DEMO_PATIENT_SURGERY_UROLOGY,
+    concern: 'Post-TURP 6-week outpatient surveillance. Good urinary stream, zero hematuria, reviewing PSA and medication titration.',
+    symptomCategory: 'Surgery & Urology',
+    chestPainOrDyspnea: false,
+    duration: 'Over 2 weeks',
+    severity: 'Moderate',
+    patientNarrative: 'Post-TURP 6-week follow-up. Normal stream, no retention or hematuria. Review under LAUTECH Elective Surgical & Urological Protocol.'
+  }
+];
+
 export const BookingWizard: React.FC<BookingWizardProps> = ({
   networkQuality,
   onAppointmentConfirmed,
@@ -76,6 +178,30 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
   onNavigateToSurgeryUrology
 }) => {
   const { verifyHmoPolicy, setActiveAppointmentId } = useClinicalState();
+
+  // Quick Clinical Test Cases State & Dropdown Management
+  const [activePresetId, setActivePresetId] = useState<string>('adeleke');
+  const [isPresetDropdownOpen, setIsPresetDropdownOpen] = useState<boolean>(false);
+  const presetDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (presetDropdownRef.current && !presetDropdownRef.current.contains(event.target as Node)) {
+        setIsPresetDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsPresetDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   // Current stage: 1 to 5
   const [currentStep, setCurrentStep] = useState<number>(1);
@@ -95,6 +221,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
   const [obGynEmergencyAcknowledged, setObGynEmergencyAcknowledged] = useState<boolean>(true);
   const [obGynRedFlags, setObGynRedFlags] = useState<string[]>([]);
   const [obGynElectiveCategory, setObGynElectiveCategory] = useState<string>('antenatal');
+  const [obGynSpecialistId, setObGynSpecialistId] = useState<string>('spec-dr-adebayo');
 
   // Surgery & Urology Elective Safety Screen State (for Step 2 triage)
   const [surgeryEmergencyAcknowledged, setSurgeryEmergencyAcknowledged] = useState<boolean>(true);
@@ -231,7 +358,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
       matchedSpec = SPECIALISTS.find(s => s.id === 'spec-dr-najimudeen') || SPECIALISTS[0];
     } else if (triageInput.symptomCategory === 'Obstetrics & Gynaecology') {
       matchedDept = 'Obstetrics & Gynaecology';
-      matchedSpec = SPECIALISTS.find(s => s.id === 'spec-dr-adebayo') || SPECIALISTS[0];
+      matchedSpec = SPECIALISTS.find(s => s.id === obGynSpecialistId) || SPECIALISTS.find(s => s.id === 'spec-dr-adebayo') || SPECIALISTS[0];
     } else if (triageInput.symptomCategory === 'Neurology') {
       matchedDept = 'Neurology';
       matchedSpec = SPECIALISTS[1];
@@ -254,7 +381,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
       triageReasoning: isSurgery
         ? `Elective outpatient surgical & urological review matched to Dr. Idowu Najimudeen under LAUTECH Elective Surgical & Urological Routine Protocol. Red-flag emergency screening verified clear.`
         : isObGyn 
-        ? `Elective outpatient OB/GYN triage matched to Dr. Adekunle Adebayo under LAUTECH Tele-Gynecology Routine Protocol. Red flag screening verified clear for routine virtual care.`
+        ? `Elective outpatient OB/GYN triage matched to ${matchedSpec.name} under LAUTECH Tele-Gynecology Routine Protocol. Red flag screening verified clear for routine virtual care.`
         : `Automated triage matched presenting symptom profile to ${matchedDept} under ${matchedSpec.name} at ${matchedSpec.institution}. Priority designated as expedited due to cardiovascular risk indicators.`,
       flaggedRiskFactors: isSurgery
         ? [
@@ -265,7 +392,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
         : isObGyn
         ? [
             'LAUTECH Tele-Gynecology Routine Protocol Active',
-            'Elective Outpatient Routing Confirmed (Dr. Adekunle Adebayo)',
+            `Elective Outpatient Routing Confirmed (${matchedSpec.name})`,
             'Safety Screen Passed: Zero acute obstetric red flags reported'
           ]
         : [
@@ -376,8 +503,33 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
     setHmoVerified(res.verified);
   };
 
+  // Apply selected clinical test case preset
+  const applyPreset = (preset: ClinicalTestCasePreset) => {
+    setPatient(preset.patient);
+    setOtpVerified(true);
+    setTriageInput(prev => ({
+      ...prev,
+      primaryConcern: preset.concern,
+      symptomCategory: preset.symptomCategory as ClinicalDepartment,
+      chestPainOrDyspnea: preset.chestPainOrDyspnea,
+      duration: preset.duration || prev.duration,
+      severity: preset.severity || prev.severity,
+      patientNarrative: preset.patientNarrative || ''
+    }));
+    if (preset.id === 'alhaji') {
+      setSurgeryEmergencyAcknowledged(true);
+      setSurgeryRedFlags([]);
+    } else if (preset.id === 'zainab') {
+      setObGynEmergencyAcknowledged(true);
+      setObGynRedFlags([]);
+    }
+    setActivePresetId(preset.id);
+    setIsPresetDropdownOpen(false);
+  };
+
   // Reset handler to book another patient
   const handleResetToNewBooking = () => {
+    setActivePresetId('blank');
     setConfirmedBooking(null);
     setCurrentStep(1);
     setPatient({
@@ -512,121 +664,144 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             </p>
           </div>
 
-          {/* Quick Clinical Test Cases Toolbar */}
-          <div className="pt-3.5 mt-3 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-2.5">
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 shrink-0">
-              <UserCheck className="w-3.5 h-3.5 text-slate-600" />
-              <span>Quick Clinical Test Cases:</span>
-            </div>
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  setPatient(DEMO_PATIENT);
-                  setOtpVerified(true);
-                  setTriageInput(prev => ({
-                    ...prev,
-                    primaryConcern: 'Recurrent exertional retrosternal chest tightness 6 months post-LAD DES stent placement.',
-                    symptomCategory: 'Cardiovascular',
-                    chestPainOrDyspnea: true
-                  }));
-                }}
-                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
-                title="Load Adewale Adeleke (Cardiology CYP2C19/SLCO1B1)"
-              >
-                <User className="w-3 h-3 text-slate-500 shrink-0" />
-                <span>Mr. Adeleke (Cardio)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setPatient(DEMO_PATIENT_AMINA);
-                  setOtpVerified(true);
-                  setTriageInput(prev => ({
-                    ...prev,
-                    primaryConcern: 'Severe unilateral pulsating throbbing headache with photophobia and nausea; poor relief from standard codeine/paracetamol combinations.',
-                    symptomCategory: 'Neurology',
-                    chestPainOrDyspnea: false
-                  }));
-                }}
-                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
-                title="Load Dr. Amina Bello (Neurology CYP2D6 Migraine)"
-              >
-                <User className="w-3 h-3 text-slate-500 shrink-0" />
-                <span>Dr. Amina (Neuro)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setPatient(DEMO_PATIENT_CHUKWUEMEKA);
-                  setOtpVerified(true);
-                  setTriageInput(prev => ({
-                    ...prev,
-                    primaryConcern: 'Pre-chemotherapy assessment for planned fluoropyrimidine 5-FU regimen; routine pharmacogenomic safety screen.',
-                    symptomCategory: 'Oncology',
-                    chestPainOrDyspnea: false
-                  }));
-                }}
-                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
-                title="Load Chukwuemeka Eze (Oncology DPYD Screen)"
-              >
-                <User className="w-3 h-3 text-slate-500 shrink-0" />
-                <span>Chukwuemeka (Onco)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setPatient(DEMO_PATIENT_OBGYN);
-                  setOtpVerified(true);
-                  setTriageInput(prev => ({
-                    ...prev,
-                    primaryConcern: 'Routine second-trimester antenatal check-in (24W). Monitoring home BP, fetal movements normal, review of iron supplements.',
-                    symptomCategory: 'Obstetrics & Gynaecology',
-                    chestPainOrDyspnea: false,
-                    duration: '4 to 7 days',
-                    severity: 'Mild',
-                    patientNarrative: 'Primigravida 24 weeks gestation. Low-risk elective care under LAUTECH Tele-Gynecology Routine Protocol.'
-                  }));
-                }}
-                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
-                title="Load Zainab Balogun (24W Antenatal OB/GYN Routine Care)"
-              >
-                <Heart className="w-3 h-3 text-slate-500 shrink-0" />
-                <span>Zainab (OB/GYN)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setPatient(DEMO_PATIENT_SURGERY_UROLOGY);
-                  setOtpVerified(true);
-                  setTriageInput(prev => ({
-                    ...prev,
-                    primaryConcern: 'Post-TURP 6-week outpatient surveillance. Good urinary stream, zero hematuria, reviewing PSA and medication titration.',
-                    symptomCategory: 'Surgery & Urology',
-                    chestPainOrDyspnea: false,
-                    duration: 'Over 2 weeks',
-                    severity: 'Moderate',
-                    patientNarrative: 'Post-TURP 6-week follow-up. Normal stream, no retention or hematuria. Review under LAUTECH Elective Surgical & Urological Protocol.'
-                  }));
-                  setSurgeryEmergencyAcknowledged(true);
-                  setSurgeryRedFlags([]);
-                }}
-                className="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-950 text-[11px] font-medium border border-slate-200 transition-all flex items-center gap-1.5"
-                title="Load Alhaji Rasheed Adeleke (Surgery & Urology Post-Op Review)"
-              >
-                <Activity className="w-3 h-3 text-slate-500 shrink-0" />
-                <span>Alhaji Rasheed (Surgery/Uro)</span>
-              </button>
-              <button
-                type="button"
-                onClick={handleResetToNewBooking}
-                className="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-medium border border-slate-200 transition-all"
-                title="Reset to a blank intake form for any new patient"
-              >
-                <span>Clear Form</span>
-              </button>
-            </div>
-          </div>
+          {/* Quick Clinical Test Cases Dropdown Selector */}
+          {(() => {
+            const currentPreset = CLINICAL_PRESETS.find(p => p.id === activePresetId);
+            return (
+              <div className="pt-3.5 mt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 shrink-0">
+                  <UserCheck className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                  <span>Clinical Test Case:</span>
+                  {currentPreset ? (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">
+                      {currentPreset.department}
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                      Blank / Custom
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2 relative w-full sm:w-auto" ref={presetDropdownRef}>
+                  {/* Dropdown Selector Button */}
+                  <div className="relative flex-1 sm:flex-initial">
+                    <button
+                      type="button"
+                      id="clinicalTestCaseDropdownBtn"
+                      onClick={() => setIsPresetDropdownOpen(prev => !prev)}
+                      aria-haspopup="true"
+                      aria-expanded={isPresetDropdownOpen}
+                      className={`w-full sm:w-auto min-w-[240px] sm:min-w-[280px] md:min-w-[320px] px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center justify-between gap-2.5 transition-all text-left ${
+                        isPresetDropdownOpen
+                          ? 'bg-slate-100 border-slate-400 text-slate-950 ring-2 ring-slate-900/10'
+                          : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-800 shadow-2xs'
+                      }`}
+                      title="Select an accredited clinical test case preset"
+                    >
+                      <div className="flex items-center gap-2 truncate">
+                        <User className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                        <div className="truncate">
+                          <span className="font-semibold text-slate-900">
+                            {currentPreset ? currentPreset.shortLabel : 'Custom / Blank Intake'}
+                          </span>
+                          {currentPreset ? (
+                            <span className="ml-1.5 text-[11px] text-slate-500 font-normal">
+                              · {currentPreset.badge}
+                            </span>
+                          ) : (
+                            <span className="ml-1.5 text-[10px] text-slate-500">
+                              (No preset loaded)
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <ChevronDown className={`w-3.5 h-3.5 text-slate-500 shrink-0 transition-transform duration-200 ${isPresetDropdownOpen ? 'rotate-180 text-slate-900' : ''}`} />
+                    </button>
+
+                    {/* Dropdown Menu Popover */}
+                    {isPresetDropdownOpen && (
+                      <div className="absolute right-0 top-full mt-1.5 w-full sm:w-[380px] md:w-[420px] bg-white rounded-xl shadow-xl border border-slate-200 py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                        <div className="px-3.5 py-2 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 rounded-t-xl">
+                          <span className="font-bold text-[11px] text-slate-800 uppercase tracking-wider">
+                            Clinical Scenarios ({CLINICAL_PRESETS.length} Presets)
+                          </span>
+                          <span className="text-[10px] text-slate-500 font-medium">Click to Load</span>
+                        </div>
+
+                        <div className="max-h-[320px] overflow-y-auto divide-y divide-slate-100">
+                          {CLINICAL_PRESETS.map((preset) => {
+                            const isSelected = activePresetId === preset.id;
+                            return (
+                              <button
+                                key={preset.id}
+                                type="button"
+                                onClick={() => {
+                                  applyPreset(preset);
+                                }}
+                                className={`w-full text-left px-3.5 py-2.5 hover:bg-slate-50 transition-colors flex items-start justify-between gap-3 ${
+                                  isSelected ? 'bg-slate-100/90' : ''
+                                }`}
+                              >
+                                <div className="space-y-1 min-w-0 flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-bold text-slate-900 text-xs truncate">
+                                      {preset.name}
+                                    </span>
+                                    <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-200 text-slate-800 shrink-0">
+                                      {preset.department}
+                                    </span>
+                                  </div>
+                                  <p className="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">
+                                    {preset.summary}
+                                  </p>
+                                  <div className="text-[10px] font-mono text-slate-500 flex items-center gap-1 truncate">
+                                    <Dna className="w-3 h-3 text-slate-400 shrink-0" />
+                                    <span className="truncate">{preset.genomicNote}</span>
+                                  </div>
+                                </div>
+                                {isSelected && (
+                                  <div className="p-1 bg-slate-900 text-white rounded-md shrink-0 mt-0.5">
+                                    <Check className="w-3 h-3" />
+                                  </div>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        <div className="p-2 border-t border-slate-100 bg-slate-50/90 rounded-b-xl flex items-center justify-between gap-2">
+                          <span className="text-[11px] text-slate-500 pl-1.5">Want to test a fresh patient?</span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              handleResetToNewBooking();
+                              setIsPresetDropdownOpen(false);
+                            }}
+                            className="py-1 px-2.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 text-[11px] font-semibold border border-slate-200 flex items-center gap-1 transition-colors"
+                          >
+                            <RotateCcw className="w-3 h-3 text-slate-500" />
+                            <span>Clear to Blank Form</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Quick Reset Button */}
+                  <button
+                    type="button"
+                    onClick={handleResetToNewBooking}
+                    className="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-medium border border-slate-200 transition-colors flex items-center gap-1 shrink-0"
+                    title="Reset to a blank intake form for any new patient"
+                  >
+                    <RotateCcw className="w-3 h-3 text-slate-500" />
+                    <span className="hidden xs:inline">Clear</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
         </div>
 
         {/* Mobile Progress Bar (Visible on < sm screens) */}
@@ -1360,33 +1535,53 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
                 </div>
 
                 {/* 4. Matched Specialist View */}
-                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2">
-                  <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
-                    <Stethoscope className="w-4 h-4 text-slate-700 shrink-0" />
-                    <span>4. Matched Specialist View</span>
-                  </div>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-xl border border-slate-200">
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-2xs">
-                        AA
-                      </div>
-                      <div>
-                        <div className="font-bold text-xs sm:text-sm text-slate-950">
-                          Dr. Adekunle Adebayo
-                        </div>
-                        <div className="text-[11px] text-slate-600">
-                          Consultant Obstetrician &amp; Gynaecologist, LAUTECH Teaching Hospital, Ogbomoso
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2 mt-1">
-                          <span className="px-2 py-0.5 bg-slate-100 text-slate-800 text-[10px] font-semibold rounded border border-slate-200">
-                            Routing: Elective Outpatient Schedule
-                          </span>
-                          <span className="px-2 py-0.5 bg-white text-slate-700 text-[10px] font-medium rounded border border-slate-200 font-mono">
-                            Protocol: LAUTECH Tele-Gynecology Routine Protocol
-                          </span>
-                        </div>
-                      </div>
+                <div className="p-3.5 bg-slate-50/60 rounded-xl border border-slate-200 shadow-2xs space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-slate-900 font-bold text-xs">
+                      <Stethoscope className="w-4 h-4 text-slate-700 shrink-0" />
+                      <span>4. Attending OB/GYN Consultant Selection</span>
                     </div>
+                    <span className="text-[10px] text-slate-500 font-medium">LAUTECH Hospital</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {SPECIALISTS.filter(s => s.department === 'Obstetrics & Gynaecology').map((spec) => {
+                      const isSelected = (obGynSpecialistId === spec.id);
+                      const initials = spec.name.replace(/^(Dr\.|Prof\.)\s*/, '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'MD';
+                      return (
+                        <button
+                          key={spec.id}
+                          type="button"
+                          onClick={() => setObGynSpecialistId(spec.id)}
+                          className={`p-3 rounded-xl border text-left transition flex items-center justify-between gap-2.5 ${
+                            isSelected
+                              ? 'border-slate-900 bg-white ring-2 ring-slate-900 shadow-xs'
+                              : 'border-slate-200 bg-white hover:bg-slate-50'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <div className={`w-9 h-9 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${
+                              isSelected ? 'bg-slate-900 text-white' : 'bg-slate-200 text-slate-700'
+                            }`}>
+                              {initials}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="font-bold text-xs text-slate-950 truncate">
+                                {spec.name}
+                              </div>
+                              <div className="text-[10px] text-slate-600 truncate">
+                                {spec.title}
+                              </div>
+                            </div>
+                          </div>
+                          {isSelected && (
+                            <span className="w-4 h-4 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0">
+                              <Check className="w-2.5 h-2.5" />
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -1783,7 +1978,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-base sm:text-lg shadow-sm shrink-0">
-                  PA
+                  {triageResult.matchedSpecialist.name.replace(/^(Dr\.|Prof\.)\s*/, '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'MD'}
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -1939,6 +2134,40 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Slot Picker */}
             <div>
+              {/* Optional Specialist Switcher if multiple specialists in department */}
+              {SPECIALISTS.filter(s => s.department === triageResult.recommendedDepartment).length > 1 && (
+                <div className="mb-4 p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                    Select Attending Consultant:
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {SPECIALISTS.filter(s => s.department === triageResult.recommendedDepartment).map((spec) => {
+                      const isSelected = triageResult.matchedSpecialist.id === spec.id;
+                      return (
+                        <button
+                          key={spec.id}
+                          type="button"
+                          onClick={() => {
+                            setTriageResult(prev => ({ ...prev, matchedSpecialist: spec }));
+                            if (spec.availableSlots && spec.availableSlots.length > 0) {
+                              setSelectedTime(spec.availableSlots[0].time);
+                            }
+                          }}
+                          className={`p-2.5 rounded-lg border text-left text-xs transition flex items-center justify-between gap-1.5 ${
+                            isSelected
+                              ? 'border-slate-900 bg-white ring-2 ring-slate-900 font-bold text-slate-950 shadow-2xs'
+                              : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'
+                          }`}
+                        >
+                          <span className="truncate">{spec.name}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-slate-900 shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               <label className="block text-xs font-semibold text-slate-800 mb-2 flex items-center gap-1.5">
                 <Calendar className="w-4 h-4 text-slate-600" /> Available Consultation Date
               </label>

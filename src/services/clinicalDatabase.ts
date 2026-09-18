@@ -22,7 +22,7 @@ import {
   DEMO_PATIENT_CHUKWUEMEKA 
 } from '../data/clinicalData';
 
-const DB_STORAGE_KEY = 'kbf_telehealth_json_db_v2';
+const DB_STORAGE_KEY = 'kbf_telehealth_json_db_v3';
 const CLUSTER_NODE = 'LAUTECH Cloud Node #02 (Ogbomoso Cluster)';
 
 const SEED_HMO_POLICIES: HMOPolicyRecord[] = [
