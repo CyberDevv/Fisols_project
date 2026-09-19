@@ -499,10 +499,9 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
                 <button
                   type="button"
                   onClick={() => onOpenNemlModal('Cardiovascular')}
-                  className="w-full sm:w-auto px-3.5 py-2 bg-white hover:bg-slate-100 text-slate-800 text-xs font-semibold rounded-lg border border-slate-200 flex items-center justify-center gap-1.5 transition shadow-2xs shrink-0"
+                  className="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs transition active:scale-98 shrink-0"
                 >
-                  <Pill className="w-3.5 h-3.5 text-slate-700" />
-                  <span>Explore NEML Database</span>
+                  NEML Drugs
                 </button>
               )}
             </div>

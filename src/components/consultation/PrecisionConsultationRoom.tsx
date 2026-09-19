@@ -488,70 +488,74 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
       {/* Top Clinical Banner - Modern Telemedicine Workstation */}
-      <div className="bg-white text-slate-900 rounded-2xl p-4 sm:p-6 mb-5 sm:mb-6 shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] border border-slate-200/80">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+      <div className="bg-indigo-950 text-white rounded-2xl p-4 sm:p-6 mb-5 sm:mb-6 shadow-xl border border-indigo-900 relative overflow-hidden">
+        {/* Ambient subtle glow */}
+        <div className="absolute top-0 right-0 -mt-8 -mr-8 w-72 h-72 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 -mb-8 w-72 h-72 bg-teal-500/15 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2">
-              <span className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[11px] sm:text-xs font-semibold border border-slate-200">
-                <Building2 className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-indigo-200 text-[11px] sm:text-xs font-semibold border border-white/15 backdrop-blur-xs">
+                <Building2 className="w-3.5 h-3.5 text-indigo-300 shrink-0" />
                 KBF Precision Genomedix Outpatients
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[11px] sm:text-xs font-semibold border border-slate-200">
-                <span className="w-2 h-2 rounded-full bg-slate-500"></span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] sm:text-xs font-semibold border border-emerald-400/30 backdrop-blur-xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 Active Telehealth Encounter
               </span>
-              <span className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] sm:text-xs font-medium border border-slate-200">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-200 text-[11px] sm:text-xs font-medium border border-cyan-400/30 backdrop-blur-xs">
                 Geneva CDS • CPIC Level 1A
               </span>
             </div>
 
-            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-slate-950 font-sans">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white font-sans">
               Clinical Tele-Consultation &amp; Pharmacogenomics Workstation
             </h2>
-            <p className="text-slate-600 text-xs sm:text-sm mt-1 max-w-3xl leading-relaxed">
+            <p className="text-indigo-200/90 text-xs sm:text-sm mt-1 max-w-3xl leading-relaxed">
               Conduct high-fidelity video consult with automatic bandwidth fallback, evaluate patient genomic biomarkers against University of Geneva CPIC guidelines, issue digital prescriptions, and record clinical EHR notes.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full lg:w-auto shrink-0">
+          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full lg:w-auto shrink-0">
             <button
               onClick={onOpenBooking}
-              className="w-full sm:w-auto px-3.5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 shadow-2xs transition-all flex items-center justify-center gap-1.5 min-h-[42px]"
+              className="w-full sm:w-auto px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-xl border border-white/20 shadow-xs transition-all flex items-center justify-center gap-1.5 min-h-[42px] backdrop-blur-xs"
             >
               <span>← Book Appointment</span>
             </button>
             <button
               onClick={() => setShowFollowUpModal(true)}
-              className="w-full sm:w-auto px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-xs hover:shadow-sm transition-all flex items-center justify-center gap-1.5 min-h-[42px]"
+              className="w-full sm:w-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5 min-h-[42px] active:scale-98"
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
               <span>Patient 48h Recovery Check-In</span>
             </button>
           </div>
         </div>
 
         {/* Patient Identity Strip (Modern Epic / Cerner / NHS EHR Banner) */}
-        <div className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs bg-slate-50/60 p-3 sm:p-3.5 rounded-xl border border-slate-200/60">
+        <div className="relative z-10 mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs bg-white/5 backdrop-blur-xs p-3 sm:p-3.5 rounded-xl border border-white/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-slate-200 text-slate-800 font-bold flex items-center justify-center text-xs shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white font-bold flex items-center justify-center text-xs shrink-0 shadow-xs">
               {patient.fullName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'PT'}
             </div>
             <div>
-              <span className="text-slate-400 block text-[10px] font-medium uppercase tracking-wider">Patient Name</span>
-              <strong className="text-slate-900 font-bold text-xs">{patient.fullName}</strong>
+              <span className="text-indigo-300 block text-[10px] font-medium uppercase tracking-wider">Patient Name</span>
+              <strong className="text-white font-bold text-xs">{patient.fullName}</strong>
             </div>
           </div>
           <div>
-            <span className="text-slate-400 block text-[10px] font-medium uppercase tracking-wider">Hospital MRN</span>
-            <strong className="text-slate-800 font-mono text-xs">{patient.id}</strong>
+            <span className="text-indigo-300 block text-[10px] font-medium uppercase tracking-wider">Hospital MRN</span>
+            <strong className="text-indigo-100 font-mono text-xs">{patient.id}</strong>
           </div>
           <div>
-            <span className="text-slate-400 block text-[10px] font-medium uppercase tracking-wider">Attending Physician</span>
-            <strong className="text-slate-900 font-semibold text-xs">{specialist.name}</strong>
+            <span className="text-indigo-300 block text-[10px] font-medium uppercase tracking-wider">Attending Physician</span>
+            <strong className="text-white font-semibold text-xs">{specialist.name}</strong>
           </div>
           <div>
-            <span className="text-slate-400 block text-[10px] font-medium uppercase tracking-wider">Clinical Specialty</span>
-            <strong className="text-slate-800 text-xs">{specialist.department}</strong>
+            <span className="text-indigo-300 block text-[10px] font-medium uppercase tracking-wider">Clinical Specialty</span>
+            <strong className="text-indigo-100 text-xs">{specialist.department}</strong>
           </div>
         </div>
       </div>
@@ -560,18 +564,19 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
       <div className="bg-white rounded-2xl border border-slate-200/90 p-4 mb-6 shadow-xs">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
           <div className="flex items-center gap-2 flex-wrap">
-            <Users className="w-4 h-4 text-slate-700 shrink-0" />
+            <Users className="w-4 h-4 text-indigo-600 shrink-0" />
             <span className="text-xs font-bold text-slate-900">Virtual Clinic Outpatient Queue</span>
-            <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[10px] font-mono font-bold border border-slate-200">
+            <span className="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-[10px] font-mono font-bold border border-indigo-200">
               {appointments.length} Consultations
             </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               JSON DB Synced
             </span>
           </div>
           <div className="flex items-center gap-2 text-xs">
             <span className="text-slate-500 text-[11px] hidden sm:inline">Active Consultation:</span>
-            <span className="font-bold text-slate-900 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
+            <span className="font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">
               {patient.fullName} ({currentBooking.id})
             </span>
             {onOpenDatabaseModal && (
@@ -581,7 +586,7 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                 className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold rounded-lg border border-slate-200 flex items-center gap-1 transition"
                 title="Inspect in Clinical JSON Database Console"
               >
-                <Database className="w-3 h-3 text-slate-700" />
+                <Database className="w-3 h-3 text-indigo-600" />
                 <span className="hidden sm:inline">View JSON</span>
               </button>
             )}
@@ -600,14 +605,14 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                 onClick={() => setActiveAppointmentId(appt.id)}
                 className={`text-left p-3 rounded-xl border transition-all flex flex-col justify-between gap-2 ${
                   isSelected
-                    ? 'bg-slate-100 border-slate-900 shadow-2xs'
+                    ? 'bg-indigo-50/60 border-indigo-600 shadow-sm'
                     : 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                 }`}
               >
                 <div className="flex items-start justify-between gap-1.5">
                   <div className="flex items-center gap-2 min-w-0">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
-                      isSelected ? 'bg-slate-900 text-white' : 'bg-slate-200 text-slate-700'
+                      isSelected ? 'bg-indigo-600 text-white shadow-xs' : 'bg-slate-200 text-slate-700'
                     }`}>
                       {initials}
                     </div>
@@ -616,13 +621,17 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                       <div className="text-[10px] text-slate-500 truncate">{appt.triage.recommendedDepartment}</div>
                     </div>
                   </div>
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-semibold uppercase shrink-0 bg-slate-100 text-slate-700 border border-slate-200">
+                  <span className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-semibold uppercase shrink-0 border ${
+                    isSelected 
+                      ? 'bg-indigo-100 text-indigo-800 border-indigo-200' 
+                      : 'bg-slate-100 text-slate-700 border border-slate-200'
+                  }`}>
                     {appt.status.replace('_', ' ')}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between text-[10px] text-slate-500 pt-1 border-t border-slate-100">
-                  <span className="font-mono">{appt.selectedTime}</span>
+                  <span className="font-mono font-medium text-slate-700">{appt.selectedTime}</span>
                   <span className="truncate max-w-[120px]">{appt.specialist.name.split(' ')[0]} {appt.specialist.name.split(' ').slice(-1)[0]}</span>
                 </div>
               </button>
@@ -655,7 +664,7 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
             <div className="relative aspect-4/3 bg-slate-950 flex items-center justify-center overflow-hidden">
               {/* Patient Video Feed (Primary) */}
               {!videoMuted ? (
-                <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-b from-slate-800 to-slate-950">
+                <div className="w-full h-full relative flex items-center justify-center bg-slate-900">
                   {/* Simulated Clinical Avatar or Real Camera */}
                   {useRealCamera ? (
                     <video
@@ -745,7 +754,9 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                 <button
                   onClick={() => setCallActive(!callActive)}
                   className={`px-3.5 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 min-h-[44px] ${
-                    callActive ? 'bg-red-700 hover:bg-red-800 text-white' : 'bg-slate-800 hover:bg-slate-700 text-white'
+                    callActive
+                      ? 'bg-rose-600 hover:bg-rose-700 text-white shadow-xs'
+                      : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs'
                   }`}
                 >
                   <PhoneOff className="w-3.5 h-3.5" />
@@ -885,9 +896,9 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                   <button
                     type="button"
                     onClick={handleSaveVitals}
-                    className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold flex items-center gap-1 transition"
+                    className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow-xs active:scale-98"
                   >
-                    <Save className="w-3 h-3" />
+                    <Save className="w-3.5 h-3.5" />
                     <span>Save Vitals to State</span>
                   </button>
                 </div>
@@ -1063,9 +1074,9 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
               </span>
               <button
                 onClick={handleSaveClinicalNotes}
-                className="px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold flex items-center gap-1 transition shadow-2xs"
+                className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow-xs active:scale-98"
               >
-                <Save className="w-3 h-3" />
+                <Save className="w-3.5 h-3.5" />
                 <span>Save to EHR</span>
               </button>
             </div>
@@ -1145,15 +1156,9 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                 <button
                   type="button"
                   onClick={() => setIsNemlBrowserOpen(true)}
-                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow-xs group"
-                  title="Browse National Essential Medicines List (NEML) Database"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-xs transition active:scale-98"
                 >
-                  <Database className="w-3.5 h-3.5 text-slate-300 group-hover:text-white" />
-                  <span>Browse NEML Database</span>
-                  <span className="flex items-center gap-1 pl-1 text-[10px] text-emerald-400 font-mono font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    API Live
-                  </span>
+                  NEML Drugs
                 </button>
               </div>
             </div>
@@ -1178,7 +1183,7 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                     onClick={() => setCandidateDrug(drug.name)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
                       candidateDrug === drug.name
-                        ? 'bg-slate-900 text-white font-bold shadow-xs'
+                        ? 'bg-indigo-600 text-white font-bold shadow-xs'
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
                   >
@@ -1296,10 +1301,9 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                 <button
                   type="button"
                   onClick={() => setIsNemlBrowserOpen(true)}
-                  className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-semibold rounded-lg border border-slate-200 flex items-center gap-1.5 transition"
+                  className="px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg shadow-xs transition active:scale-98"
                 >
-                  <Database className="w-3 h-3 text-slate-700" />
-                  <span>Import from NEML Database</span>
+                  NEML Drugs
                 </button>
               </div>
 
@@ -1444,7 +1448,7 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                   </button>
                   <button
                     onClick={handleDownloadPrescription}
-                    className="w-full sm:w-auto px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition min-h-[42px]"
+                    className="w-full sm:w-auto px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition min-h-[42px] active:scale-98"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download Official Prescription Slip (.txt)</span>
@@ -1456,7 +1460,7 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
                 <button
                   onClick={handleSignAndDispatch}
                   disabled={isSigning || prescriptionItems.length === 0}
-                  className="w-full sm:w-auto px-5 py-3 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-300 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-xs transition min-h-[44px]"
+                  className="w-full sm:w-auto px-5 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-xs transition min-h-[44px] active:scale-98"
                 >
                   <Lock className="w-4 h-4" />
                   {isSigning ? 'Hashing with SHA-256...' : 'Sign Cryptographically & Dispatch Prescription'}
@@ -1600,9 +1604,9 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
               <button
                 type="button"
                 onClick={handleSubmitFollowUpCheckIn}
-                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs transition min-h-[44px]"
+                className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition min-h-[44px] active:scale-98"
               >
-                <CheckCircle2 className="w-3.5 h-3.5" />
+                <CheckCircle2 className="w-4 h-4" />
                 <span>Submit Patient Check-In & Update Audit Trail</span>
               </button>
             </div>
@@ -1616,7 +1620,7 @@ export const PrecisionConsultationRoom: React.FC<PrecisionConsultationRoomProps>
             <div className="flex justify-end pt-2">
               <button
                 onClick={() => setShowFollowUpModal(false)}
-                className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-semibold hover:bg-slate-800 transition min-h-[44px] flex items-center justify-center"
+                className="w-full sm:w-auto px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition min-h-[44px] flex items-center justify-center shadow-xs"
               >
                 Close Follow-Up Monitor
               </button>

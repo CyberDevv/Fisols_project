@@ -88,40 +88,24 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
         aria-modal="true"
       >
         {/* MODAL HEADER */}
-        <div className="px-5 py-4 border-b border-slate-200 bg-slate-50/70 flex flex-wrap items-center justify-between gap-3 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-xs">
-              <Database className="w-5 h-5 text-slate-100" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-base sm:text-lg font-bold text-slate-950 font-sans tracking-tight">
-                  National Essential Medicines List (NEML) Database
-                </h2>
-                <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-900 text-white rounded font-mono">
-                  National Formulary
-                </span>
-                <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 rounded-full border border-emerald-200">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  EMDEX API Live
-                </span>
-              </div>
-              <p className="text-xs text-slate-500">
-                Federal Ministry of Health &amp; Social Welfare (FMoH) • National Drug Formulary (NDF) • NAFDAC Verified
-              </p>
-            </div>
+        <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between gap-3 shrink-0">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900 font-sans tracking-tight">
+              National Essential Medicines List (NEML) Database
+            </h2>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Federal Ministry of Health &amp; Social Welfare • National Drug Formulary • NAFDAC Verified
+            </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onClose}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition"
-              title="Close modal"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition min-w-[36px] min-h-[36px] flex items-center justify-center"
+            title="Close modal"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         {/* FORMULARY EXPLORER */}
@@ -180,9 +164,9 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
                       <button
                         key={lvl.id}
                         onClick={() => setSelectedLevel(lvl.id)}
-                        className={`px-2 py-0.8 rounded text-[10px] font-semibold transition ${
+                        className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition ${
                           selectedLevel === lvl.id
-                            ? 'bg-slate-900 text-white'
+                            ? 'bg-indigo-600 text-white shadow-xs'
                             : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                         }`}
                       >
@@ -197,11 +181,11 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
                         type="checkbox"
                         checked={pgxOnly}
                         onChange={(e) => setPgxOnly(e.target.checked)}
-                        className="rounded border-slate-300 text-slate-900 focus:ring-slate-500 w-3.5 h-3.5"
+                        className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-3.5 h-3.5"
                       />
                       <span className="flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-slate-700" />
-                        Pharmacogenomic Alerted Only
+                        <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                        <span className="font-semibold text-slate-800">Pharmacogenomic Alerted Only</span>
                       </span>
                     </label>
 
@@ -225,7 +209,7 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
               <div className="flex-1 overflow-y-auto divide-y divide-slate-100 p-1">
                 {isLoading ? (
                   <div className="p-8 text-center text-xs text-slate-400">
-                    <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-slate-500" />
+                    <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-indigo-500" />
                     Querying Nigeria NEML database...
                   </div>
                 ) : drugs.length === 0 ? (
@@ -243,7 +227,7 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
                         onClick={() => setSelectedDrug(drug)}
                         className={`w-full text-left p-3 rounded-xl transition flex flex-col gap-1 border ${
                           isSelected
-                            ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
+                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
                             : 'bg-white text-slate-800 border-transparent hover:bg-slate-100/70 hover:border-slate-200'
                         }`}
                       >
@@ -252,7 +236,7 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
                             {drug.genericName}
                           </span>
                           <span className={`px-1.5 py-0.2 rounded text-[9px] font-mono font-bold shrink-0 ${
-                            isSelected ? 'bg-slate-800 text-slate-200' : 'bg-slate-100 text-slate-600'
+                            isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
                           }`}>
                             {drug.levelOfCare}
                           </span>
@@ -337,9 +321,9 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
                     {onSelectDrugForPrescription && (
                       <button
                         onClick={() => onSelectDrugForPrescription(selectedDrug)}
-                        className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition shadow-xs shrink-0"
+                        className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition shadow-xs shrink-0 active:scale-98"
                       >
-                        <Pill className="w-3.5 h-3.5 text-slate-300" />
+                        <Pill className="w-3.5 h-3.5 text-emerald-100" />
                         <span>Prescribe into Consultation</span>
                       </button>
                     )}
@@ -347,12 +331,12 @@ export const NemlBrowserModal: React.FC<NemlBrowserModalProps> = ({
 
                   {/* Level of Care & WHO AWaRe Badges */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                      <div className="text-[10px] text-slate-500 font-semibold mb-0.5">
+                    <div className="p-3 bg-indigo-50/50 rounded-xl border border-indigo-100">
+                      <div className="text-[10px] text-indigo-800 font-semibold mb-0.5">
                         Prescription Level of Care (Nigeria Health System):
                       </div>
                       <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-slate-900 text-white font-mono text-[10px] flex items-center justify-center">
+                        <span className="w-5 h-5 rounded-full bg-indigo-600 text-white font-mono text-[10px] flex items-center justify-center font-bold shadow-xs">
                           {selectedDrug.levelOfCare}
                         </span>
                         <span>{selectedDrug.levelOfCareLabel}</span>

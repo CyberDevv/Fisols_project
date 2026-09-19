@@ -35,26 +35,29 @@ function MainTelehealthApp() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/70 text-slate-900 flex flex-col font-sans selection:bg-slate-800 selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-indigo-600 selection:text-white">
       {/* Institutional Ethical Clearance & Research Prototype Disclaimer Banner */}
-      <div className="bg-slate-100/90 border-b border-slate-200 text-slate-700 text-xs px-3 sm:px-6 py-1.5">
+      <div className="bg-slate-900 border-b border-slate-800 text-slate-200 text-xs px-3 sm:px-6 py-2 shadow-xs">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-800 text-white font-semibold text-[10px] tracking-wide uppercase shrink-0">
+          <div className="flex items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold text-[10px] tracking-wide uppercase border border-emerald-400/30 shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               Governance
             </span>
-            <p className="font-normal text-slate-700 text-[11px] sm:text-xs">
-              <strong className="text-slate-900 font-semibold">Pilot Research Prototype</strong> — Pending LAUTECH Teaching Hospital Ethics &amp; Research Committee Approval.
+            <p className="font-normal text-slate-200 text-[11px] sm:text-xs">
+              <strong className="text-white font-semibold">Pilot Research Prototype</strong> — Pending LAUTECH Teaching Hospital Ethics &amp; Research Committee Approval.
             </p>
           </div>
-          <div className="flex items-center gap-3 text-[11px] text-slate-500">
-            <span className="hidden md:inline font-mono">Ref: LTH/ERC/2026/PILOT-091</span>
+          <div className="flex items-center gap-3 text-[11px] text-slate-300">
+            <span className="hidden md:inline font-mono bg-indigo-900/50 px-2 py-0.5 rounded text-indigo-200 border border-indigo-700/40">
+              Ref: LTH/ERC/2026/PILOT-091
+            </span>
             <button
               onClick={() => setCurrentTab('architecture')}
-              className="inline-flex items-center gap-1 font-medium text-slate-900 hover:text-slate-700 underline underline-offset-2 transition-colors"
+              className="inline-flex items-center gap-1 font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
             >
               <span>Governance &amp; Team</span>
-              <span>&rarr;</span>
+              <span className="text-cyan-400">&rarr;</span>
             </button>
           </div>
         </div>
@@ -176,25 +179,25 @@ function MainTelehealthApp() {
             isSyncing ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-2 opacity-0 scale-95'
           }`}
         >
-          <div className="bg-slate-950/95 text-slate-100 text-xs px-3.5 py-2 rounded-xl border border-slate-800 shadow-2xl flex items-center gap-2.5 backdrop-blur-md">
-            <div className="w-2 h-2 rounded-full bg-slate-400 animate-ping"></div>
-            <Database className="w-3.5 h-3.5 text-slate-400" />
+          <div className="bg-slate-900 text-white text-xs px-3.5 py-2 rounded-xl border border-slate-700 shadow-xl shadow-slate-950/20 flex items-center gap-2.5 backdrop-blur-md">
+            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></div>
+            <Database className="w-3.5 h-3.5 text-cyan-400" />
             <div className="flex flex-col">
-              <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">JSON DB Sync</span>
-              <span className="font-semibold text-[11px] text-slate-200">{lastApiAction}</span>
+              <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-wider">JSON DB Sync</span>
+              <span className="font-semibold text-[11px] text-slate-100">{lastApiAction}</span>
             </div>
-            <CheckCircle2 className="w-4 h-4 text-slate-300 ml-1" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-400 ml-1" />
           </div>
         </aside>
       )}
 
       {/* Institutional Hospital Platform & Founder Attribution Footer */}
-      <footer className="border-t border-slate-200/90 bg-white/90 backdrop-blur-xs py-6 text-xs text-slate-500 mt-auto">
+      <footer className="border-t border-slate-200/80 bg-white/95 backdrop-blur-xs py-6 text-xs text-slate-500 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           {/* Top Row: Institution, Ethics Status & Compliance Badges */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-3 pb-3 border-b border-slate-100">
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-center lg:text-left">
-              <span className="font-bold text-slate-950 tracking-tight text-sm">
+              <span className="font-bold text-indigo-950 tracking-tight text-sm">
                 KBF Precision Genomedix Ltd
               </span>
               <span className="text-slate-300">•</span>
@@ -202,7 +205,7 @@ function MainTelehealthApp() {
                 LAUTECH Teaching Hospital Clinical Pilot
               </span>
               <span className="text-slate-300">•</span>
-              <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px] font-medium">
+              <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-[11px] font-semibold">
                 Pending Ethics Approval
               </span>
             </div>
@@ -211,18 +214,18 @@ function MainTelehealthApp() {
               <button
                 type="button"
                 onClick={() => setIsNdprOpen(true)}
-                className="inline-flex items-center gap-1.5 text-slate-800 hover:text-slate-950 font-semibold bg-white hover:bg-slate-50 px-3 py-1 rounded-lg border border-slate-300 hover:border-slate-400 transition shadow-2xs group cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-emerald-800 hover:text-emerald-950 font-semibold bg-emerald-50 hover:bg-emerald-100/80 px-3 py-1 rounded-lg border border-emerald-300 transition shadow-2xs group cursor-pointer"
                 title="View Nigeria Data Protection Regulation (NDPR) Patient Privacy Rights & Data Sovereignty"
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-slate-700 group-hover:text-slate-950" />
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 group-hover:text-emerald-800" />
                 <span>NDPR Rights</span>
-                <span className="text-[10px] text-slate-500 font-normal group-hover:text-slate-700">
+                <span className="text-[10px] text-emerald-700 font-medium">
                   (NDPA 2023)
                 </span>
               </button>
 
-              <span className="inline-flex items-center gap-1.5 text-slate-700 font-medium bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
-                <span className="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
+              <span className="inline-flex items-center gap-1.5 text-indigo-800 font-medium bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">
+                <span className="h-1.5 w-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
                 UniGeneva CPIC Level 1A CDS
               </span>
             </div>
@@ -231,20 +234,20 @@ function MainTelehealthApp() {
           {/* Bottom Row: Lead Founder & Multidisciplinary Engineering Attribution */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-600">
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-              <span className="font-semibold text-slate-900">Lead Founder:</span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100 text-slate-900 font-medium rounded-md border border-slate-200">
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
+              <span className="font-semibold text-slate-800">Lead Founder:</span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-indigo-50 text-indigo-900 font-semibold rounded-md border border-indigo-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
                 Kamil-Bello Faisol, 500L Med Student, LAUTECH
               </span>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-3 text-slate-500">
               <span className="text-slate-700">
-                <strong className="text-slate-800">Clinical Lead:</strong> Prof. Adeseye Akintunde (Consultant Cardiologist)
+                <strong className="text-slate-900">Clinical Lead:</strong> Prof. Adeseye Akintunde (Consultant Cardiologist)
               </span>
               <span className="hidden sm:inline text-slate-300">•</span>
               <span className="text-slate-700">
-                <strong className="text-slate-800">Engineering Team:</strong> Engr. Teslim Komolafe, Engr. Oladipo Ridwan Kolawole, Engr. Odesola Ibrahim
+                <strong className="text-slate-900">Engineering Team:</strong> Engr. Teslim Komolafe, Engr. Oladipo Ridwan Kolawole, Engr. Odesola Ibrahim
               </span>
             </div>
           </div>
