@@ -197,38 +197,40 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-8 font-sans">
       {/* Module Header & Accreditation Breadcrumb */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-slate-900 border border-emerald-500/30 text-white rounded-2xl p-5 sm:p-6 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex flex-wrap items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold bg-slate-900 text-white">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
               <Building2 className="w-3.5 h-3.5" />
-              Family Medicine
+              Family Medicine &amp; Primary Care
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
-              <ShieldCheck className="w-3.5 h-3.5 text-slate-600" />
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-slate-200 border border-white/15">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               {LAUTECH_FAMILY_MEDICINE_PROTOCOL.name}
             </span>
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-teal-500/20 text-teal-200 border border-teal-400/30">
               Routing: {LAUTECH_FAMILY_MEDICINE_PROTOCOL.routing}
             </span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             Family Medicine: Elective Telehealth &amp; Safety Screen
           </h2>
-          <p className="text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl leading-relaxed">
             Institutional primary care telehealth channel of LAUTECH Teaching Hospital, Ogbomoso. Provides elective outpatient consultations, chronic disease surveillance, wellness screening, and care coordination under CMAC clinical oversight.
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={handleLoadDemoPatient}
-          className="shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold border border-slate-200 transition-colors"
-          title="Load accredited demo patient (Mrs. Folake Ojo - Chronic Disease Management)"
-        >
-          <UserCheck className="w-4 h-4 text-slate-600" />
-          <span>Load Demo Primary Care Patient</span>
-        </button>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0">
+          <button
+            type="button"
+            onClick={handleLoadDemoPatient}
+            className="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/20 transition-colors shadow-xs"
+            title="Load accredited demo patient (Mrs. Folake Ojo - Chronic Disease Management)"
+          >
+            <UserCheck className="w-4 h-4 text-emerald-400" />
+            <span>Load Demo Patient (Folake Ojo)</span>
+          </button>
+        </div>
       </div>
 
       {/* Confirmation View after Successful Booking */}
@@ -323,10 +325,12 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
             </div>
 
             {/* Exact Emergency Notice Block */}
-            <div className="p-4 rounded-lg bg-slate-50 border border-slate-300 text-slate-800 text-xs sm:text-sm leading-relaxed flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-slate-700 shrink-0 mt-0.5" />
+            <div className="p-4 rounded-xl bg-amber-50 border border-amber-300 text-amber-950 text-xs sm:text-sm leading-relaxed flex items-start gap-3 shadow-2xs">
+              <div className="p-1 rounded-md bg-amber-500 text-white shrink-0 mt-0.5">
+                <AlertCircle className="w-4 h-4" />
+              </div>
               <div>
-                <strong className="font-semibold text-slate-950 block mb-0.5">
+                <strong className="font-bold text-amber-950 block mb-0.5">
                   Emergency Notice:
                 </strong>
                 <span>
@@ -349,22 +353,22 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
                       key={flag.id}
                       type="button"
                       onClick={() => toggleRedFlag(flag.id)}
-                      className={`text-left p-3.5 rounded-lg border text-xs sm:text-sm transition-all flex items-start justify-between gap-3 ${
+                      className={`text-left p-3.5 rounded-xl border text-xs sm:text-sm transition-all flex items-start justify-between gap-3 ${
                         isChecked 
-                          ? 'bg-slate-900 border-slate-900 text-white font-medium shadow-xs'
-                          : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-800'
+                          ? 'bg-red-600 border-red-600 text-white font-medium shadow-xs'
+                          : 'bg-white hover:bg-red-50/40 border-slate-200 text-slate-800'
                       }`}
                     >
                       <div className="flex items-start gap-2.5">
                         <div className={`mt-0.5 w-4 h-4 rounded border flex items-center justify-center shrink-0 ${
-                          isChecked ? 'bg-white border-white text-slate-900' : 'border-slate-300 bg-white'
+                          isChecked ? 'bg-white border-white text-red-600' : 'border-slate-300 bg-white'
                         }`}>
                           {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                         </div>
                         <span className="leading-snug">{flag.label}</span>
                       </div>
                       <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono font-semibold shrink-0 ${
-                        isChecked ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
+                        isChecked ? 'bg-white/20 text-white' : 'bg-red-50 text-red-700 border border-red-200'
                       }`}>
                         Red Flag
                       </span>
@@ -376,26 +380,26 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
 
             {/* Emergency Red Flag Interceptor */}
             {hasEmergencyRedFlags && (
-              <div className="p-4 rounded-xl bg-slate-900 text-white space-y-3 animate-in fade-in duration-200">
+              <div className="p-4 rounded-xl bg-red-600 text-white space-y-3 animate-in fade-in duration-200 shadow-md">
                 <div className="flex items-center gap-2 text-sm font-bold text-white">
-                  <AlertTriangle className="w-4 h-4 text-amber-400" />
+                  <AlertTriangle className="w-5 h-5 text-white" />
                   <span>Immediate Hospital Emergency Care Required</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  You selected one or more emergency red flag symptoms. Elective telehealth is clinical contraindication for acute chest pain, collapse, severe trauma, or acute medical emergencies. Please proceed immediately to LAUTECH Hospital Emergency.
+                <p className="text-xs sm:text-sm text-red-50 leading-relaxed">
+                  You selected one or more emergency red flag symptoms. Elective telehealth is clinically contraindicated for acute chest pain, collapse, severe trauma, or acute medical emergencies. Please proceed immediately to LAUTECH Hospital Emergency.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 pt-1">
                   <a
                     href="tel:+2348033889012"
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white text-slate-950 text-xs font-bold hover:bg-slate-100 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-red-700 text-xs font-bold hover:bg-red-50 transition-colors shadow-xs"
                   >
-                    <PhoneCall className="w-3.5 h-3.5 text-slate-900" />
+                    <PhoneCall className="w-3.5 h-3.5 text-red-700" />
                     <span>Call LAUTECH Emergency: +234 803 388 9012</span>
                   </a>
                   <button
                     type="button"
                     onClick={() => setSelectedRedFlags([])}
-                    className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-xs font-medium border border-slate-700 transition-colors"
+                    className="px-3 py-1.5 rounded-xl bg-red-700 hover:bg-red-800 text-white text-xs font-medium border border-red-500 transition-colors"
                   >
                     Clear Emergency Flags (I am not in an emergency)
                   </button>
@@ -745,13 +749,13 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
                         setSelectedDate(slot.date);
                         setSelectedTime(slot.time);
                       }}
-                      className={`p-3 rounded-lg border text-center transition-all ${
+                      className={`p-3 rounded-xl border text-center transition-all ${
                         isSelected 
-                          ? 'bg-slate-900 border-slate-900 text-white font-semibold shadow-xs' 
-                          : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-800'
+                          ? 'bg-emerald-600 border-emerald-600 text-white font-semibold shadow-xs ring-2 ring-emerald-500/20' 
+                          : 'bg-white hover:bg-emerald-50/40 border-slate-200 text-slate-800'
                       }`}
                     >
-                      <span className="block text-[11px] opacity-75 font-normal">{slot.date}</span>
+                      <span className={`block text-[11px] font-normal ${isSelected ? 'text-emerald-100' : 'text-slate-500'}`}>{slot.date}</span>
                       <span className="block text-xs sm:text-sm font-bold mt-0.5">{slot.time}</span>
                     </button>
                   );
@@ -769,26 +773,29 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
                 <button
                   type="button"
                   onClick={() => setSelectedPaymentMode('HMO')}
-                  className={`p-3 rounded-lg border text-left text-xs sm:text-sm transition-all flex items-center justify-between ${
+                  className={`p-3 rounded-xl border text-left text-xs sm:text-sm transition-all flex items-center justify-between ${
                     selectedPaymentMode === 'HMO' 
-                      ? 'bg-slate-50 border-slate-900 ring-1 ring-slate-900 text-slate-900 font-semibold' 
-                      : 'bg-white border-slate-200 text-slate-700'
+                      ? 'bg-emerald-50 border-emerald-600 ring-2 ring-emerald-600/20 text-emerald-950 font-semibold' 
+                      : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                   }`}
                 >
-                  <span>HMO / NHIA Coverage</span>
-                  {selectedPaymentMode === 'HMO' && <Check className="w-4 h-4 text-slate-900" />}
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <span>HMO / NHIA Coverage</span>
+                  </div>
+                  {selectedPaymentMode === 'HMO' && <Check className="w-4 h-4 text-emerald-600 stroke-[3]" />}
                 </button>
                 <button
                   type="button"
                   onClick={() => setSelectedPaymentMode('OUT_OF_POCKET')}
-                  className={`p-3 rounded-lg border text-left text-xs sm:text-sm transition-all flex items-center justify-between ${
+                  className={`p-3 rounded-xl border text-left text-xs sm:text-sm transition-all flex items-center justify-between ${
                     selectedPaymentMode === 'OUT_OF_POCKET' 
-                      ? 'bg-slate-50 border-slate-900 ring-1 ring-slate-900 text-slate-900 font-semibold' 
-                      : 'bg-white border-slate-200 text-slate-700'
+                      ? 'bg-emerald-50 border-emerald-600 ring-2 ring-emerald-600/20 text-emerald-950 font-semibold' 
+                      : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                   }`}
                 >
                   <span>Direct Self-Pay (₦5,000)</span>
-                  {selectedPaymentMode === 'OUT_OF_POCKET' && <Check className="w-4 h-4 text-slate-900" />}
+                  {selectedPaymentMode === 'OUT_OF_POCKET' && <Check className="w-4 h-4 text-emerald-600 stroke-[3]" />}
                 </button>
               </div>
 
@@ -799,7 +806,7 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
                     <select
                       value={selectedHmo}
                       onChange={e => setSelectedHmo(e.target.value)}
-                      className="w-full text-xs sm:text-sm p-2.5 rounded-lg border border-slate-200 bg-white text-slate-900"
+                      className="w-full text-xs sm:text-sm p-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
                     >
                       {HMO_LIST.map((hmo, idx) => (
                         <option key={idx} value={hmo}>{hmo}</option>
@@ -813,7 +820,7 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
                       value={hmoNumber}
                       onChange={e => setHmoNumber(e.target.value)}
                       placeholder="e.g. HYG-FM-88204-LAUT"
-                      className="w-full text-xs sm:text-sm p-2.5 rounded-lg border border-slate-200 bg-white text-slate-900"
+                      className="w-full text-xs sm:text-sm p-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
                     />
                   </div>
                 </div>
@@ -830,12 +837,12 @@ export const FamilyMedicineModule: React.FC<FamilyMedicineModuleProps> = ({
                 type="button"
                 onClick={handleConfirmBooking}
                 disabled={hasEmergencyRedFlags}
-                className={`w-full sm:w-auto px-6 py-3 rounded-lg font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 ${
+                className={`w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-sm ${
                   hasEmergencyRedFlags 
                     ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300' 
                     : !safetyAcknowledged
-                      ? 'bg-slate-800 text-white hover:bg-slate-700 shadow-2xs'
-                      : 'bg-slate-900 text-white hover:bg-slate-800 shadow-xs'
+                      ? 'bg-slate-800 text-white hover:bg-slate-700'
+                      : 'bg-emerald-600 text-white hover:bg-emerald-700 active:scale-98'
                 }`}
               >
                 <span>Confirm Family Medicine Telehealth Booking</span>

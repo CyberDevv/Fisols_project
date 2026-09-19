@@ -11,7 +11,17 @@ import { JsonDatabaseModal } from './components/database/JsonDatabaseModal';
 import { NemlBrowserModal } from './components/neml/NemlBrowserModal';
 import { NetworkQuality, AppointmentBooking, NemlDrug } from './types';
 import { ClinicalStateProvider, useClinicalState } from './context/ClinicalStateContext';
-import { Database, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { 
+  Database, 
+  CheckCircle2, 
+  ShieldCheck, 
+  Stethoscope, 
+  CalendarCheck, 
+  HeartPulse, 
+  Heart, 
+  Activity, 
+  PhoneCall 
+} from 'lucide-react';
 
 function MainTelehealthApp() {
   const [currentTab, setCurrentTab] = useState<'booking' | 'family-medicine' | 'obgyn' | 'surgery-urology' | 'consultation' | 'architecture'>('booking');
@@ -78,6 +88,106 @@ function MainTelehealthApp() {
         isSyncing={isSyncing}
         activeAppointmentCount={appointments.length}
       />
+
+      {/* Role-Oriented Clinical Quick Navigation & Status Bar */}
+      <section aria-label="Portal Mode & Quick Navigation" className="bg-white border-b border-slate-200/90 shadow-2xs">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+            {/* Active Portal Breadcrumb & Status */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                Portal:
+              </span>
+              {currentTab === 'booking' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 text-xs font-bold border border-indigo-200">
+                  <CalendarCheck className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>Patient Intake &amp; Triage Wizard</span>
+                </span>
+              )}
+              {currentTab === 'family-medicine' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                  <HeartPulse className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Family Medicine &amp; Chronic Care Clinic</span>
+                </span>
+              )}
+              {currentTab === 'obgyn' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-50 text-rose-800 text-xs font-bold border border-rose-200">
+                  <Heart className="w-3.5 h-3.5 text-rose-600" />
+                  <span>OB/GYN Antenatal &amp; Gynecology Clinic</span>
+                </span>
+              )}
+              {currentTab === 'surgery-urology' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-violet-50 text-violet-800 text-xs font-bold border border-violet-200">
+                  <Activity className="w-3.5 h-3.5 text-violet-600" />
+                  <span>Surgery &amp; Urology Elective Care</span>
+                </span>
+              )}
+              {currentTab === 'consultation' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 text-blue-900 text-xs font-bold border border-blue-300 ring-1 ring-blue-500/20">
+                  <Stethoscope className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Doctor Telehealth Workstation (Active Session)</span>
+                </span>
+              )}
+              {currentTab === 'architecture' && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-900 text-xs font-bold border border-amber-200">
+                  <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
+                  <span>Hospital Standards &amp; Clinical Governance</span>
+                </span>
+              )}
+            </div>
+
+            {/* Quick Action Chips for Fast Doctor vs Patient Navigation */}
+            <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+              {currentTab !== 'consultation' ? (
+                <button
+                  type="button"
+                  onClick={() => setCurrentTab('consultation')}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-xs"
+                  title="Switch to Doctor's Virtual Workstation"
+                >
+                  <Stethoscope className="w-3.5 h-3.5 text-white" />
+                  <span>Open Doctor Room</span>
+                  {appointments.length > 0 && (
+                    <span className="bg-blue-800 text-blue-100 text-[10px] px-1.5 py-0.2 rounded-full font-mono">
+                      {appointments.length}
+                    </span>
+                  )}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setCurrentTab('booking')}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition shadow-xs"
+                  title="Switch to Patient Intake & Booking Wizard"
+                >
+                  <CalendarCheck className="w-3.5 h-3.5 text-white" />
+                  <span>Patient Booking Mode</span>
+                </button>
+              )}
+
+              <a
+                href="tel:+2348033889012"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold border border-amber-200 transition"
+                title="LAUTECH Teaching Hospital Emergency Hotline"
+              >
+                <PhoneCall className="w-3.5 h-3.5 text-amber-700" />
+                <span className="hidden md:inline">Emergency:</span>
+                <span>0803 388 9012</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setIsNdprOpen(true)}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium border border-slate-200 transition"
+                title="View NDPR Patient Data Privacy Rights"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-slate-600" />
+                <span>NDPR</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Main Viewport Body */}
       <main className="flex-1">
